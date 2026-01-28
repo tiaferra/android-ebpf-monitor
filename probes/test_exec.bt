@@ -1,0 +1,5 @@
+tracepoint:sched:sched_process_exec
+{
+  printf("{\"ts\":%lld,\"type\":\"proc.exec\",\"pid\":%d,\"tid\":%d,\"comm\":\"%s\"}\n",
+         nsecs, pid, tid, comm);
+}
