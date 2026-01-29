@@ -4,6 +4,12 @@
     "event": "exec",
     "description": "Process execution via sched_process_exec tracepoint",
     "schema_version": 1
+  },
+  "probes/syscalls.bt": {
+    "type": "syscall",
+    "event": "*",
+    "description": "Filtered syscall tracing via raw_syscalls:sys_enter (x86_64: execve/openat/connect)",
+    "schema_version": 1
   }
 }
 

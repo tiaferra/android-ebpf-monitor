@@ -1,0 +1,10 @@
+{
+  "probes/test_exec.bt": {
+    "type": "process",
+    "event": "exec",
+    "description": "Process execution via sched_process_exec tracepoint",
+    "schema_version": 1
+  },
+
+}
+
