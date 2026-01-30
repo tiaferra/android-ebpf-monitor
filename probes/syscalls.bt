@@ -11,7 +11,7 @@ tracepoint:raw_syscalls:sys_enter
   if (args->id == 257) { $name = "openat"; }
   if (args->id == 42)  { $name = "connect"; }
 
-  printf("{\"ts\":%s,\"type\":\"syscall\",\"event\":\"%s\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"syscall_id\":%d,\"arg0\":%llu,\"arg1\":%llu,\"arg2\":%llu}}\n",
+  printf("{\"ts\":\"%s\",\"type\":\"syscall\",\"event\":\"%s\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"syscall_id\":%d,\"arg0\":%llu,\"arg1\":%llu,\"arg2\":%llu}}\n",
          strftime("%H:%M:%S", nsecs), $name, pid, tid, uid, comm,
          args->id, args->args[0], args->args[1], args->args[2]);
 }

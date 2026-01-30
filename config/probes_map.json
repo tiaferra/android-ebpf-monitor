@@ -10,6 +10,12 @@
     "event": "*",
     "description": "Filtered syscall tracing via raw_syscalls:sys_enter (x86_64: execve/openat/connect)",
     "schema_version": 1
+  },
+  "probes/binder.bt": {
+    "type": "ipc",
+    "event": "binder_transaction",
+    "description": "Binder IPC transactions via tracepoint:binder:binder_transaction",
+    "schema_version": 1
   }
 }
 
