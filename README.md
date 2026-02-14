@@ -88,6 +88,125 @@ Questo formato permette:
 - compatibilità con sistemi di analisi
 
 ---
+## Probe disponibili
+
+Le seguenti probe eBPF sono disponibili nella directory `probes/`.  
+Ogni probe genera eventi JSON strutturati che vengono automaticamente raccolti da `monitor.py` e salvati in formato JSONL all’interno della cartella di sessione.
+
+---
+
+### binder.bt
+
+**Categoria:** Monitoraggio IPC  
+
+**Descrizione:**  
+Traccia le transazioni Binder, il principale meccanismo di comunicazione inter-processo (IPC) nei sistemi Android. La probe cattura metadati relativi a ogni transazione, inclusi processo sorgente, processo destinatario, identificativi dei thread e flag della transazione.
+
+**Eventi generati:**
+- `binder_transaction`
+
+**Casi d’uso:**
+- Analizzare i pattern di comunicazione tra applicazioni e servizi di sistema  
+- Individuare comportamenti IPC anomali  
+- Supportare l’analisi comportamentale dei processi Android  
+
+---
+
+### process_lifecycle.bt
+
+**Categoria:** Monitoraggio dei processi  
+
+**Descrizione:**  
+Monitora il ciclo di vita dei processi osservando i tracepoint dello scheduler del kernel. La probe registra eventi di creazione (`fork`), esecuzione di un nuovo programma (`exec`) e terminazione (`exit`).
+
+**Eventi generati:**
+- `fork`
+- `exec`
+- `exit`
+
+**Casi d’uso:**
+- Ricostruire l’albero dei processi  
+- Identificare creazioni di processi sospette  
+- Correlare l’attività dei processi con syscall o eventi IPC  
+
+---
+
+### syscalls.bt
+
+**Categoria:** Monitoraggio delle system call  
+
+**Descrizione:**  
+Intercetta specifiche system call al momento dell’ingresso utilizzando il tracepoint `raw_syscalls:sys_enter`.  
+Attualmente vengono monitorate:
+
+- `execve`
+- `openat`
+- `connect`
+
+La probe registra l’identificativo della syscall insieme al contesto di esecuzione (PID, UID e nome del processo).
+
+**Casi d’uso:**
+- Rilevare tentativi di esecuzione di programmi  
+- Osservare l’accesso al file system  
+- Monitorare tentativi di connessione verso l’esterno  
+
+**Nota:**  
+Gli argomenti delle system call vengono raccolti in forma grezza e potrebbero richiedere post-processing per un’interpretazione semantica.
+
+---
+
+### syscalls_latency.bt
+
+**Categoria:** Monitoraggio delle prestazioni delle system call  
+
+**Descrizione:**  
+Estende il tracciamento delle system call correlando eventi di ingresso e uscita per calcolare la latenza di esecuzione e registrare il valore di ritorno. Questo consente un’analisi più approfondita del comportamento del sistema e delle condizioni di errore.
+
+**Metriche aggiuntive:**
+- Valore di ritorno (`ret`)
+- Latenza di esecuzione in microsecondi (`lat_us`)
+
+**Casi d’uso:**
+- Individuare system call fallite  
+- Rilevare latenze anomale  
+- Effettuare analisi prestazionali  
+- Abilitare analisi comportamentali avanzate  
+
+---
+
+### sched_switch.bt
+
+**Categoria:** Monitoraggio dello scheduler  
+
+**Descrizione:**  
+Osserva i cambi di contesto effettuati dallo scheduler Linux. La probe registra quale processo viene sospeso e quale viene attivato, fornendo visibilità sulla dinamica di utilizzo della CPU.
+
+**Eventi generati:**
+- `switch`
+
+**Casi d’uso:**
+- Analizzare il comportamento dello scheduler  
+- Individuare un’elevata frequenza di context switch  
+- Supportare indagini sulle prestazioni  
+- Correlare l’attività runtime con il comportamento dei processi  
+
+---
+
+## Formato degli eventi
+
+Tutte le probe emettono eventi JSON su singola riga con una struttura coerente:
+
+```json
+{
+  "ts": "HH:MM:SS",
+  "type": "categoria",
+  "event": "nome_evento",
+  "pid": 123,
+  "tid": 123,
+  "uid": 1000,
+  "comm": "nome_processo",
+  "data": { ... }
+}
 
 ## 🎯 Obiettivi funzionali (roadmap)
 

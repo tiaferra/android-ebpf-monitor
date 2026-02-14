@@ -1,0 +1,9 @@
+tracepoint:sched:sched_switch
+{
+  printf("{\"ts\":\"%s\",\"type\":\"sched\",\"event\":\"switch\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"prev_pid\":%d,\"prev_comm\":\"%s\",\"next_pid\":%d,\"next_comm\":\"%s\"}}\n",
+    strftime("%H:%M:%S", nsecs),
+    pid, tid, uid, comm,
+    args->prev_pid, args->prev_comm,
+    args->next_pid, args->next_comm
+  );
+}

@@ -26,6 +26,17 @@
     "schema_version": 1,
     "type": "syscall",
     "event": "*"
+  },
+  "probes/sched_switch.bt": {
+    "schema_version": 1,
+    "type": "sched",
+    "event": "switch",
+    "description": "Traccia i context switch dello scheduler (prev/next pid e comm)."
+  },
+  "probes/sched_wakeup_latency.bt": {
+    "schema_version": 1,
+    "type": "sched",
+    "event": "wakeup_latency"
   }
 }
 

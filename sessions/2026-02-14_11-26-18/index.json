@@ -1,0 +1,71 @@
+{
+  "total_events": 2390,
+  "events_by_type": {
+    "syscall": 2390
+  },
+  "events_by_name": {
+    "init": 1,
+    "openat": 2332,
+    "connect": 39,
+    "execve": 18
+  },
+  "top_processes": [
+    [
+      "flags_health_ch",
+      1045
+    ],
+    [
+      "android.hardwar",
+      475
+    ],
+    [
+      "cut",
+      312
+    ],
+    [
+      "sh",
+      288
+    ],
+    [
+      "init",
+      245
+    ],
+    [
+      "adbd",
+      12
+    ],
+    [
+      "logd.writer",
+      5
+    ],
+    [
+      "bpftrace",
+      2
+    ],
+    [
+      "netd",
+      2
+    ],
+    [
+      "ueventd",
+      1
+    ]
+  ],
+  "syscalls": {
+    "counts": {
+      "init": 1,
+      "openat": 2332,
+      "connect": 39,
+      "execve": 18
+    },
+    "errors": {
+      "openat": 107
+    },
+    "latency": {
+      "min_us": 1,
+      "p50_us": 4,
+      "p95_us": 59,
+      "max_us": 5161
+    }
+  }
+}
