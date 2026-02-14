@@ -1,0 +1,37 @@
+#!/usr/bin/env bpftrace
+
+BEGIN
+{
+  printf("{\"ts\":\"%s\",\"type\":\"syscall\",\"event\":\"init\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"msg\":\"syscalls_latency started\"}}\n",
+    strftime("%H:%M:%S", nsecs), pid, tid, uid, comm);
+}
+
+/* Track only: execve(59), openat(257), connect(42) on x86_64 */
+tracepoint:raw_syscalls:sys_enter / args->id == 59 || args->id == 257 || args->id == 42 /
+{
+  @t0[tid] = nsecs;
+  @id[tid] = args->id;
+}
+
+tracepoint:raw_syscalls:sys_exit / @t0[tid] && (@id[tid] == args->id) /
+{
+  $dur_us = (nsecs - @t0[tid]) / 1000;
+
+  $name = "other";
+  if (args->id == 59)  { $name = "execve"; }
+  if (args->id == 257) { $name = "openat"; }
+  if (args->id == 42)  { $name = "connect"; }
+
+  /* NOTE: on most kernels the return value field is args->ret.
+     If bpftrace complains, run:
+       bpftrace -lv tracepoint:raw_syscalls:sys_exit
+     and replace args->ret with the real field name. */
+  printf("{\"ts\":\"%s\",\"type\":\"syscall\",\"event\":\"%s\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"syscall_id\":%d,\"ret\":%ld,\"lat_us\":%llu}}\n",
+    strftime("%H:%M:%S", nsecs),
+    $name, pid, tid, uid, comm,
+    args->id, args->ret, $dur_us
+  );
+
+  delete(@t0[tid]);
+  delete(@id[tid]);
+}

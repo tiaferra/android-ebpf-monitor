@@ -1,0 +1,10 @@
+{
+  "started_at": "2026-02-14T11:14:48.549851",
+  "probe_path": "probes/process_lifecycle.bt",
+  "probe_meta": {
+    "schema_version": 1,
+    "type": "proc",
+    "event": "*"
+  },
+  "stopped_at": "2026-02-14T11:15:07.673669"
+}

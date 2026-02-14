@@ -1,0 +1,42 @@
+{"ts": "11:14:49", "type": "proc", "event": "fork", "pid": 1, "tid": 1, "uid": 0, "comm": "init", "data": {"parent_pid": 1, "child_pid": 8280, "parent_comm": "init", "child_comm": "init"}, "schema_version": 1}
+{"ts": "11:14:49", "type": "proc", "event": "exec", "pid": 8280, "tid": 8280, "uid": 1002, "comm": "android.hardwar", "data": {"filename": "/apex/com.google.cf.bt/bin/hw/android.hardware.bluetooth.socket", "old_pid": 8280}, "schema_version": 1}
+{"ts": "11:14:49", "type": "proc", "event": "exit", "pid": 8280, "tid": 8280, "uid": 1002, "comm": "android.hardwar", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:14:49", "type": "proc", "event": "fork", "pid": 1, "tid": 1, "uid": 0, "comm": "init", "data": {"parent_pid": 1, "child_pid": 8281, "parent_comm": "init", "child_comm": "init"}, "schema_version": 1}
+{"ts": "11:14:49", "type": "proc", "event": "exec", "pid": 8281, "tid": 8281, "uid": 1000, "comm": "flags_health_ch", "data": {"filename": "/system/bin/flags_health_check", "old_pid": 8281}, "schema_version": 1}
+{"ts": "11:14:49", "type": "proc", "event": "exit", "pid": 8281, "tid": 8281, "uid": 1000, "comm": "flags_health_ch", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:14:53", "type": "proc", "event": "fork", "pid": 4189, "tid": 4189, "uid": 0, "comm": "adbd", "data": {"parent_pid": 4189, "child_pid": 8282, "parent_comm": "adbd", "child_comm": "adbd"}, "schema_version": 1}
+{"ts": "11:14:53", "type": "proc", "event": "exec", "pid": 8282, "tid": 8282, "uid": 0, "comm": "sh", "data": {"filename": "/system/bin/sh", "old_pid": 8282}, "schema_version": 1}
+{"ts": "11:14:53", "type": "proc", "event": "fork", "pid": 4189, "tid": 4189, "uid": 0, "comm": "adbd", "data": {"parent_pid": 4189, "child_pid": 8283, "parent_comm": "adbd", "child_comm": "adbd"}, "schema_version": 1}
+{"ts": "11:14:53", "type": "proc", "event": "exec", "pid": 8282, "tid": 8282, "uid": 0, "comm": "cut", "data": {"filename": "/system/bin/cut", "old_pid": 8282}, "schema_version": 1}
+{"ts": "11:14:53", "type": "proc", "event": "exit", "pid": 8282, "tid": 8282, "uid": 0, "comm": "cut", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:14:53", "type": "proc", "event": "exit", "pid": 4189, "tid": 8283, "uid": 0, "comm": "shell svc 8282", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:14:54", "type": "proc", "event": "fork", "pid": 1, "tid": 1, "uid": 0, "comm": "init", "data": {"parent_pid": 1, "child_pid": 8284, "parent_comm": "init", "child_comm": "init"}, "schema_version": 1}
+{"ts": "11:14:54", "type": "proc", "event": "exec", "pid": 8284, "tid": 8284, "uid": 1002, "comm": "android.hardwar", "data": {"filename": "/apex/com.google.cf.bt/bin/hw/android.hardware.bluetooth.socket", "old_pid": 8284}, "schema_version": 1}
+{"ts": "11:14:54", "type": "proc", "event": "exit", "pid": 8284, "tid": 8284, "uid": 1002, "comm": "android.hardwar", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:14:54", "type": "proc", "event": "fork", "pid": 1, "tid": 1, "uid": 0, "comm": "init", "data": {"parent_pid": 1, "child_pid": 8285, "parent_comm": "init", "child_comm": "init"}, "schema_version": 1}
+{"ts": "11:14:54", "type": "proc", "event": "exec", "pid": 8285, "tid": 8285, "uid": 1000, "comm": "flags_health_ch", "data": {"filename": "/system/bin/flags_health_check", "old_pid": 8285}, "schema_version": 1}
+{"ts": "11:14:54", "type": "proc", "event": "exit", "pid": 8285, "tid": 8285, "uid": 1000, "comm": "flags_health_ch", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:14:58", "type": "proc", "event": "fork", "pid": 4189, "tid": 4189, "uid": 0, "comm": "adbd", "data": {"parent_pid": 4189, "child_pid": 8286, "parent_comm": "adbd", "child_comm": "adbd"}, "schema_version": 1}
+{"ts": "11:14:58", "type": "proc", "event": "exec", "pid": 8286, "tid": 8286, "uid": 0, "comm": "sh", "data": {"filename": "/system/bin/sh", "old_pid": 8286}, "schema_version": 1}
+{"ts": "11:14:58", "type": "proc", "event": "fork", "pid": 4189, "tid": 4189, "uid": 0, "comm": "adbd", "data": {"parent_pid": 4189, "child_pid": 8287, "parent_comm": "adbd", "child_comm": "adbd"}, "schema_version": 1}
+{"ts": "11:14:58", "type": "proc", "event": "exec", "pid": 8286, "tid": 8286, "uid": 0, "comm": "cut", "data": {"filename": "/system/bin/cut", "old_pid": 8286}, "schema_version": 1}
+{"ts": "11:14:58", "type": "proc", "event": "exit", "pid": 8286, "tid": 8286, "uid": 0, "comm": "cut", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:14:58", "type": "proc", "event": "exit", "pid": 4189, "tid": 8287, "uid": 0, "comm": "shell svc 8286", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:14:59", "type": "proc", "event": "fork", "pid": 1, "tid": 1, "uid": 0, "comm": "init", "data": {"parent_pid": 1, "child_pid": 8288, "parent_comm": "init", "child_comm": "init"}, "schema_version": 1}
+{"ts": "11:14:59", "type": "proc", "event": "exec", "pid": 8288, "tid": 8288, "uid": 1002, "comm": "android.hardwar", "data": {"filename": "/apex/com.google.cf.bt/bin/hw/android.hardware.bluetooth.socket", "old_pid": 8288}, "schema_version": 1}
+{"ts": "11:14:59", "type": "proc", "event": "exit", "pid": 8288, "tid": 8288, "uid": 1002, "comm": "android.hardwar", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:14:59", "type": "proc", "event": "fork", "pid": 1, "tid": 1, "uid": 0, "comm": "init", "data": {"parent_pid": 1, "child_pid": 8289, "parent_comm": "init", "child_comm": "init"}, "schema_version": 1}
+{"ts": "11:14:59", "type": "proc", "event": "exec", "pid": 8289, "tid": 8289, "uid": 1000, "comm": "flags_health_ch", "data": {"filename": "/system/bin/flags_health_check", "old_pid": 8289}, "schema_version": 1}
+{"ts": "11:14:59", "type": "proc", "event": "exit", "pid": 8289, "tid": 8289, "uid": 1000, "comm": "flags_health_ch", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:15:03", "type": "proc", "event": "fork", "pid": 4189, "tid": 4189, "uid": 0, "comm": "adbd", "data": {"parent_pid": 4189, "child_pid": 8290, "parent_comm": "adbd", "child_comm": "adbd"}, "schema_version": 1}
+{"ts": "11:15:03", "type": "proc", "event": "exec", "pid": 8290, "tid": 8290, "uid": 0, "comm": "sh", "data": {"filename": "/system/bin/sh", "old_pid": 8290}, "schema_version": 1}
+{"ts": "11:15:03", "type": "proc", "event": "fork", "pid": 4189, "tid": 4189, "uid": 0, "comm": "adbd", "data": {"parent_pid": 4189, "child_pid": 8291, "parent_comm": "adbd", "child_comm": "adbd"}, "schema_version": 1}
+{"ts": "11:15:03", "type": "proc", "event": "exec", "pid": 8290, "tid": 8290, "uid": 0, "comm": "cut", "data": {"filename": "/system/bin/cut", "old_pid": 8290}, "schema_version": 1}
+{"ts": "11:15:03", "type": "proc", "event": "exit", "pid": 8290, "tid": 8290, "uid": 0, "comm": "cut", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:15:03", "type": "proc", "event": "exit", "pid": 4189, "tid": 8291, "uid": 0, "comm": "shell svc 8290", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:15:04", "type": "proc", "event": "fork", "pid": 1, "tid": 1, "uid": 0, "comm": "init", "data": {"parent_pid": 1, "child_pid": 8292, "parent_comm": "init", "child_comm": "init"}, "schema_version": 1}
+{"ts": "11:15:04", "type": "proc", "event": "exec", "pid": 8292, "tid": 8292, "uid": 1002, "comm": "android.hardwar", "data": {"filename": "/apex/com.google.cf.bt/bin/hw/android.hardware.bluetooth.socket", "old_pid": 8292}, "schema_version": 1}
+{"ts": "11:15:04", "type": "proc", "event": "exit", "pid": 8292, "tid": 8292, "uid": 1002, "comm": "android.hardwar", "data": {"prio": 120}, "schema_version": 1}
+{"ts": "11:15:04", "type": "proc", "event": "fork", "pid": 1, "tid": 1, "uid": 0, "comm": "init", "data": {"parent_pid": 1, "child_pid": 8293, "parent_comm": "init", "child_comm": "init"}, "schema_version": 1}
+{"ts": "11:15:04", "type": "proc", "event": "exec", "pid": 8293, "tid": 8293, "uid": 1000, "comm": "flags_health_ch", "data": {"filename": "/system/bin/flags_health_check", "old_pid": 8293}, "schema_version": 1}
+{"ts": "11:15:04", "type": "proc", "event": "exit", "pid": 8293, "tid": 8293, "uid": 1000, "comm": "flags_health_ch", "data": {"prio": 120}, "schema_version": 1}

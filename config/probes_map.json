@@ -16,6 +16,16 @@
     "event": "binder_transaction",
     "description": "Binder IPC transactions via tracepoint:binder:binder_transaction",
     "schema_version": 1
+  },
+  "probes/process_lifecycle.bt": {
+    "schema_version": 1,
+    "type": "proc",
+    "event": "*"
+  },
+  "probes/syscalls_latency.bt": {
+    "schema_version": 1,
+    "type": "syscall",
+    "event": "*"
   }
 }
 

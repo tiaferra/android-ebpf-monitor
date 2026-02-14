@@ -1,0 +1,10 @@
+{
+  "started_at": "2026-02-14T11:26:18.256016",
+  "probe_path": "probes/syscalls_latency.bt",
+  "probe_meta": {
+    "schema_version": 1,
+    "type": "syscall",
+    "event": "*"
+  },
+  "stopped_at": "2026-02-14T11:26:42.097573"
+}
