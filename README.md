@@ -207,6 +207,7 @@ Tutte le probe emettono eventi JSON su singola riga con una struttura coerente:
   "comm": "nome_processo",
   "data": { ... }
 }
+```
 
 ## 🎯 Obiettivi funzionali (roadmap)
 
