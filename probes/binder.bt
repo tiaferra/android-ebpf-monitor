@@ -6,8 +6,8 @@
 
 tracepoint:binder:binder_transaction
 {
-  printf("{\"ts\":\"%s\",\"type\":\"ipc\",\"event\":\"binder_transaction\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"debug_id\":%d,\"target_node\":%d,\"to_pid\":%d,\"to_tid\":%d,\"reply\":%d,\"code\":%u,\"flags\":%u}}\n",
-         strftime("%H:%M:%S", nsecs), pid, tid, uid, comm,
+  printf("~\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"ipc\",\"event\":\"binder_transaction\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"debug_id\":%d,\"target_node\":%d,\"to_pid\":%d,\"to_tid\":%d,\"reply\":%d,\"code\":%u,\"flags\":%u}}\n",
+         nsecs, strftime("%H:%M:%S", nsecs), pid, tid, uid, comm,
          args->debug_id, args->target_node, args->to_proc, args->to_thread,
          args->reply, args->code, args->flags);
 }

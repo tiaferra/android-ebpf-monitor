@@ -2,8 +2,8 @@
 
 BEGIN
 {
-  printf("{\"ts\":\"%s\",\"type\":\"syscall\",\"event\":\"init\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"msg\":\"syscalls_latency started\"}}\n",
-    strftime("%H:%M:%S", nsecs), pid, tid, uid, comm);
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"syscall\",\"event\":\"init\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"msg\":\"syscalls_latency started\"}}\n",
+    nsecs, strftime("%H:%M:%S", nsecs), pid, tid, uid, comm);
 }
 
 tracepoint:raw_syscalls:sys_enter / args->id == 59 || args->id == 257 || args->id == 42 /
@@ -21,8 +21,8 @@ tracepoint:raw_syscalls:sys_exit / @t0[tid] && (@id[tid] == args->id) /
   if (args->id == 257) { $name = "openat"; }
   if (args->id == 42)  { $name = "connect"; }
 
-  printf("{\"ts\":\"%s\",\"type\":\"syscall\",\"event\":\"%s\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"syscall_id\":%d,\"ret\":%ld,\"lat_us\":%llu}}\n",
-    strftime("%H:%M:%S", nsecs),
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"syscall\",\"event\":\"%s\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"syscall_id\":%d,\"ret\":%ld,\"lat_us\":%llu}}\n",
+    nsecs, strftime("%H:%M:%S", nsecs),
     $name, pid, tid, uid, comm,
     args->id, args->ret, $dur_us
   );

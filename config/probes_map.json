@@ -1,39 +1,46 @@
 {
   "probes/test_exec.bt": {
+    "code": "P00001",
     "type": "process",
     "event": "exec",
     "description": "Process execution via sched_process_exec tracepoint",
     "schema_version": 1
   },
-  "probes/syscalls.bt": {
+  "probes/syscalls.bt":{
+    "code": "P00010",
     "type": "syscall",
     "event": "*",
     "description": "Filtered syscall tracing via raw_syscalls:sys_enter (x86_64: execve/openat/connect)",
     "schema_version": 1
   },
   "probes/binder.bt": {
+    "code": "P00011",
     "type": "ipc",
     "event": "binder_transaction",
     "description": "Binder IPC transactions via tracepoint:binder:binder_transaction",
     "schema_version": 1
   },
   "probes/process_lifecycle.bt": {
+    "code": "P00100",
     "schema_version": 1,
     "type": "proc",
     "event": "*"
   },
   "probes/syscalls_latency.bt": {
+    "code": "P00101",
     "schema_version": 1,
     "type": "syscall",
     "event": "*"
   },
   "probes/sched_switch.bt": {
+    "code": "P00110",
     "schema_version": 1,
     "type": "sched",
     "event": "switch",
     "description": "Traccia i context switch dello scheduler (prev/next pid e comm)."
   },
   "probes/sched_wakeup_latency.bt": {
+    "code": "P00111",
     "schema_version": 1,
     "type": "sched",
     "event": "wakeup_latency"

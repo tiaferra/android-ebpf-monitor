@@ -2,8 +2,8 @@
 
 tracepoint:sched:sched_process_fork
 {
-  printf("{\"ts\":\"%s\",\"type\":\"proc\",\"event\":\"fork\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"parent_pid\":%d,\"child_pid\":%d,\"parent_comm\":\"%s\",\"child_comm\":\"%s\"}}\n",
-    strftime("%H:%M:%S", nsecs),
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"proc\",\"event\":\"fork\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"parent_pid\":%d,\"child_pid\":%d,\"parent_comm\":\"%s\",\"child_comm\":\"%s\"}}\n",
+    nsecs, strftime("%H:%M:%S", nsecs),
     pid, tid, uid, comm,
     args->parent_pid, args->child_pid, args->parent_comm, args->child_comm
   );
@@ -11,8 +11,8 @@ tracepoint:sched:sched_process_fork
 
 tracepoint:sched:sched_process_exec
 {
-  printf("{\"ts\":\"%s\",\"type\":\"proc\",\"event\":\"exec\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"filename\":\"%s\",\"old_pid\":%d}}\n",
-    strftime("%H:%M:%S", nsecs),
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"proc\",\"event\":\"exec\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"filename\":\"%s\",\"old_pid\":%d}}\n",
+    nsecs, strftime("%H:%M:%S", nsecs),
     pid, tid, uid, comm,
     str(args->filename), args->old_pid
   );
@@ -20,8 +20,8 @@ tracepoint:sched:sched_process_exec
 
 tracepoint:sched:sched_process_exit
 {
-  printf("{\"ts\":\"%s\",\"type\":\"proc\",\"event\":\"exit\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"prio\":%d}}\n",
-    strftime("%H:%M:%S", nsecs),
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"proc\",\"event\":\"exit\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"prio\":%d}}\n",
+    nsecs, strftime("%H:%M:%S", nsecs),
     pid, tid, uid, comm,
     args->prio
   );

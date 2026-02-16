@@ -1,33 +1,50 @@
 #!/usr/bin/env python3
-
 import subprocess
 import os
 import json
 import datetime
 import sys
 import threading
+from typing import Any, Dict, Optional
+
 
 # =========================
 # Configurazione base
 # =========================
-
 DEFAULT_PROBE_PATH = "probes/test_exec.bt"
 PROBES_MAP_PATH = "config/probes_map.json"
 SESSIONS_DIR = "sessions"
 
+
 # =========================
 # Utility
 # =========================
-
-def create_session_dir():
-    ts = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    session_path = os.path.join(SESSIONS_DIR, ts)
-    os.makedirs(session_path, exist_ok=True)
-    return session_path
-
 def load_probes_map(path: str) -> dict:
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+def _sanitize_session_prefix(prefix: str) -> str:
+    """
+    Mantiene il prefisso leggibile ma rimuove spazi e separatori pericolosi
+    (senza cambiare troppo l'idea del codice).
+    """
+    prefix = (prefix or "").strip()
+    if not prefix:
+        return ""
+    # evita slash/backslash e spazi
+    prefix = prefix.replace("/", "_").replace("\\", "_").replace(" ", "_")
+    return prefix
+
+
+def create_session_dir(prefix: str = "") -> str:
+    ts = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    prefix = _sanitize_session_prefix(prefix)
+    folder = f"{prefix}_{ts}" if prefix else ts
+    session_path = os.path.join(SESSIONS_DIR, folder)
+    os.makedirs(session_path, exist_ok=True)
+    return session_path
+
 
 def start_bpftrace(probe_path: str) -> subprocess.Popen:
     cmd = ["bpftrace", probe_path]
@@ -36,8 +53,9 @@ def start_bpftrace(probe_path: str) -> subprocess.Popen:
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
-        bufsize=1  # line-buffered
+        bufsize=1,  # line-buffered
     )
+
 
 def drain_stream_to_file(stream, out_file):
     """Legge continuamente uno stream (es. stderr) e lo scrive su file."""
@@ -50,7 +68,8 @@ def drain_stream_to_file(stream, out_file):
     except Exception:
         pass
 
-def normalize_event(obj: dict, probe_meta: dict) -> dict:
+
+def normalize_event(obj: dict, probe_meta: dict, probe_code: str) -> dict:
     """Assicura che l'evento rispetti lo schema minimo e applica fallback da config."""
     if "schema_version" not in obj:
         obj["schema_version"] = probe_meta.get("schema_version", 1)
@@ -58,7 +77,6 @@ def normalize_event(obj: dict, probe_meta: dict) -> dict:
     # fallback type/event se mancanti
     if "type" not in obj and "type" in probe_meta:
         obj["type"] = probe_meta["type"]
-
     if "event" not in obj and "event" in probe_meta and probe_meta["event"] != "*":
         obj["event"] = probe_meta["event"]
 
@@ -66,9 +84,14 @@ def normalize_event(obj: dict, probe_meta: dict) -> dict:
     if "data" not in obj or not isinstance(obj["data"], dict):
         obj["data"] = {}
 
+    # aggiunta: tag sessione/probe (utile per correlare anche fuori dalla cartella)
+    if probe_code:
+        obj.setdefault("probe_code", probe_code)
+
     return obj
 
-def validate_event(obj: dict, probe_meta: dict) -> str | None:
+
+def validate_event(obj: dict, probe_meta: dict) -> Optional[str]:
     """Ritorna una stringa di warning se non matcha la config, altrimenti None."""
     expected_type = probe_meta.get("type")
     expected_event = probe_meta.get("event")
@@ -82,10 +105,10 @@ def validate_event(obj: dict, probe_meta: dict) -> str | None:
 
     return None
 
+
 # =========================
 # Main
 # =========================
-
 def main():
     # scegli probe da CLI oppure default
     probe_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_PROBE_PATH
@@ -104,10 +127,11 @@ def main():
         print("[!] Add it to the map or pass a known probe.")
         sys.exit(1)
 
-    probe_meta = probes_map[probe_path]
+    probe_meta: Dict[str, Any] = probes_map[probe_path]
+    probe_code = str(probe_meta.get("code", "")).strip()
 
-    # crea sessione
-    session_dir = create_session_dir()
+    # crea sessione (prefisso = code)
+    session_dir = create_session_dir(prefix=probe_code)
     print(f"[*] Session created: {session_dir}")
 
     events_file_path = os.path.join(session_dir, "events.jsonl")
@@ -118,7 +142,8 @@ def main():
     session_meta = {
         "started_at": datetime.datetime.now().isoformat(),
         "probe_path": probe_path,
-        "probe_meta": probe_meta
+        "probe_code": probe_code,
+        "probe_meta": probe_meta,
     }
     with open(session_meta_path, "w", encoding="utf-8") as f:
         json.dump(session_meta, f, indent=2)
@@ -127,11 +152,13 @@ def main():
     print(f"[*] Starting bpftrace: {probe_path}")
     proc = start_bpftrace(probe_path)
 
-    with open(events_file_path, "w", encoding="utf-8") as events_file, \
-         open(stderr_file_path, "w", encoding="utf-8") as stderr_file:
-
+    with open(events_file_path, "w", encoding="utf-8") as events_file, open(
+        stderr_file_path, "w", encoding="utf-8"
+    ) as stderr_file:
         # thread che drena stderr di bpftrace (errori/diagnostica)
-        t = threading.Thread(target=drain_stream_to_file, args=(proc.stderr, stderr_file), daemon=True)
+        t = threading.Thread(
+            target=drain_stream_to_file, args=(proc.stderr, stderr_file), daemon=True
+        )
         t.start()
 
         print("[*] Monitoring started. Press Ctrl-C to stop.")
@@ -149,8 +176,7 @@ def main():
                     stderr_file.flush()
                     continue
 
-                obj = normalize_event(obj, probe_meta)
-
+                obj = normalize_event(obj, probe_meta, probe_code)
                 warn = validate_event(obj, probe_meta)
                 if warn:
                     stderr_file.write(warn + "\n")
@@ -161,7 +187,6 @@ def main():
 
         except KeyboardInterrupt:
             print("\n[*] Stopping monitor (Ctrl-C received)...")
-
         finally:
             print("[*] Cleaning up...")
             try:
@@ -181,6 +206,6 @@ def main():
             print(f"[*] Session saved in: {session_dir}")
             print("[*] Monitor stopped.")
 
+
 if __name__ == "__main__":
     main()
-

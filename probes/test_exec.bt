@@ -1,5 +1,5 @@
 tracepoint:sched:sched_process_exec
 {
-  printf("{\"ts\":\"%s\",\"type\":\"process\",\"event\":\"exec\",\"pid\":%d,\"tid\":%d,\"comm\":\"%s\"}\n",
-         strftime("%H:%M:%S", nsecs), pid, tid, comm);
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"process\",\"event\":\"exec\",\"pid\":%d,\"tid\":%d,\"comm\":\"%s\"}\n",
+         nsecs, strftime("%H:%M:%S", nsecs), pid, tid, comm);
 }

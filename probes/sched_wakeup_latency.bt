@@ -14,8 +14,8 @@ tracepoint:sched:sched_switch / @wakeup_ts[args->next_pid] /
 {
   $lat_us = (nsecs - @wakeup_ts[args->next_pid]) / 1000;
 
-  printf("{\"ts\":\"%s\",\"type\":\"sched\",\"event\":\"wakeup_latency\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"woken_pid\":%d,\"woken_comm\":\"%s\",\"lat_us\":%llu}}\n",
-    strftime("%H:%M:%S", nsecs),
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"sched\",\"event\":\"wakeup_latency\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"woken_pid\":%d,\"woken_comm\":\"%s\",\"lat_us\":%llu}}\n",
+    nsecs, strftime("%H:%M:%S", nsecs),
     pid, tid, uid, comm,
     args->next_pid, args->next_comm, $lat_us
   );
