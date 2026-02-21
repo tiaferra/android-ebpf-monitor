@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-02-18T10:30:31.594256",
+  "probe_path": "probes/sched_wakeup_latency.bt",
+  "probe_code": "P00111",
+  "probe_meta": {
+    "code": "P00111",
+    "schema_version": 1,
+    "type": "sched",
+    "event": "wakeup_latency"
+  },
+  "stopped_at": "2026-02-18T10:30:50.506859"
+}

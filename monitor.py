@@ -106,6 +106,23 @@ def validate_event(obj: dict, probe_meta: dict) -> Optional[str]:
     return None
 
 
+def enrich_exec_event(event: dict) -> dict:
+    """Read full cmdline from /proc at collection time, before the process exits."""
+    pid = event.get("pid")
+    if pid:
+        try:
+            cmdline_path = f"/proc/{pid}/cmdline"
+            with open(cmdline_path, "r") as f:
+                # cmdline is null-separated, join with spaces
+                event["cmdline"] = f.read().replace("\x00", " ").strip()
+        except (FileNotFoundError, PermissionError):
+            event["cmdline"] = ""
+        try:
+            event["exe_path"] = os.readlink(f"/proc/{pid}/exe")
+        except (FileNotFoundError, PermissionError, OSError):
+            event["exe_path"] = ""
+    return event
+
 # =========================
 # Main
 # =========================
@@ -177,6 +194,8 @@ def main():
                     continue
 
                 obj = normalize_event(obj, probe_meta, probe_code)
+                if obj.get("event") == "exec":
+                    obj = enrich_exec_event(obj)
                 warn = validate_event(obj, probe_meta)
                 if warn:
                     stderr_file.write(warn + "\n")

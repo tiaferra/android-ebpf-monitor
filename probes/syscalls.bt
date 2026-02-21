@@ -1,17 +1,101 @@
 /*
-  probes/syscalls.bt (x86_64)
-  Syscall tracing via raw_syscalls:sys_enter, filtrato su syscall interessanti.
+  probes/syscalls.bt
+  Tracks execve / openat / connect
+  - ppid via curtask cast
+  - exe name via dentry (path() not available in tracepoints)
+  - semantic arg decoding per syscall
+  - connect: AF_INET ip decoded inline in printf
 */
+
 
 tracepoint:raw_syscalls:sys_enter
 / args->id == 59 || args->id == 257 || args->id == 42 /
 {
-  $name = "other";
-  if (args->id == 59)  { $name = "execve"; }
-  if (args->id == 257) { $name = "openat"; }
-  if (args->id == 42)  { $name = "connect"; }
+  $task = (struct task_struct *)curtask;
 
-  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"syscall\",\"event\":\"%s\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"syscall_id\":%d,\"arg0\":%llu,\"arg1\":%llu,\"arg2\":%llu}}\n",
-         nsecs, strftime("%H:%M:%S", nsecs), $name, pid, tid, uid, comm,
-         args->id, args->args[0], args->args[1], args->args[2]);
+  // exe: binary name from dentry (not full path — path() unavailable in tracepoints)
+  @exe[tid] = str($task->mm->exe_file->f_path.dentry->d_name.name);
+
+  // ppid
+  @ppid[tid] = (uint64)$task->real_parent->tgid;
+
+  // syscall name
+  @_name[tid] = "other";
+  if (args->id == 59)  { @_name[tid] = "execve"; }
+  if (args->id == 257) { @_name[tid] = "openat"; }
+  if (args->id == 42)  { @_name[tid] = "connect"; }
+
+  // decoded argument per syscall
+  @_decoded[tid] = "";
+
+  // execve: arg0 = path of binary to execute
+  if (args->id == 59 && args->args[0] != 0) {
+    @_decoded[tid] = str(uptr(args->args[0]));
+  }
+
+  // openat: arg1 = file path (arg0 is dirfd)
+  if (args->id == 257 && args->args[1] != 0) {
+    @_decoded[tid] = str(uptr(args->args[1]));
+  }
+
+  // connect AF_UNIX: read socket path from sockaddr+2
+  if (args->id == 42 && args->args[1] != 0) {
+    $sa_family = *(uint16 *)(args->args[1]);
+    if ($sa_family == 1) {
+      @_decoded[tid] = str(uptr(args->args[1] + 2));
+    }
+  }
+
+  // connect AF_INET: ntop() can only be used inline in printf, not stored
+  // so we handle it with a separate printf branch
+  if (args->id == 42 && args->args[1] != 0) {
+    $sa_family = *(uint16 *)(args->args[1]);
+
+    if ($sa_family == 2) {
+      // AF_INET: port at offset 2 (big-endian u16), ip at offset 4
+      $port = (uint16)((*(uint8 *)(args->args[1] + 2) << 8) |
+                        *(uint8 *)(args->args[1] + 3));
+      printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"syscall\",\"event\":\"connect\",\"pid\":%d,\"ppid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"exe\":\"%s\",\"decoded\":\"%s:%d\",\"data\":{\"syscall_id\":42,\"arg0\":%llu,\"arg1\":%llu,\"arg2\":%llu}}\n",
+        nsecs, strftime("%H:%M:%S", nsecs),
+        pid, @ppid[tid], tid, uid, comm,
+        @exe[tid],
+        ntop(*(uint32 *)(args->args[1] + 4)), $port,
+        args->args[0], args->args[1], args->args[2]
+      );
+      delete(@_name[tid]); delete(@_decoded[tid]);
+      delete(@exe[tid]);   delete(@ppid[tid]);
+      return;
+    }
+
+    if ($sa_family == 10) {
+      @_decoded[tid] = "af_inet6";
+    }
+  }
+
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"syscall\",\"event\":\"%s\",\"pid\":%d,\"ppid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"exe\":\"%s\",\"decoded\":\"%s\",\"data\":{\"syscall_id\":%d,\"arg0\":%llu,\"arg1\":%llu,\"arg2\":%llu}}\n",
+    nsecs, strftime("%H:%M:%S", nsecs),
+    @_name[tid],
+    pid, @ppid[tid], tid, uid, comm,
+    @exe[tid],
+    @_decoded[tid],
+    args->id,
+    args->args[0], args->args[1], args->args[2]
+  );
+
+  delete(@_name[tid]);
+  delete(@_decoded[tid]);
+  delete(@exe[tid]);
+  delete(@ppid[tid]);
+}
+
+tracepoint:sched:sched_process_exit
+{
+  delete(@exe[tid]);
+  delete(@ppid[tid]);
+}
+
+END
+{
+  clear(@exe);
+  clear(@ppid);
 }

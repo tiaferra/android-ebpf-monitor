@@ -1,0 +1,28 @@
+{
+  "total_events": 0,
+  "events_by_type": {},
+  "events_by_name": {},
+  "top_processes": [],
+  "process_profiles": {},
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {},
+  "pid_to_comm": {},
+  "time": {
+    "has_ts_ns": false,
+    "rate_1s": {
+      "available": false,
+      "reason": "ts_ns missing or too few events"
+    }
+  },
+  "syscalls_latency": {},
+  "event_rate": {
+    "duration_s": 12.10006,
+    "event_rate_eps": 0.0
+  }
+}

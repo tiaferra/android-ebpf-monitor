@@ -1,28 +1,43 @@
-#!/usr/bin/env bpftrace
+/*
+  probes/process_lifecycle.bt
+  fork / exec / exit with ppid
+  Note: exe uses comm (15 char kernel limit) — full path enriched
+  in monitor.py via /proc/<pid>/cmdline at collection time.
+*/
 
 tracepoint:sched:sched_process_fork
 {
-  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"proc\",\"event\":\"fork\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"parent_pid\":%d,\"child_pid\":%d,\"parent_comm\":\"%s\",\"child_comm\":\"%s\"}}\n",
+  $task = (struct task_struct *)curtask;
+
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"process\",\"event\":\"fork\",\"pid\":%d,\"ppid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"child_pid\":%d}\n",
     nsecs, strftime("%H:%M:%S", nsecs),
-    pid, tid, uid, comm,
-    args->parent_pid, args->child_pid, args->parent_comm, args->child_comm
+    pid,
+    (uint64)$task->real_parent->tgid,
+    tid, uid, comm,
+    args->child_pid
   );
 }
 
 tracepoint:sched:sched_process_exec
 {
-  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"proc\",\"event\":\"exec\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"filename\":\"%s\",\"old_pid\":%d}}\n",
+  $task = (struct task_struct *)curtask;
+
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"process\",\"event\":\"exec\",\"pid\":%d,\"ppid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\"}\n",
     nsecs, strftime("%H:%M:%S", nsecs),
-    pid, tid, uid, comm,
-    str(args->filename), args->old_pid
+    pid,
+    (uint64)$task->real_parent->tgid,
+    tid, uid, comm
   );
 }
 
 tracepoint:sched:sched_process_exit
 {
-  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"proc\",\"event\":\"exit\",\"pid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"prio\":%d}}\n",
+  $task = (struct task_struct *)curtask;
+
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"process\",\"event\":\"exit\",\"pid\":%d,\"ppid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\"}\n",
     nsecs, strftime("%H:%M:%S", nsecs),
-    pid, tid, uid, comm,
-    args->prio
+    pid,
+    (uint64)$task->real_parent->tgid,
+    tid, uid, comm
   );
 }

@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-02-21T11:28:53.187695",
+  "probe_path": "probes/process_lifecycle.bt",
+  "probe_code": "P00100",
+  "probe_meta": {
+    "code": "P00100",
+    "schema_version": 1,
+    "type": "proc",
+    "event": "*"
+  },
+  "stopped_at": "2026-02-21T11:29:01.017191"
+}

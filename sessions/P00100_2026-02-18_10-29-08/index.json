@@ -1,0 +1,379 @@
+{
+  "total_events": 36,
+  "events_by_type": {
+    "proc": 36
+  },
+  "events_by_name": {
+    "fork": 12,
+    "exec": 12,
+    "exit": 12
+  },
+  "top_processes": [
+    [
+      "init",
+      6
+    ],
+    [
+      "android.hardwar",
+      6
+    ],
+    [
+      "flags_health_ch",
+      6
+    ],
+    [
+      "adbd",
+      6
+    ],
+    [
+      "cut",
+      6
+    ],
+    [
+      "sh",
+      3
+    ],
+    [
+      "shell svc 3866",
+      1
+    ],
+    [
+      "shell svc 3870",
+      1
+    ],
+    [
+      "shell svc 3874",
+      1
+    ]
+  ],
+  "process_profiles": {
+    "init": {
+      "total": 6,
+      "by_type": {
+        "proc": 6
+      },
+      "by_event": {
+        "fork": 6
+      }
+    },
+    "android.hardwar": {
+      "total": 6,
+      "by_type": {
+        "proc": 6
+      },
+      "by_event": {
+        "exec": 3,
+        "exit": 3
+      }
+    },
+    "flags_health_ch": {
+      "total": 6,
+      "by_type": {
+        "proc": 6
+      },
+      "by_event": {
+        "exec": 3,
+        "exit": 3
+      }
+    },
+    "adbd": {
+      "total": 6,
+      "by_type": {
+        "proc": 6
+      },
+      "by_event": {
+        "fork": 6
+      }
+    },
+    "sh": {
+      "total": 3,
+      "by_type": {
+        "proc": 3
+      },
+      "by_event": {
+        "exec": 3
+      }
+    },
+    "cut": {
+      "total": 6,
+      "by_type": {
+        "proc": 6
+      },
+      "by_event": {
+        "exec": 3,
+        "exit": 3
+      }
+    },
+    "shell svc 3866": {
+      "total": 1,
+      "by_type": {
+        "proc": 1
+      },
+      "by_event": {
+        "exit": 1
+      }
+    },
+    "shell svc 3870": {
+      "total": 1,
+      "by_type": {
+        "proc": 1
+      },
+      "by_event": {
+        "exit": 1
+      }
+    },
+    "shell svc 3874": {
+      "total": 1,
+      "by_type": {
+        "proc": 1
+      },
+      "by_event": {
+        "exit": 1
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "1": [
+      [
+        "10:29:10",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:10",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:15",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:15",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:20",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:20",
+        "proc",
+        "fork"
+      ]
+    ],
+    "3864": [
+      [
+        "10:29:10",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:10",
+        "proc",
+        "exit"
+      ]
+    ],
+    "3865": [
+      [
+        "10:29:10",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:10",
+        "proc",
+        "exit"
+      ]
+    ],
+    "621": [
+      [
+        "10:29:11",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:11",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:11",
+        "proc",
+        "exit"
+      ],
+      [
+        "10:29:16",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:16",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:16",
+        "proc",
+        "exit"
+      ],
+      [
+        "10:29:21",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:21",
+        "proc",
+        "fork"
+      ],
+      [
+        "10:29:21",
+        "proc",
+        "exit"
+      ]
+    ],
+    "3866": [
+      [
+        "10:29:11",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:11",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:11",
+        "proc",
+        "exit"
+      ]
+    ],
+    "3868": [
+      [
+        "10:29:15",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:15",
+        "proc",
+        "exit"
+      ]
+    ],
+    "3869": [
+      [
+        "10:29:15",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:15",
+        "proc",
+        "exit"
+      ]
+    ],
+    "3870": [
+      [
+        "10:29:16",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:16",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:16",
+        "proc",
+        "exit"
+      ]
+    ],
+    "3872": [
+      [
+        "10:29:20",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:20",
+        "proc",
+        "exit"
+      ]
+    ],
+    "3873": [
+      [
+        "10:29:20",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:20",
+        "proc",
+        "exit"
+      ]
+    ],
+    "3874": [
+      [
+        "10:29:21",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:21",
+        "proc",
+        "exec"
+      ],
+      [
+        "10:29:21",
+        "proc",
+        "exit"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "1": "init",
+    "3864": "android.hardwar",
+    "3865": "flags_health_ch",
+    "621": "shell svc 3874",
+    "3866": "cut",
+    "3868": "android.hardwar",
+    "3869": "flags_health_ch",
+    "3870": "cut",
+    "3872": "android.hardwar",
+    "3873": "flags_health_ch",
+    "3874": "cut"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 12.0,
+      "peak_window": {
+        "start_s": 0.0,
+        "end_s": 1.0,
+        "count": 12
+      },
+      "avg_rate": 12.0,
+      "total_windows": 3
+    }
+  },
+  "syscalls_latency": {},
+  "event_rate": {
+    "duration_s": 13.718786,
+    "event_rate_eps": 2.624138899753958
+  }
+}

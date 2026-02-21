@@ -1,0 +1,13 @@
+{
+  "started_at": "2026-02-18T10:28:39.204574",
+  "probe_path": "probes/binder.bt",
+  "probe_code": "P00011",
+  "probe_meta": {
+    "code": "P00011",
+    "type": "ipc",
+    "event": "binder_transaction",
+    "description": "Binder IPC transactions via tracepoint:binder:binder_transaction",
+    "schema_version": 1
+  },
+  "stopped_at": "2026-02-18T10:28:51.304634"
+}
