@@ -1,0 +1,51 @@
+/*
+  probes/net_accept.bt
+  Tracks accept() and accept4() — processes receiving incoming connections.
+  Security relevance: non-system processes acting as servers is anomalous
+  on Android.
+*/
+
+tracepoint:raw_syscalls:sys_enter / args->id == 43 || args->id == 288 /
+{
+  $task = (struct task_struct *)curtask;
+  @_t0[tid]   = nsecs;
+  @_ppid[tid] = (uint64)$task->real_parent->tgid;
+  @_sa[tid]   = args->args[1];
+}
+
+tracepoint:raw_syscalls:sys_exit / @_t0[tid] && (args->id == 43 || args->id == 288) /
+{
+  @_family[tid] = (uint64)0;
+
+  if (@_sa[tid] != 0 && args->ret >= 0) {
+    $sa_family = *(uint16 *)(@_sa[tid]);
+    @_family[tid] = (uint64)$sa_family;
+
+    if ($sa_family == 2) {
+      $port = (uint16)(
+        (*(uint8 *)(@_sa[tid] + 2) << 8) |
+         *(uint8 *)(@_sa[tid] + 3)
+      );
+      printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"network\",\"event\":\"accept\",\"pid\":%d,\"ppid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"decoded\":\"%s:%d\",\"data\":{\"fd\":%ld,\"lat_us\":%llu}}\n",
+        nsecs, strftime("%H:%M:%S", nsecs),
+        pid, @_ppid[tid], tid, uid, comm,
+        ntop(*(uint32 *)(@_sa[tid] + 4)), $port,
+        args->ret, (nsecs - @_t0[tid]) / 1000
+      );
+      delete(@_t0[tid]); delete(@_ppid[tid]);
+      delete(@_sa[tid]); delete(@_family[tid]);
+      return;
+    }
+  }
+
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"network\",\"event\":\"accept\",\"pid\":%d,\"ppid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"decoded\":\"<unknown>\",\"data\":{\"fd\":%ld,\"lat_us\":%llu}}\n",
+    nsecs, strftime("%H:%M:%S", nsecs),
+    pid, @_ppid[tid], tid, uid, comm,
+    args->ret, (nsecs - @_t0[tid]) / 1000
+  );
+
+  delete(@_t0[tid]); delete(@_ppid[tid]);
+  delete(@_sa[tid]); delete(@_family[tid]);
+}
+
+END { clear(@_t0); clear(@_ppid); clear(@_sa); clear(@_family); }

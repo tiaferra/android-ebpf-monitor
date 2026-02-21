@@ -1,0 +1,30 @@
+/*
+  probes/net_send.bt
+  Tracks sendto() — data being transmitted.
+  Captures size not content. Large or frequent sends from unexpected
+  processes are a useful anomaly signal.
+*/
+
+tracepoint:raw_syscalls:sys_enter / args->id == 44 /
+{
+  $task = (struct task_struct *)curtask;
+  @_t0[tid]   = nsecs;
+  @_ppid[tid] = (uint64)$task->real_parent->tgid;
+  @_fd[tid]   = args->args[0];
+  @_len[tid]  = args->args[2];
+}
+
+tracepoint:raw_syscalls:sys_exit / @_t0[tid] && args->id == 44 /
+{
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"network\",\"event\":\"sendto\",\"pid\":%d,\"ppid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"fd\":%llu,\"requested_bytes\":%llu,\"sent_bytes\":%ld,\"lat_us\":%llu}}\n",
+    nsecs, strftime("%H:%M:%S", nsecs),
+    pid, @_ppid[tid], tid, uid, comm,
+    @_fd[tid], @_len[tid],
+    args->ret, (nsecs - @_t0[tid]) / 1000
+  );
+
+  delete(@_t0[tid]); delete(@_ppid[tid]);
+  delete(@_fd[tid]); delete(@_len[tid]);
+}
+
+END { clear(@_t0); clear(@_ppid); clear(@_fd); clear(@_len); }

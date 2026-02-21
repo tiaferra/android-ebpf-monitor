@@ -6,44 +6,74 @@
     "description": "Process execution via sched_process_exec tracepoint",
     "schema_version": 1
   },
-  "probes/syscalls.bt":{
+  "probes/syscalls.bt": {
     "code": "P00010",
     "type": "syscall",
     "event": "*",
-    "description": "Filtered syscall tracing via raw_syscalls:sys_enter (x86_64: execve/openat/connect)",
+    "description": "Filtered syscall tracing: execve, openat, connect. Includes decoded args (file paths, IPs, binary paths) and ppid.",
     "schema_version": 1
   },
   "probes/binder.bt": {
     "code": "P00011",
     "type": "ipc",
-    "event": "binder_transaction",
-    "description": "Binder IPC transactions via tracepoint:binder:binder_transaction",
+    "event": "*",
+    "description": "Binder IPC tracing: binder_transaction (with ppid + oneway flag), binder_transaction_received, binder_transaction_alloc_buf. Correlate by debug_id.",
     "schema_version": 1
   },
   "probes/process_lifecycle.bt": {
     "code": "P00100",
-    "schema_version": 1,
-    "type": "proc",
-    "event": "*"
+    "type": "process",
+    "event": "*",
+    "description": "Process lifecycle: fork, exec, exit. Includes ppid for process tree reconstruction.",
+    "schema_version": 1
   },
   "probes/syscalls_latency.bt": {
     "code": "P00101",
-    "schema_version": 1,
     "type": "syscall",
-    "event": "*"
+    "event": "*",
+    "description": "Syscall latency tracking for execve, openat, connect. Captures return value and execution time in microseconds.",
+    "schema_version": 1
   },
   "probes/sched_switch.bt": {
     "code": "P00110",
-    "schema_version": 1,
     "type": "sched",
     "event": "switch",
-    "description": "Traccia i context switch dello scheduler (prev/next pid e comm)."
+    "description": "Scheduler context switches: prev/next pid and comm. High event volume — use for performance analysis, not security.",
+    "schema_version": 1
   },
   "probes/sched_wakeup_latency.bt": {
     "code": "P00111",
-    "schema_version": 1,
     "type": "sched",
-    "event": "wakeup_latency"
+    "event": "wakeup_latency",
+    "description": "Wakeup-to-schedule latency: time between sched_wakeup and the process actually getting CPU. Performance probe.",
+    "schema_version": 1
+  },
+  "probes/net_bind.bt": {
+    "code": "P01000",
+    "type": "network",
+    "event": "bind",
+    "description": "Tracks bind() syscall (id=49). Decodes AF_INET ip:port and AF_UNIX socket paths. Shows which processes claim local ports.",
+    "schema_version": 1
+  },
+  "probes/net_accept.bt": {
+    "code": "P01001",
+    "type": "network",
+    "event": "accept",
+    "description": "Tracks accept() and accept4() (id=43,288). Captures peer address on successful accept. Non-system processes accepting connections is anomalous on Android.",
+    "schema_version": 1
+  },
+  "probes/net_send.bt": {
+    "code": "P01010",
+    "type": "network",
+    "event": "sendto",
+    "description": "Tracks sendto() (id=44). Captures fd, requested bytes, actual bytes sent, and latency. Content not captured, only size.",
+    "schema_version": 1
+  },
+  "probes/net_recv.bt": {
+    "code": "P01011",
+    "type": "network",
+    "event": "recvfrom",
+    "description": "Tracks recvfrom() (id=45). Captures fd, buffer size, actual bytes received, and latency. Content not captured, only size.",
+    "schema_version": 1
   }
 }
-

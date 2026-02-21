@@ -1,0 +1,1 @@
+{"ts_ns": "7660044271179", "ts": "16:04:57", "type": "network", "event": "bind", "pid": 518, "ppid": 1, "tid": 537, "uid": 0, "comm": "doh-handler", "decoded": "", "data": {"ret": 0, "lat_us": 14}, "schema_version": 1, "probe_code": "P01000"}

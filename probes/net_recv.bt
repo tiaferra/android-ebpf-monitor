@@ -1,0 +1,30 @@
+/*
+  probes/net_recv.bt
+  Tracks recvfrom() — data being received.
+  Captures size not content. Useful for volume-based anomaly detection
+  and correlating with sendto to profile data exchange patterns.
+*/
+
+tracepoint:raw_syscalls:sys_enter / args->id == 45 /
+{
+  $task = (struct task_struct *)curtask;
+  @_t0[tid]   = nsecs;
+  @_ppid[tid] = (uint64)$task->real_parent->tgid;
+  @_fd[tid]   = args->args[0];
+  @_len[tid]  = args->args[2];
+}
+
+tracepoint:raw_syscalls:sys_exit / @_t0[tid] && args->id == 45 /
+{
+  printf("{\"ts_ns\":\"%llu\",\"ts\":\"%s\",\"type\":\"network\",\"event\":\"recvfrom\",\"pid\":%d,\"ppid\":%d,\"tid\":%d,\"uid\":%d,\"comm\":\"%s\",\"data\":{\"fd\":%llu,\"buf_size\":%llu,\"recv_bytes\":%ld,\"lat_us\":%llu}}\n",
+    nsecs, strftime("%H:%M:%S", nsecs),
+    pid, @_ppid[tid], tid, uid, comm,
+    @_fd[tid], @_len[tid],
+    args->ret, (nsecs - @_t0[tid]) / 1000
+  );
+
+  delete(@_t0[tid]); delete(@_ppid[tid]);
+  delete(@_fd[tid]); delete(@_len[tid]);
+}
+
+END { clear(@_t0); clear(@_ppid); clear(@_fd); clear(@_len); }

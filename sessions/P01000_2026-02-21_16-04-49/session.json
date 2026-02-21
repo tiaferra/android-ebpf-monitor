@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-02-21T16:04:49.432977",
+  "probe_path": "probes/net_bind.bt",
+  "probe_code": "P01000",
+  "probe_meta": {
+    "code": "P01000",
+    "schema_version": 1,
+    "type": "network",
+    "event": "*"
+  },
+  "stopped_at": "2026-02-21T16:06:21.482711"
+}

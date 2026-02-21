@@ -348,6 +348,137 @@ def compute_resource_map(events: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 # -------------------------
+<<<<<<< HEAD
+=======
+# Network analytics
+# -------------------------
+def compute_network_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    Analyses events from net_bind.bt, net_accept.bt, net_send.bt, net_recv.bt.
+    Produces: port landscape, server processes, data volume per process,
+    and a per-second bytes timeline.
+    """
+    # -- Port landscape (bind events) --
+    port_landscape: List[Dict] = []
+    for ev in events:
+        if ev.get("event") != "bind":
+            continue
+        data = ev.get("data", {})
+        if data.get("ret", -1) != 0:
+            continue  # only successful binds
+        port_landscape.append({
+            "comm":    ev.get("comm", "?"),
+            "pid":     ev.get("pid"),
+            "uid":     ev.get("uid"),
+            "decoded": ev.get("decoded", ""),
+            "ts":      ev.get("ts", ""),
+        })
+
+    # -- Server processes (accept events) --
+    accept_events: List[Dict] = []
+    for ev in events:
+        if ev.get("event") != "accept":
+            continue
+        data = ev.get("data", {})
+        if data.get("fd", -1) < 0:
+            continue  # failed accepts
+        accept_events.append({
+            "comm":    ev.get("comm", "?"),
+            "pid":     ev.get("pid"),
+            "uid":     ev.get("uid"),
+            "peer":    ev.get("decoded", "<unknown>"),
+            "ts":      ev.get("ts", ""),
+        })
+
+    # Flag non-system acceptors (uid >= 10000 are app UIDs on Android)
+    suspicious_acceptors = [
+        a for a in accept_events
+        if isinstance(a.get("uid"), int) and a["uid"] >= 10000
+    ]
+
+    # -- Data volume per process --
+    send_by_comm:  Dict[str, int] = defaultdict(int)
+    recv_by_comm:  Dict[str, int] = defaultdict(int)
+    send_count:    Dict[str, int] = defaultdict(int)
+    recv_count:    Dict[str, int] = defaultdict(int)
+
+    for ev in events:
+        comm = ev.get("comm", "?")
+        data = ev.get("data", {})
+        if ev.get("event") == "sendto":
+            sent = data.get("sent_bytes", 0)
+            if isinstance(sent, int) and sent > 0:
+                send_by_comm[comm] += sent
+                send_count[comm]   += 1
+        if ev.get("event") == "recvfrom":
+            recv = data.get("recv_bytes", 0)
+            if isinstance(recv, int) and recv > 0:
+                recv_by_comm[comm] += recv
+                recv_count[comm]   += 1
+
+    all_comms = set(list(send_by_comm.keys()) + list(recv_by_comm.keys()))
+    volume_by_comm = []
+    for comm in sorted(all_comms):
+        volume_by_comm.append({
+            "comm":       comm,
+            "sent_bytes": send_by_comm.get(comm, 0),
+            "recv_bytes": recv_by_comm.get(comm, 0),
+            "send_calls": send_count.get(comm, 0),
+            "recv_calls": recv_count.get(comm, 0),
+        })
+    volume_by_comm.sort(key=lambda x: x["sent_bytes"] + x["recv_bytes"], reverse=True)
+
+    # -- Network timeline: bytes per second bucket --
+    timeline_buckets: Dict[int, Dict[str, int]] = defaultdict(lambda: {"sent": 0, "recv": 0})
+    ts_ns_list = []
+
+    for ev in events:
+        ts_ns = get_ts_ns(ev)
+        if ts_ns is None:
+            continue
+        ts_ns_list.append(ts_ns)
+        data = ev.get("data", {})
+        if ev.get("event") == "sendto":
+            sent = data.get("sent_bytes", 0)
+            if isinstance(sent, int) and sent > 0:
+                bucket = ts_ns // int(1e9)
+                timeline_buckets[bucket]["sent"] += sent
+        if ev.get("event") == "recvfrom":
+            recv = data.get("recv_bytes", 0)
+            if isinstance(recv, int) and recv > 0:
+                bucket = ts_ns // int(1e9)
+                timeline_buckets[bucket]["recv"] += recv
+
+    # Normalise timeline to relative seconds from first event
+    timeline: List[Dict] = []
+    if ts_ns_list and timeline_buckets:
+        t0_bucket = min(ts_ns_list) // int(1e9)
+        for bucket in sorted(timeline_buckets.keys()):
+            timeline.append({
+                "rel_s": int(bucket - t0_bucket),
+                "sent_bytes": timeline_buckets[bucket]["sent"],
+                "recv_bytes": timeline_buckets[bucket]["recv"],
+            })
+
+    # Peak send/recv second
+    peak_send = max(timeline, key=lambda x: x["sent_bytes"]) if timeline else None
+    peak_recv = max(timeline, key=lambda x: x["recv_bytes"]) if timeline else None
+
+    return {
+        "port_landscape":       port_landscape,
+        "accept_events":        accept_events,
+        "suspicious_acceptors": suspicious_acceptors,
+        "volume_by_comm":       volume_by_comm,
+        "total_sent_bytes":     sum(send_by_comm.values()),
+        "total_recv_bytes":     sum(recv_by_comm.values()),
+        "timeline":             timeline,
+        "peak_send_second":     peak_send,
+        "peak_recv_second":     peak_recv,
+    }
+
+
+# -------------------------
+>>>>>>> b5e5d88 (aggiunta di probe di rete e relative analisi)
 # Main analytics
 # -------------------------
 def compute_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -538,10 +669,18 @@ def compute_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
             for sc, cnt in errno_by_syscall.items()
         }
 
+<<<<<<< HEAD
     # NEW: binder, process tree, resource map
     binder_analytics = compute_binder_analytics(events_sorted)
     process_tree = compute_process_tree(events_sorted)
     resource_map = compute_resource_map(events_sorted)
+=======
+    # NEW: binder, process tree, resource map, network
+    binder_analytics = compute_binder_analytics(events_sorted)
+    process_tree = compute_process_tree(events_sorted)
+    resource_map = compute_resource_map(events_sorted)
+    network_analytics = compute_network_analytics(events_sorted)
+>>>>>>> b5e5d88 (aggiunta di probe di rete e relative analisi)
 
     # Build base result (keeps your existing keys for compatibility)
     result = {
@@ -580,6 +719,10 @@ def compute_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
         "binder": binder_analytics,
         "process_tree": process_tree,
         "resource_map": resource_map,
+<<<<<<< HEAD
+=======
+        "network": network_analytics,
+>>>>>>> b5e5d88 (aggiunta di probe di rete e relative analisi)
     }
     return result
 
@@ -727,6 +870,92 @@ def build_report_text(
         if len(tl) > timeline_max_events:
             lines.append(f" ... ({len(tl)} events total for this pid)")
 
+<<<<<<< HEAD
+=======
+    # Network analytics
+    network = summary.get("network", {})
+    has_network_data = (
+        network.get("port_landscape") or
+        network.get("accept_events") or
+        network.get("volume_by_comm") or
+        network.get("timeline")
+    )
+    if isinstance(network, dict) and has_network_data:
+        lines.append("")
+        lines.append("Network activity:")
+
+        # Port landscape
+        ports = network.get("port_landscape", [])
+        if ports:
+            lines.append("")
+            lines.append(" Port landscape (successful binds):")
+            seen = set()
+            for p in ports:
+                key = (p["comm"], p["decoded"])
+                if key in seen:
+                    continue
+                seen.add(key)
+                decoded = p["decoded"] if p["decoded"] else "<abstract socket>"
+                lines.append(f"  [{p['ts']}] {p['comm']} (pid {p['pid']}, uid {p['uid']}) → {decoded}")
+
+        # Server processes
+        accepts = network.get("accept_events", [])
+        if accepts:
+            lines.append("")
+            lines.append(f" Incoming connections accepted: {len(accepts)}")
+            for a in accepts[:10]:
+                peer = a["peer"] if a["peer"] else "<unknown peer>"
+                lines.append(f"  [{a['ts']}] {a['comm']} (pid {a['pid']}) ← {peer}")
+            if len(accepts) > 10:
+                lines.append(f"  ... ({len(accepts)} total)")
+
+        suspicious = network.get("suspicious_acceptors", [])
+        if suspicious:
+            lines.append("")
+            lines.append(f" ⚠ Non-system processes accepting connections (uid >= 10000):")
+            for a in suspicious:
+                lines.append(f"  {a['comm']} (pid {a['pid']}, uid {a['uid']}) ← {a['peer']}")
+
+        # Data volume
+        volumes = network.get("volume_by_comm", [])
+        total_sent = network.get("total_sent_bytes", 0)
+        total_recv = network.get("total_recv_bytes", 0)
+        if volumes:
+            lines.append("")
+            lines.append(f" Data volume (total sent: {total_sent} B, total recv: {total_recv} B):")
+            for v in volumes[:10]:
+                lines.append(
+                    f"  {v['comm']}: "
+                    f"sent={v['sent_bytes']} B ({v['send_calls']} calls)  "
+                    f"recv={v['recv_bytes']} B ({v['recv_calls']} calls)"
+                )
+
+        # Timeline
+        timeline = network.get("timeline", [])
+        peak_send = network.get("peak_send_second")
+        peak_recv = network.get("peak_recv_second")
+        if timeline:
+            lines.append("")
+            lines.append(f" Network timeline ({len(timeline)} active seconds):")
+            if peak_send and peak_send["sent_bytes"] > 0:
+                lines.append(f"  Peak send: {peak_send['sent_bytes']} B at t+{peak_send['rel_s']}s")
+            if peak_recv and peak_recv["recv_bytes"] > 0:
+                lines.append(f"  Peak recv: {peak_recv['recv_bytes']} B at t+{peak_recv['rel_s']}s")
+            # Print a simple ASCII bar chart for the first 20 seconds
+            max_bytes = max((max(b["sent_bytes"], b["recv_bytes"]) for b in timeline), default=1)
+            bar_width = 30
+            lines.append(f"  {'t(s)':<6} {'sent':>10}  {'recv':>10}  chart")
+            for b in timeline[:20]:
+                sent_bar = int(b["sent_bytes"] / max_bytes * bar_width) if max_bytes else 0
+                recv_bar = int(b["recv_bytes"] / max_bytes * bar_width) if max_bytes else 0
+                lines.append(
+                    f"  {b['rel_s']:<6} {b['sent_bytes']:>10}  {b['recv_bytes']:>10}  "
+                    f"S:{'█' * sent_bar} R:{'█' * recv_bar}"
+                )
+            if len(timeline) > 20:
+                lines.append(f"  ... ({len(timeline)} seconds total)")
+
+>>>>>>> b5e5d88 (aggiunta di probe di rete e relative analisi)
     # Binder IPC analysis
     binder = summary.get("binder", {})
     if isinstance(binder, dict) and binder.get("total_transactions", 0) > 0:
