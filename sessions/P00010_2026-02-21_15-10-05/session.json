@@ -1,0 +1,13 @@
+{
+  "started_at": "2026-02-21T15:10:05.509429",
+  "probe_path": "probes/syscalls.bt",
+  "probe_code": "P00010",
+  "probe_meta": {
+    "code": "P00010",
+    "type": "syscall",
+    "event": "*",
+    "description": "Filtered syscall tracing via raw_syscalls:sys_enter (x86_64: execve/openat/connect)",
+    "schema_version": 1
+  },
+  "stopped_at": "2026-02-21T15:10:10.627808"
+}

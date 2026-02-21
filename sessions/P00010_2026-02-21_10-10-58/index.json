@@ -2775,6 +2775,19 @@
     }
   },
   "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [],
+    "flat": []
+  },
+  "resource_map": {},
   "event_rate": {
     "duration_s": 7.772408,
     "event_rate_eps": 66.00271112890626

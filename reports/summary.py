@@ -166,6 +166,188 @@ def compute_event_rate(session_meta: Optional[Dict[str, Any]], total_events: int
 
 
 # -------------------------
+# Binder analytics
+# -------------------------
+def compute_binder_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    Correlates binder_transaction, binder_transaction_alloc_buf, and
+    binder_transaction_received by debug_id to build a full IPC picture.
+    """
+    # Index alloc_buf and received by debug_id for O(1) join
+    alloc_by_id: Dict[int, Dict] = {}
+    received_by_id: Dict[int, Dict] = {}
+
+    for ev in events:
+        event = ev.get("event", "")
+        data = ev.get("data", {})
+        debug_id = data.get("debug_id")
+        if debug_id is None:
+            continue
+        if event == "binder_transaction_alloc_buf":
+            alloc_by_id[debug_id] = ev
+        elif event == "binder_transaction_received":
+            received_by_id[debug_id] = ev
+
+    # Build transaction records
+    transactions = []
+    ipc_graph: Dict[Tuple[str, str], Dict] = {}  # (sender_comm, receiver_comm) -> stats
+    code_usage: Counter = Counter()
+    oneway_count = 0
+    sync_count = 0
+    total_bytes = 0
+
+    for ev in events:
+        if ev.get("event") != "binder_transaction":
+            continue
+        if ev.get("data", {}).get("reply") == 1:
+            continue  # skip reply transactions for the graph, count separately
+
+        data = ev.get("data", {})
+        debug_id = data.get("debug_id")
+        sender_comm = ev.get("comm", "unknown")
+        sender_pid = ev.get("pid")
+        to_pid = data.get("to_pid")
+        code = data.get("code")
+        oneway = data.get("oneway", 0)
+
+        # Join with alloc_buf for payload size
+        alloc = alloc_by_id.get(debug_id, {})
+        data_size = alloc.get("data", {}).get("data_size", 0)
+        total_bytes += data_size or 0
+
+        # Join with received to get receiver comm
+        recv = received_by_id.get(debug_id, {})
+        receiver_comm = recv.get("comm", f"pid:{to_pid}" if to_pid else "unknown")
+
+        if oneway:
+            oneway_count += 1
+        else:
+            sync_count += 1
+
+        if code is not None:
+            code_usage[code] += 1
+
+        # IPC graph edge
+        edge = (sender_comm, receiver_comm)
+        if edge not in ipc_graph:
+            ipc_graph[edge] = {"count": 0, "total_bytes": 0, "codes": Counter()}
+        ipc_graph[edge]["count"] += 1
+        ipc_graph[edge]["total_bytes"] += data_size or 0
+        if code is not None:
+            ipc_graph[edge]["codes"][code] += 1
+
+        transactions.append({
+            "debug_id": debug_id,
+            "sender_comm": sender_comm,
+            "sender_pid": sender_pid,
+            "receiver_comm": receiver_comm,
+            "to_pid": to_pid,
+            "code": code,
+            "oneway": bool(oneway),
+            "data_size": data_size,
+        })
+
+    # Serialize ipc_graph (Counter not JSON-serializable)
+    ipc_graph_out = {}
+    for (src, dst), stats in sorted(ipc_graph.items(), key=lambda x: x[1]["count"], reverse=True):
+        ipc_graph_out[f"{src} → {dst}"] = {
+            "count": stats["count"],
+            "total_bytes": stats["total_bytes"],
+            "top_codes": [{"code": k, "count": v} for k, v in stats["codes"].most_common(5)],
+        }
+
+    return {
+        "total_transactions": len(transactions),
+        "oneway": oneway_count,
+        "sync": sync_count,
+        "total_bytes_transferred": total_bytes,
+        "top_codes": [{"code": k, "count": v} for k, v in code_usage.most_common(10)],
+        "ipc_graph": ipc_graph_out,
+    }
+
+
+# -------------------------
+# Process tree
+# -------------------------
+def compute_process_tree(events: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    Builds parent->children map from ppid field.
+    Returns both the tree structure and a flat list of known processes.
+    """
+    pid_to_comm: Dict[int, str] = {}
+    pid_to_ppid: Dict[int, int] = {}
+
+    for ev in events:
+        pid = ev.get("pid")
+        ppid = ev.get("ppid")
+        comm = ev.get("comm")
+        if isinstance(pid, int) and isinstance(comm, str) and comm:
+            pid_to_comm[pid] = comm
+        if isinstance(pid, int) and isinstance(ppid, int):
+            pid_to_ppid[pid] = ppid
+
+    # Build children map
+    children: Dict[int, List[int]] = defaultdict(list)
+    for pid, ppid in pid_to_ppid.items():
+        if ppid != pid:  # avoid self-reference
+            children[ppid].append(pid)
+
+    # Find roots: pids whose ppid we haven't seen as a pid
+    all_pids = set(pid_to_ppid.keys())
+    roots = [pid for pid, ppid in pid_to_ppid.items() if ppid not in all_pids]
+
+    def build_subtree(pid: int, depth: int = 0) -> Dict:
+        return {
+            "pid": pid,
+            "comm": pid_to_comm.get(pid, "?"),
+            "children": [build_subtree(c, depth + 1) for c in sorted(children.get(pid, []))],
+        }
+
+    tree = [build_subtree(r) for r in sorted(roots)]
+
+    # Also flat list for quick lookup
+    flat = [
+        {"pid": pid, "comm": pid_to_comm.get(pid, "?"), "ppid": pid_to_ppid.get(pid)}
+        for pid in sorted(all_pids)
+    ]
+
+    return {"roots": tree, "flat": flat}
+
+
+# -------------------------
+# Resource map
+# -------------------------
+def compute_resource_map(events: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """
+    Aggregates the 'decoded' field by process and syscall type.
+    Gives you: which files each process opened, which IPs it connected to,
+    which binaries it executed.
+    """
+    # comm -> { "openat": set of paths, "connect": set of IPs, "execve": set of binaries }
+    by_comm: Dict[str, Dict[str, set]] = defaultdict(lambda: defaultdict(set))
+
+    for ev in events:
+        if ev.get("type") != "syscall":
+            continue
+        event = ev.get("event", "")
+        comm = ev.get("comm", "")
+        decoded = ev.get("decoded", "").strip()
+        if not decoded or not comm:
+            continue
+        if event in ("openat", "connect", "execve"):
+            by_comm[comm][event].add(decoded)
+
+    # Serialize sets to sorted lists
+    result = {}
+    for comm, resources in sorted(by_comm.items()):
+        result[comm] = {
+            k: sorted(v) for k, v in resources.items() if v
+        }
+
+    return result
+
+
+# -------------------------
 # Main analytics
 # -------------------------
 def compute_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -356,6 +538,11 @@ def compute_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
             for sc, cnt in errno_by_syscall.items()
         }
 
+    # NEW: binder, process tree, resource map
+    binder_analytics = compute_binder_analytics(events_sorted)
+    process_tree = compute_process_tree(events_sorted)
+    resource_map = compute_resource_map(events_sorted)
+
     # Build base result (keeps your existing keys for compatibility)
     result = {
         "total_events": int(len(events_sorted)),
@@ -390,6 +577,9 @@ def compute_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
         # NEW keys
         "time": time_analytics,
         "syscalls_latency": syscalls_latency_deep,
+        "binder": binder_analytics,
+        "process_tree": process_tree,
+        "resource_map": resource_map,
     }
     return result
 
@@ -536,6 +726,57 @@ def build_report_text(
 
         if len(tl) > timeline_max_events:
             lines.append(f" ... ({len(tl)} events total for this pid)")
+
+    # Binder IPC analysis
+    binder = summary.get("binder", {})
+    if isinstance(binder, dict) and binder.get("total_transactions", 0) > 0:
+        lines.append("")
+        lines.append("Binder IPC:")
+        lines.append(f" Total transactions: {binder.get('total_transactions', 0)}")
+        lines.append(f" One-way: {binder.get('oneway', 0)}  Sync: {binder.get('sync', 0)}")
+        lines.append(f" Total bytes transferred: {binder.get('total_bytes_transferred', 0)}")
+
+        top_codes = binder.get("top_codes", [])
+        if top_codes:
+            codes_str = ", ".join([f"code={x['code']}({x['count']})" for x in top_codes[:5]])
+            lines.append(f" Top codes: {codes_str}")
+
+        ipc_graph = binder.get("ipc_graph", {})
+        if ipc_graph:
+            lines.append("")
+            lines.append(" IPC communication graph (top 10 edges):")
+            for edge, stats in list(ipc_graph.items())[:10]:
+                lines.append(f"  {edge}: {stats['count']} calls, {stats['total_bytes']} bytes")
+
+    # Process tree
+    proc_tree = summary.get("process_tree", {})
+    flat = proc_tree.get("flat", [])
+    if flat:
+        lines.append("")
+        lines.append("Process tree:")
+
+        def render_tree(node: dict, indent: int = 0) -> None:
+            prefix = "  " * indent + ("└─ " if indent > 0 else "")
+            lines.append(f" {prefix}{node['comm']} (pid {node['pid']})")
+            for child in node.get("children", []):
+                render_tree(child, indent + 1)
+
+        for root in proc_tree.get("roots", []):
+            render_tree(root)
+
+    # Resource map
+    resource_map = summary.get("resource_map", {})
+    if resource_map:
+        lines.append("")
+        lines.append("Resource map (files / IPs / binaries per process):")
+        for comm, resources in list(resource_map.items())[:10]:
+            lines.append(f" {comm}:")
+            for rtype, values in resources.items():
+                label = {"openat": "files", "connect": "connections", "execve": "executed"}.get(rtype, rtype)
+                for v in values[:5]:
+                    lines.append(f"   [{label}] {v}")
+                if len(values) > 5:
+                    lines.append(f"   [{label}] ... ({len(values)} total)")
 
     lines.append("")
     lines.append("====================================")

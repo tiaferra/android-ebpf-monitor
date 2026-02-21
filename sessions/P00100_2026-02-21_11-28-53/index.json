@@ -1,0 +1,338 @@
+{
+  "total_events": 18,
+  "events_by_type": {
+    "process": 18
+  },
+  "events_by_name": {
+    "fork": 6,
+    "exec": 6,
+    "exit": 6
+  },
+  "top_processes": [
+    [
+      "init",
+      4
+    ],
+    [
+      "android.hardwar",
+      4
+    ],
+    [
+      "flags_health_ch",
+      4
+    ],
+    [
+      "adbd",
+      2
+    ],
+    [
+      "cut",
+      2
+    ],
+    [
+      "sh",
+      1
+    ],
+    [
+      "shell svc 11028",
+      1
+    ]
+  ],
+  "process_profiles": {
+    "init": {
+      "total": 4,
+      "by_type": {
+        "process": 4
+      },
+      "by_event": {
+        "fork": 4
+      }
+    },
+    "android.hardwar": {
+      "total": 4,
+      "by_type": {
+        "process": 4
+      },
+      "by_event": {
+        "exec": 2,
+        "exit": 2
+      }
+    },
+    "flags_health_ch": {
+      "total": 4,
+      "by_type": {
+        "process": 4
+      },
+      "by_event": {
+        "exec": 2,
+        "exit": 2
+      }
+    },
+    "adbd": {
+      "total": 2,
+      "by_type": {
+        "process": 2
+      },
+      "by_event": {
+        "fork": 2
+      }
+    },
+    "sh": {
+      "total": 1,
+      "by_type": {
+        "process": 1
+      },
+      "by_event": {
+        "exec": 1
+      }
+    },
+    "cut": {
+      "total": 2,
+      "by_type": {
+        "process": 2
+      },
+      "by_event": {
+        "exec": 1,
+        "exit": 1
+      }
+    },
+    "shell svc 11028": {
+      "total": 1,
+      "by_type": {
+        "process": 1
+      },
+      "by_event": {
+        "exit": 1
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "1": [
+      [
+        "11:28:54",
+        "process",
+        "fork"
+      ],
+      [
+        "11:28:54",
+        "process",
+        "fork"
+      ],
+      [
+        "11:28:59",
+        "process",
+        "fork"
+      ],
+      [
+        "11:28:59",
+        "process",
+        "fork"
+      ]
+    ],
+    "11026": [
+      [
+        "11:28:54",
+        "process",
+        "exec"
+      ],
+      [
+        "11:28:54",
+        "process",
+        "exit"
+      ]
+    ],
+    "11027": [
+      [
+        "11:28:54",
+        "process",
+        "exec"
+      ],
+      [
+        "11:28:54",
+        "process",
+        "exit"
+      ]
+    ],
+    "624": [
+      [
+        "11:28:57",
+        "process",
+        "fork"
+      ],
+      [
+        "11:28:57",
+        "process",
+        "fork"
+      ],
+      [
+        "11:28:57",
+        "process",
+        "exit"
+      ]
+    ],
+    "11028": [
+      [
+        "11:28:57",
+        "process",
+        "exec"
+      ],
+      [
+        "11:28:57",
+        "process",
+        "exec"
+      ],
+      [
+        "11:28:57",
+        "process",
+        "exit"
+      ]
+    ],
+    "11030": [
+      [
+        "11:28:59",
+        "process",
+        "exec"
+      ],
+      [
+        "11:28:59",
+        "process",
+        "exit"
+      ]
+    ],
+    "11031": [
+      [
+        "11:28:59",
+        "process",
+        "exec"
+      ],
+      [
+        "11:28:59",
+        "process",
+        "exit"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "1": "init",
+    "11026": "android.hardwar",
+    "11027": "flags_health_ch",
+    "624": "shell svc 11028",
+    "11028": "cut",
+    "11030": "android.hardwar",
+    "11031": "flags_health_ch"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 6.0,
+      "peak_window": {
+        "start_s": 0.0,
+        "end_s": 1.0,
+        "count": 6
+      },
+      "avg_rate": 6.0,
+      "total_windows": 3
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "children": [
+          {
+            "pid": 624,
+            "comm": "shell svc 11028",
+            "children": [
+              {
+                "pid": 11028,
+                "comm": "cut",
+                "children": []
+              }
+            ]
+          },
+          {
+            "pid": 11026,
+            "comm": "android.hardwar",
+            "children": []
+          },
+          {
+            "pid": 11027,
+            "comm": "flags_health_ch",
+            "children": []
+          },
+          {
+            "pid": 11030,
+            "comm": "android.hardwar",
+            "children": []
+          },
+          {
+            "pid": 11031,
+            "comm": "flags_health_ch",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "flat": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "ppid": 0
+      },
+      {
+        "pid": 624,
+        "comm": "shell svc 11028",
+        "ppid": 1
+      },
+      {
+        "pid": 11026,
+        "comm": "android.hardwar",
+        "ppid": 1
+      },
+      {
+        "pid": 11027,
+        "comm": "flags_health_ch",
+        "ppid": 1
+      },
+      {
+        "pid": 11028,
+        "comm": "cut",
+        "ppid": 624
+      },
+      {
+        "pid": 11030,
+        "comm": "android.hardwar",
+        "ppid": 1
+      },
+      {
+        "pid": 11031,
+        "comm": "flags_health_ch",
+        "ppid": 1
+      }
+    ]
+  },
+  "resource_map": {},
+  "event_rate": {
+    "duration_s": 7.829496,
+    "event_rate_eps": 2.2989985562289066
+  }
+}
