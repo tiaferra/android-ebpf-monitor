@@ -1,0 +1,7 @@
+Attaching 1 probe...
+{"ts":10:09:33,"type":"process","event":"exec","pid":2286,"tid":2286,"comm":"android.hardwar"}
+{"ts":10:09:33,"type":"process","event":"exec","pid":2287,"tid":2287,"comm":"flags_health_ch"}
+{"ts":10:09:36,"type":"process","event":"exec","pid":2288,"tid":2288,"comm":"sh"}
+{"ts":10:09:36,"type":"process","event":"exec","pid":2288,"tid":2288,"comm":"cut"}
+{"ts":10:09:38,"type":"process","event":"exec","pid":2290,"tid":2290,"comm":"android.hardwar"}
+{"ts":10:09:38,"type":"process","event":"exec","pid":2291,"tid":2291,"comm":"flags_health_ch"}

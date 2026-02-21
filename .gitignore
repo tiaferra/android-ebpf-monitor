@@ -3,7 +3,6 @@ docs/build/
 
 # Latex artifacts
 *.aux
-*.log
 *.toc
 *.out
 *.fls
