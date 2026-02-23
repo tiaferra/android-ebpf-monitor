@@ -1,0 +1,13 @@
+{
+  "started_at": "2026-02-23T08:02:43.036570",
+  "probe_path": "probes/net_accept.bt",
+  "probe_code": "P01001",
+  "probe_meta": {
+    "code": "P01001",
+    "type": "network",
+    "event": "accept",
+    "description": "Tracks accept() and accept4() (id=43,288). Captures peer address on successful accept. Non-system processes accepting connections is anomalous on Android.",
+    "schema_version": 1
+  },
+  "stopped_at": "2026-02-23T08:02:56.788919"
+}

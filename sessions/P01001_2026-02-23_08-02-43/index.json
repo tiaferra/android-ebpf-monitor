@@ -1,0 +1,205 @@
+{
+  "total_events": 9,
+  "events_by_type": {
+    "network": 9
+  },
+  "events_by_name": {
+    "accept": 9
+  },
+  "top_processes": [
+    [
+      "init",
+      9
+    ]
+  ],
+  "process_profiles": {
+    "init": {
+      "total": 9,
+      "by_type": {
+        "network": 9
+      },
+      "by_event": {
+        "accept": 9
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "1": [
+      [
+        "08:02:47",
+        "network",
+        "accept"
+      ],
+      [
+        "08:02:47",
+        "network",
+        "accept"
+      ],
+      [
+        "08:02:47",
+        "network",
+        "accept"
+      ],
+      [
+        "08:02:52",
+        "network",
+        "accept"
+      ],
+      [
+        "08:02:52",
+        "network",
+        "accept"
+      ],
+      [
+        "08:02:52",
+        "network",
+        "accept"
+      ],
+      [
+        "08:02:52",
+        "network",
+        "accept"
+      ],
+      [
+        "08:02:52",
+        "network",
+        "accept"
+      ],
+      [
+        "08:02:53",
+        "network",
+        "accept"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "1": "init"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 4.0,
+      "peak_window": {
+        "start_s": 5.0,
+        "end_s": 6.0,
+        "count": 4
+      },
+      "avg_rate": 2.25,
+      "total_windows": 4
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "children": []
+      }
+    ],
+    "flat": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "ppid": 0
+      }
+    ]
+  },
+  "resource_map": {},
+  "network": {
+    "port_landscape": [],
+    "accept_events": [
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "08:02:47"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "08:02:47"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "08:02:47"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "08:02:52"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "08:02:52"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "08:02:52"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "08:02:52"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "08:02:52"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "08:02:53"
+      }
+    ],
+    "suspicious_acceptors": [],
+    "volume_by_comm": [],
+    "total_sent_bytes": 0,
+    "total_recv_bytes": 0,
+    "timeline": [],
+    "peak_send_second": null,
+    "peak_recv_second": null
+  },
+  "event_rate": {
+    "duration_s": 13.752349,
+    "event_rate_eps": 0.6544336534798527
+  }
+}

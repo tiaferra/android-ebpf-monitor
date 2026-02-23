@@ -1,0 +1,52 @@
+{
+  "total_events": 0,
+  "events_by_type": {},
+  "events_by_name": {},
+  "top_processes": [],
+  "process_profiles": {},
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {},
+  "pid_to_comm": {},
+  "time": {
+    "has_ts_ns": false,
+    "rate_1s": {
+      "available": false,
+      "reason": "ts_ns missing or too few events"
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [],
+    "flat": []
+  },
+  "resource_map": {},
+  "network": {
+    "port_landscape": [],
+    "accept_events": [],
+    "suspicious_acceptors": [],
+    "volume_by_comm": [],
+    "total_sent_bytes": 0,
+    "total_recv_bytes": 0,
+    "timeline": [],
+    "peak_send_second": null,
+    "peak_recv_second": null
+  },
+  "event_rate": {
+    "duration_s": 21.261298,
+    "event_rate_eps": 0.0
+  }
+}
