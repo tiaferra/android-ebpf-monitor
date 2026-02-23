@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-02-23T11:12:27.228843",
+  "probe_path": "probes/binder.bt",
+  "probe_code": "P00011",
+  "probe_meta": {
+    "code": "P00011",
+    "type": "ipc",
+    "event": "*",
+    "description": "Binder IPC tracing: binder_transaction (with ppid + oneway flag), binder_transaction_received, binder_transaction_alloc_buf. Correlate by debug_id.",
+    "schema_version": 1
+  }
+}

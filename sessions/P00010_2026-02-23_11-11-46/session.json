@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-02-23T11:11:46.596640",
+  "probe_path": "probes/syscalls.bt",
+  "probe_code": "P00010",
+  "probe_meta": {
+    "code": "P00010",
+    "type": "syscall",
+    "event": "*",
+    "description": "Filtered syscall tracing: execve, openat, connect. Includes decoded args (file paths, IPs, binary paths) and ppid.",
+    "schema_version": 1
+  }
+}

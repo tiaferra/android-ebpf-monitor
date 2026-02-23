@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-02-23T11:11:33.468776",
+  "probe_path": "probes/process_lifecycle.bt",
+  "probe_code": "P00100",
+  "probe_meta": {
+    "code": "P00100",
+    "type": "process",
+    "event": "*",
+    "description": "Process lifecycle: fork, exec, exit. Includes ppid for process tree reconstruction.",
+    "schema_version": 1
+  }
+}

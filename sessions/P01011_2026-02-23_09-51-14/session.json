@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-02-23T09:51:14.039202",
+  "probe_path": "probes/net_recv.bt",
+  "probe_code": "P01011",
+  "probe_meta": {
+    "code": "P01011",
+    "type": "network",
+    "event": "recvfrom",
+    "description": "Tracks recvfrom() (id=45). Captures fd, buffer size, actual bytes received, and latency. Content not captured, only size.",
+    "schema_version": 1
+  }
+}

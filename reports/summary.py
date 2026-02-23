@@ -348,8 +348,6 @@ def compute_resource_map(events: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 # -------------------------
-<<<<<<< HEAD
-=======
 # Network analytics
 # -------------------------
 def compute_network_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -478,7 +476,6 @@ def compute_network_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 # -------------------------
->>>>>>> b5e5d88 (aggiunta di probe di rete e relative analisi)
 # Main analytics
 # -------------------------
 def compute_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
@@ -669,18 +666,11 @@ def compute_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
             for sc, cnt in errno_by_syscall.items()
         }
 
-<<<<<<< HEAD
-    # NEW: binder, process tree, resource map
-    binder_analytics = compute_binder_analytics(events_sorted)
-    process_tree = compute_process_tree(events_sorted)
-    resource_map = compute_resource_map(events_sorted)
-=======
     # NEW: binder, process tree, resource map, network
     binder_analytics = compute_binder_analytics(events_sorted)
     process_tree = compute_process_tree(events_sorted)
     resource_map = compute_resource_map(events_sorted)
     network_analytics = compute_network_analytics(events_sorted)
->>>>>>> b5e5d88 (aggiunta di probe di rete e relative analisi)
 
     # Build base result (keeps your existing keys for compatibility)
     result = {
@@ -719,10 +709,7 @@ def compute_analytics(events: List[Dict[str, Any]]) -> Dict[str, Any]:
         "binder": binder_analytics,
         "process_tree": process_tree,
         "resource_map": resource_map,
-<<<<<<< HEAD
-=======
         "network": network_analytics,
->>>>>>> b5e5d88 (aggiunta di probe di rete e relative analisi)
     }
     return result
 
@@ -870,8 +857,6 @@ def build_report_text(
         if len(tl) > timeline_max_events:
             lines.append(f" ... ({len(tl)} events total for this pid)")
 
-<<<<<<< HEAD
-=======
     # Network analytics
     network = summary.get("network", {})
     has_network_data = (
@@ -955,7 +940,6 @@ def build_report_text(
             if len(timeline) > 20:
                 lines.append(f"  ... ({len(timeline)} seconds total)")
 
->>>>>>> b5e5d88 (aggiunta di probe di rete e relative analisi)
     # Binder IPC analysis
     binder = summary.get("binder", {})
     if isinstance(binder, dict) and binder.get("total_transactions", 0) > 0:

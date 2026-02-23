@@ -1,0 +1,219 @@
+{
+  "total_events": 12,
+  "events_by_type": {
+    "network": 12
+  },
+  "events_by_name": {
+    "sendto": 12
+  },
+  "top_processes": [
+    [
+      "init",
+      10
+    ],
+    [
+      "app",
+      2
+    ]
+  ],
+  "process_profiles": {
+    "init": {
+      "total": 10,
+      "by_type": {
+        "network": 10
+      },
+      "by_event": {
+        "sendto": 10
+      }
+    },
+    "app": {
+      "total": 2,
+      "by_type": {
+        "network": 2
+      },
+      "by_event": {
+        "sendto": 2
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "1": [
+      [
+        "11:12:56",
+        "network",
+        "sendto"
+      ],
+      [
+        "11:12:56",
+        "network",
+        "sendto"
+      ],
+      [
+        "11:12:56",
+        "network",
+        "sendto"
+      ],
+      [
+        "11:12:56",
+        "network",
+        "sendto"
+      ],
+      [
+        "11:12:56",
+        "network",
+        "sendto"
+      ],
+      [
+        "11:13:01",
+        "network",
+        "sendto"
+      ],
+      [
+        "11:13:01",
+        "network",
+        "sendto"
+      ],
+      [
+        "11:13:01",
+        "network",
+        "sendto"
+      ],
+      [
+        "11:13:01",
+        "network",
+        "sendto"
+      ],
+      [
+        "11:13:01",
+        "network",
+        "sendto"
+      ]
+    ],
+    "603": [
+      [
+        "11:13:00",
+        "network",
+        "sendto"
+      ],
+      [
+        "11:13:00",
+        "network",
+        "sendto"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "1": "init",
+    "603": "app"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 5.0,
+      "peak_window": {
+        "start_s": 0.0,
+        "end_s": 1.0,
+        "count": 5
+      },
+      "avg_rate": 4.0,
+      "total_windows": 3
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "children": [
+          {
+            "pid": 603,
+            "comm": "app",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "flat": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "ppid": 0
+      },
+      {
+        "pid": 603,
+        "comm": "app",
+        "ppid": 1
+      }
+    ]
+  },
+  "resource_map": {},
+  "network": {
+    "port_landscape": [],
+    "accept_events": [],
+    "suspicious_acceptors": [],
+    "volume_by_comm": [
+      {
+        "comm": "app",
+        "sent_bytes": 448,
+        "recv_bytes": 0,
+        "send_calls": 2,
+        "recv_calls": 0
+      },
+      {
+        "comm": "init",
+        "sent_bytes": 40,
+        "recv_bytes": 0,
+        "send_calls": 10,
+        "recv_calls": 0
+      }
+    ],
+    "total_sent_bytes": 488,
+    "total_recv_bytes": 0,
+    "timeline": [
+      {
+        "rel_s": 0,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 4,
+        "sent_bytes": 448,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 5,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      }
+    ],
+    "peak_send_second": {
+      "rel_s": 4,
+      "sent_bytes": 448,
+      "recv_bytes": 0
+    },
+    "peak_recv_second": {
+      "rel_s": 0,
+      "sent_bytes": 20,
+      "recv_bytes": 0
+    }
+  },
+  "event_rate": null
+}
