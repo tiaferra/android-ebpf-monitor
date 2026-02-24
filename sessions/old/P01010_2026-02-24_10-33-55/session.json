@@ -1,0 +1,13 @@
+{
+  "started_at": "2026-02-24T10:33:55.728295",
+  "probe_path": "probes/net_send.bt",
+  "probe_code": "P01010",
+  "probe_meta": {
+    "code": "P01010",
+    "type": "network",
+    "event": "sendto",
+    "description": "Tracks sendto() (id=44). Captures fd, requested bytes, actual bytes sent, and latency. Content not captured, only size.",
+    "schema_version": 1
+  },
+  "stopped_at": "2026-02-24T10:33:55.812769"
+}

@@ -1,0 +1,1498 @@
+{
+  "total_events": 117,
+  "events_by_type": {
+    "network": 117
+  },
+  "events_by_name": {
+    "accept": 117
+  },
+  "top_processes": [
+    [
+      "init",
+      117
+    ]
+  ],
+  "process_profiles": {
+    "init": {
+      "total": 117,
+      "by_type": {
+        "network": 117
+      },
+      "by_event": {
+        "accept": 117
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "1": [
+      [
+        "10:41:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:13",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:16",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:16",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:16",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:16",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:16",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:18",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:31",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:31",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:31",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:31",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:31",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:33",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:36",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:36",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:36",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:36",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:36",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:38",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:41",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:41",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:41",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:41",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:41",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:45",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:56",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:56",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:56",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:56",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:56",
+        "network",
+        "accept"
+      ],
+      [
+        "10:41:58",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:01",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:01",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:01",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:01",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:01",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:06",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:06",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:06",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:06",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:06",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:16",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:16",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:16",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:16",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:16",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:17",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:31",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:31",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:31",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:33",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:36",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:36",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:36",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:41",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:41",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:41",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:56",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:56",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:57",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:57",
+        "network",
+        "accept"
+      ],
+      [
+        "10:42:57",
+        "network",
+        "accept"
+      ],
+      [
+        "10:43:01",
+        "network",
+        "accept"
+      ],
+      [
+        "10:43:01",
+        "network",
+        "accept"
+      ],
+      [
+        "10:43:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:43:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:43:02",
+        "network",
+        "accept"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "1": "init"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 6.0,
+      "peak_window": {
+        "start_s": 65.0,
+        "end_s": 66.0,
+        "count": 6
+      },
+      "avg_rate": 3.65625,
+      "total_windows": 32
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "children": []
+      }
+    ],
+    "flat": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "ppid": 0
+      }
+    ]
+  },
+  "resource_map": {},
+  "network": {
+    "port_landscape": [],
+    "accept_events": [
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:13"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:16"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:16"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:16"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:16"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:16"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:18"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:31"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:31"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:31"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:31"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:31"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:33"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:36"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:36"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:36"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:36"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:36"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:38"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:41"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:41"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:41"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:41"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:41"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:45"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:56"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:56"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:56"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:56"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:56"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:41:58"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:01"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:01"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:01"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:01"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:01"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:06"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:06"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:06"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:06"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:06"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:16"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:16"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:16"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:16"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:16"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:17"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:31"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:31"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:31"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:33"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:36"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:36"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:36"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:41"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:41"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:41"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:56"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:56"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:57"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:57"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:42:57"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:43:01"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:43:01"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:43:02"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:43:02"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:43:02"
+      }
+    ],
+    "suspicious_acceptors": [],
+    "volume_by_comm": [],
+    "total_sent_bytes": 0,
+    "total_recv_bytes": 0,
+    "timeline": [],
+    "peak_send_second": null,
+    "peak_recv_second": null
+  },
+  "event_rate": null
+}

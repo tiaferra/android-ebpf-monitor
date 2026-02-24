@@ -1,0 +1,12 @@
+{
+  "started_at": "2026-02-24T10:43:08.697545",
+  "probe_path": "probes/net_bind.bt",
+  "probe_code": "P01000",
+  "probe_meta": {
+    "code": "P01000",
+    "type": "network",
+    "event": "bind",
+    "description": "Tracks bind() syscall (id=49). Decodes AF_INET ip:port and AF_UNIX socket paths. Shows which processes claim local ports.",
+    "schema_version": 1
+  }
+}

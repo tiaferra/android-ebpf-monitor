@@ -1,0 +1,999 @@
+{
+  "total_events": 135,
+  "events_by_type": {
+    "network": 135
+  },
+  "events_by_name": {
+    "sendto": 135
+  },
+  "top_processes": [
+    [
+      "init",
+      126
+    ],
+    [
+      "app",
+      9
+    ]
+  ],
+  "process_profiles": {
+    "init": {
+      "total": 126,
+      "by_type": {
+        "network": 126
+      },
+      "by_event": {
+        "sendto": 126
+      }
+    },
+    "app": {
+      "total": 9,
+      "by_type": {
+        "network": 9
+      },
+      "by_event": {
+        "sendto": 9
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "1": [
+      [
+        "10:47:18",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:22",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:22",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:22",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:22",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:22",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:24",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:27",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:27",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:27",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:27",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:27",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:32",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:32",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:32",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:32",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:32",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:37",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:37",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:37",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:37",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:37",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:38",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:42",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:42",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:42",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:42",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:42",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:43",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:47",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:47",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:47",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:47",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:47",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:52",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:52",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:52",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:52",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:52",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:58",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:02",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:02",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:02",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:02",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:02",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:07",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:07",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:07",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:07",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:07",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:12",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:12",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:12",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:12",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:12",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:14",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:17",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:17",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:17",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:17",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:17",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:22",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:22",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:22",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:22",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:22",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:27",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:27",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:27",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:27",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:27",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:28",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:32",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:32",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:32",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:32",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:32",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:37",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:37",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:37",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:37",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:37",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:42",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:42",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:42",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:42",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:42",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:44",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:47",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:47",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:47",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:47",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:47",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:52",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:52",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:52",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:52",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:52",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:57",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:02",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:02",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:02",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:02",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:02",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:07",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:07",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:07",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:07",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:07",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:12",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:12",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:12",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:12",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:12",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:15",
+        "network",
+        "sendto"
+      ]
+    ],
+    "609": [
+      [
+        "10:47:18",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:38",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:51",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:51",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:47:58",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:00",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:48:00",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:00",
+        "network",
+        "sendto"
+      ],
+      [
+        "10:49:00",
+        "network",
+        "sendto"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "1": "init",
+    "609": "app"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 8.0,
+      "peak_window": {
+        "start_s": 39.0,
+        "end_s": 40.0,
+        "count": 8
+      },
+      "avg_rate": 3.9705882352941178,
+      "total_windows": 34
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "children": [
+          {
+            "pid": 609,
+            "comm": "app",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "flat": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "ppid": 0
+      },
+      {
+        "pid": 609,
+        "comm": "app",
+        "ppid": 1
+      }
+    ]
+  },
+  "resource_map": {},
+  "network": {
+    "port_landscape": [],
+    "accept_events": [],
+    "suspicious_acceptors": [],
+    "volume_by_comm": [
+      {
+        "comm": "app",
+        "sent_bytes": 2016,
+        "recv_bytes": 0,
+        "send_calls": 9,
+        "recv_calls": 0
+      },
+      {
+        "comm": "init",
+        "sent_bytes": 504,
+        "recv_bytes": 0,
+        "send_calls": 126,
+        "recv_calls": 0
+      }
+    ],
+    "total_sent_bytes": 2520,
+    "total_recv_bytes": 0,
+    "timeline": [
+      {
+        "rel_s": 0,
+        "sent_bytes": 228,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 4,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 7,
+        "sent_bytes": 4,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 9,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 14,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 19,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 20,
+        "sent_bytes": 228,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 24,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 26,
+        "sent_bytes": 4,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 29,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 33,
+        "sent_bytes": 448,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 34,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 39,
+        "sent_bytes": 24,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 40,
+        "sent_bytes": 228,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 42,
+        "sent_bytes": 448,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 44,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 49,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 54,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 56,
+        "sent_bytes": 4,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 59,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 64,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 69,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 70,
+        "sent_bytes": 4,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 74,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 79,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 84,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 87,
+        "sent_bytes": 4,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 89,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 94,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 99,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 100,
+        "sent_bytes": 4,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 102,
+        "sent_bytes": 448,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 104,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 109,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 114,
+        "sent_bytes": 20,
+        "recv_bytes": 0
+      },
+      {
+        "rel_s": 117,
+        "sent_bytes": 4,
+        "recv_bytes": 0
+      }
+    ],
+    "peak_send_second": {
+      "rel_s": 33,
+      "sent_bytes": 448,
+      "recv_bytes": 0
+    },
+    "peak_recv_second": {
+      "rel_s": 0,
+      "sent_bytes": 228,
+      "recv_bytes": 0
+    }
+  },
+  "event_rate": null
+}
