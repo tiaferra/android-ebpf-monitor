@@ -1,6 +1,3 @@
-# LaTeX build
-docs/build/
-
 # Latex artifacts
 *.aux
 *.toc
