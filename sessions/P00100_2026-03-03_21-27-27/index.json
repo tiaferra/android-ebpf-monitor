@@ -1,0 +1,1619 @@
+{
+  "total_events": 123,
+  "events_by_type": {
+    "process": 123
+  },
+  "events_by_name": {
+    "exit": 37,
+    "fork": 44,
+    "exec": 42
+  },
+  "top_processes": [
+    [
+      "prooted-2154-hA",
+      38
+    ],
+    [
+      "bash",
+      37
+    ],
+    [
+      "sleep",
+      30
+    ],
+    [
+      "init",
+      2
+    ],
+    [
+      "android.hardwar",
+      2
+    ],
+    [
+      "adbd",
+      2
+    ],
+    [
+      "cut",
+      2
+    ],
+    [
+      "flags_health_ch",
+      2
+    ],
+    [
+      "python3",
+      2
+    ],
+    [
+      "sh",
+      1
+    ]
+  ],
+  "process_profiles": {
+    "sleep": {
+      "total": 30,
+      "by_type": {
+        "process": 30
+      },
+      "by_event": {
+        "exit": 30
+      }
+    },
+    "bash": {
+      "total": 37,
+      "by_type": {
+        "process": 37
+      },
+      "by_event": {
+        "fork": 36,
+        "exit": 1
+      }
+    },
+    "prooted-2154-hA": {
+      "total": 38,
+      "by_type": {
+        "process": 38
+      },
+      "by_event": {
+        "exec": 38
+      }
+    },
+    "init": {
+      "total": 2,
+      "by_type": {
+        "process": 2
+      },
+      "by_event": {
+        "fork": 2
+      }
+    },
+    "android.hardwar": {
+      "total": 2,
+      "by_type": {
+        "process": 2
+      },
+      "by_event": {
+        "exec": 1,
+        "exit": 1
+      }
+    },
+    "adbd": {
+      "total": 2,
+      "by_type": {
+        "process": 2
+      },
+      "by_event": {
+        "fork": 2
+      }
+    },
+    "sh": {
+      "total": 1,
+      "by_type": {
+        "process": 1
+      },
+      "by_event": {
+        "exec": 1
+      }
+    },
+    "cut": {
+      "total": 2,
+      "by_type": {
+        "process": 2
+      },
+      "by_event": {
+        "exec": 1,
+        "exit": 1
+      }
+    },
+    "flags_health_ch": {
+      "total": 2,
+      "by_type": {
+        "process": 2
+      },
+      "by_event": {
+        "exec": 1,
+        "exit": 1
+      }
+    },
+    "shell svc 13423": {
+      "total": 1,
+      "by_type": {
+        "process": 1
+      },
+      "by_event": {
+        "exit": 1
+      }
+    },
+    "jq": {
+      "total": 1,
+      "by_type": {
+        "process": 1
+      },
+      "by_event": {
+        "exit": 1
+      }
+    },
+    "mktemp": {
+      "total": 1,
+      "by_type": {
+        "process": 1
+      },
+      "by_event": {
+        "exit": 1
+      }
+    },
+    "timeout": {
+      "total": 1,
+      "by_type": {
+        "process": 1
+      },
+      "by_event": {
+        "fork": 1
+      }
+    },
+    "python3": {
+      "total": 2,
+      "by_type": {
+        "process": 2
+      },
+      "by_event": {
+        "fork": 2
+      }
+    },
+    "bpftrace": {
+      "total": 1,
+      "by_type": {
+        "process": 1
+      },
+      "by_event": {
+        "fork": 1
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "13406": [
+      [
+        "21:27:29",
+        "process",
+        "exit"
+      ]
+    ],
+    "13266": [
+      [
+        "21:27:29",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:30",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "fork"
+      ]
+    ],
+    "13419": [
+      [
+        "21:27:29",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:30",
+        "process",
+        "exit"
+      ]
+    ],
+    "13407": [
+      [
+        "21:27:29",
+        "process",
+        "exit"
+      ]
+    ],
+    "13367": [
+      [
+        "21:27:29",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:30",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "fork"
+      ]
+    ],
+    "13420": [
+      [
+        "21:27:29",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:30",
+        "process",
+        "exit"
+      ]
+    ],
+    "13408": [
+      [
+        "21:27:29",
+        "process",
+        "exit"
+      ]
+    ],
+    "1": [
+      [
+        "21:27:29",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:29",
+        "process",
+        "fork"
+      ]
+    ],
+    "13303": [
+      [
+        "21:27:29",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:30",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "fork"
+      ]
+    ],
+    "13422": [
+      [
+        "21:27:29",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:30",
+        "process",
+        "exit"
+      ]
+    ],
+    "13421": [
+      [
+        "21:27:29",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:29",
+        "process",
+        "exit"
+      ]
+    ],
+    "625": [
+      [
+        "21:27:29",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:29",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:29",
+        "process",
+        "exit"
+      ]
+    ],
+    "13423": [
+      [
+        "21:27:29",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:29",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:29",
+        "process",
+        "exit"
+      ]
+    ],
+    "13425": [
+      [
+        "21:27:29",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:29",
+        "process",
+        "exit"
+      ]
+    ],
+    "13410": [
+      [
+        "21:27:29",
+        "process",
+        "exit"
+      ]
+    ],
+    "13247": [
+      [
+        "21:27:29",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:30",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "fork"
+      ]
+    ],
+    "13426": [
+      [
+        "21:27:29",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:30",
+        "process",
+        "exit"
+      ]
+    ],
+    "13417": [
+      [
+        "21:27:30",
+        "process",
+        "exit"
+      ]
+    ],
+    "13390": [
+      [
+        "21:27:30",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "fork"
+      ]
+    ],
+    "13427": [
+      [
+        "21:27:30",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "exit"
+      ]
+    ],
+    "13418": [
+      [
+        "21:27:30",
+        "process",
+        "exit"
+      ]
+    ],
+    "13256": [
+      [
+        "21:27:30",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "fork"
+      ]
+    ],
+    "13428": [
+      [
+        "21:27:30",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "exit"
+      ]
+    ],
+    "13429": [
+      [
+        "21:27:30",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "exit"
+      ]
+    ],
+    "13430": [
+      [
+        "21:27:30",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "exit"
+      ]
+    ],
+    "13431": [
+      [
+        "21:27:30",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "exit"
+      ]
+    ],
+    "13432": [
+      [
+        "21:27:30",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "exit"
+      ]
+    ],
+    "12884": [
+      [
+        "21:27:31",
+        "process",
+        "exit"
+      ]
+    ],
+    "12831": [
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ]
+    ],
+    "13433": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "exit"
+      ]
+    ],
+    "13434": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "exit"
+      ]
+    ],
+    "13436": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ]
+    ],
+    "13437": [
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "fork"
+      ]
+    ],
+    "13438": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "exit"
+      ]
+    ],
+    "13435": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ]
+    ],
+    "13439": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ],
+      [
+        "21:27:31",
+        "process",
+        "fork"
+      ]
+    ],
+    "13440": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "exit"
+      ]
+    ],
+    "13441": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "exit"
+      ]
+    ],
+    "13442": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "exit"
+      ]
+    ],
+    "13443": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "exit"
+      ]
+    ],
+    "13444": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:34",
+        "process",
+        "fork"
+      ]
+    ],
+    "13446": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "exit"
+      ]
+    ],
+    "13447": [
+      [
+        "21:27:31",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:32",
+        "process",
+        "exit"
+      ]
+    ],
+    "13448": [
+      [
+        "21:27:32",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "exit"
+      ]
+    ],
+    "13449": [
+      [
+        "21:27:32",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "exit"
+      ]
+    ],
+    "13450": [
+      [
+        "21:27:32",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "exit"
+      ]
+    ],
+    "13451": [
+      [
+        "21:27:32",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "exit"
+      ]
+    ],
+    "13452": [
+      [
+        "21:27:32",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "exit"
+      ]
+    ],
+    "13453": [
+      [
+        "21:27:32",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "exit"
+      ]
+    ],
+    "13454": [
+      [
+        "21:27:32",
+        "process",
+        "exec"
+      ],
+      [
+        "21:27:33",
+        "process",
+        "exit"
+      ]
+    ],
+    "13455": [
+      [
+        "21:27:33",
+        "process",
+        "exec"
+      ]
+    ],
+    "13456": [
+      [
+        "21:27:33",
+        "process",
+        "exec"
+      ]
+    ],
+    "13458": [
+      [
+        "21:27:33",
+        "process",
+        "exec"
+      ]
+    ],
+    "13457": [
+      [
+        "21:27:33",
+        "process",
+        "exec"
+      ]
+    ],
+    "13459": [
+      [
+        "21:27:33",
+        "process",
+        "exec"
+      ]
+    ],
+    "13460": [
+      [
+        "21:27:33",
+        "process",
+        "exec"
+      ]
+    ],
+    "13461": [
+      [
+        "21:27:34",
+        "process",
+        "exec"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "13406": "sleep",
+    "13266": "bash",
+    "13419": "sleep",
+    "13407": "sleep",
+    "13367": "bash",
+    "13420": "sleep",
+    "13408": "sleep",
+    "1": "init",
+    "13303": "bash",
+    "13422": "sleep",
+    "13421": "android.hardwar",
+    "625": "shell svc 13423",
+    "13423": "cut",
+    "13425": "flags_health_ch",
+    "13410": "sleep",
+    "13247": "bash",
+    "13426": "sleep",
+    "13417": "sleep",
+    "13390": "bash",
+    "13427": "sleep",
+    "13418": "sleep",
+    "13256": "bash",
+    "13428": "sleep",
+    "13429": "sleep",
+    "13430": "sleep",
+    "13431": "sleep",
+    "13432": "sleep",
+    "12884": "bash",
+    "12831": "bash",
+    "13433": "jq",
+    "13434": "mktemp",
+    "13436": "prooted-2154-hA",
+    "13437": "bash",
+    "13438": "sleep",
+    "13435": "timeout",
+    "13439": "python3",
+    "13440": "sleep",
+    "13441": "sleep",
+    "13442": "sleep",
+    "13443": "sleep",
+    "13444": "bpftrace",
+    "13446": "sleep",
+    "13447": "sleep",
+    "13448": "sleep",
+    "13449": "sleep",
+    "13450": "sleep",
+    "13451": "sleep",
+    "13452": "sleep",
+    "13453": "sleep",
+    "13454": "sleep",
+    "13455": "prooted-2154-hA",
+    "13456": "prooted-2154-hA",
+    "13458": "prooted-2154-hA",
+    "13457": "prooted-2154-hA",
+    "13459": "prooted-2154-hA",
+    "13460": "prooted-2154-hA",
+    "13461": "prooted-2154-hA"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 32.0,
+      "peak_window": {
+        "start_s": 1.0,
+        "end_s": 2.0,
+        "count": 32
+      },
+      "avg_rate": 24.6,
+      "total_windows": 5
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "children": [
+          {
+            "pid": 625,
+            "comm": "shell svc 13423",
+            "children": [
+              {
+                "pid": 13423,
+                "comm": "cut",
+                "children": []
+              }
+            ]
+          },
+          {
+            "pid": 13421,
+            "comm": "android.hardwar",
+            "children": []
+          },
+          {
+            "pid": 13425,
+            "comm": "flags_health_ch",
+            "children": []
+          }
+        ]
+      },
+      {
+        "pid": 12831,
+        "comm": "bash",
+        "children": [
+          {
+            "pid": 12884,
+            "comm": "bash",
+            "children": []
+          },
+          {
+            "pid": 13433,
+            "comm": "jq",
+            "children": []
+          },
+          {
+            "pid": 13434,
+            "comm": "mktemp",
+            "children": []
+          },
+          {
+            "pid": 13435,
+            "comm": "timeout",
+            "children": [
+              {
+                "pid": 13439,
+                "comm": "python3",
+                "children": [
+                  {
+                    "pid": 13444,
+                    "comm": "bpftrace",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "pid": 13436,
+            "comm": "prooted-2154-hA",
+            "children": []
+          },
+          {
+            "pid": 13437,
+            "comm": "bash",
+            "children": [
+              {
+                "pid": 13438,
+                "comm": "sleep",
+                "children": []
+              },
+              {
+                "pid": 13448,
+                "comm": "sleep",
+                "children": []
+              },
+              {
+                "pid": 13455,
+                "comm": "prooted-2154-hA",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "pid": 13247,
+        "comm": "bash",
+        "children": [
+          {
+            "pid": 13410,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13426,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13432,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13447,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13454,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13461,
+            "comm": "prooted-2154-hA",
+            "children": []
+          }
+        ]
+      },
+      {
+        "pid": 13256,
+        "comm": "bash",
+        "children": [
+          {
+            "pid": 13418,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13428,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13441,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13450,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13458,
+            "comm": "prooted-2154-hA",
+            "children": []
+          }
+        ]
+      },
+      {
+        "pid": 13266,
+        "comm": "bash",
+        "children": [
+          {
+            "pid": 13406,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13419,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13429,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13442,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13451,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13457,
+            "comm": "prooted-2154-hA",
+            "children": []
+          }
+        ]
+      },
+      {
+        "pid": 13303,
+        "comm": "bash",
+        "children": [
+          {
+            "pid": 13408,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13422,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13431,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13446,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13453,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13460,
+            "comm": "prooted-2154-hA",
+            "children": []
+          }
+        ]
+      },
+      {
+        "pid": 13367,
+        "comm": "bash",
+        "children": [
+          {
+            "pid": 13407,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13420,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13430,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13443,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13452,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13459,
+            "comm": "prooted-2154-hA",
+            "children": []
+          }
+        ]
+      },
+      {
+        "pid": 13390,
+        "comm": "bash",
+        "children": [
+          {
+            "pid": 13417,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13427,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13440,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13449,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 13456,
+            "comm": "prooted-2154-hA",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "flat": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "ppid": 0
+      },
+      {
+        "pid": 625,
+        "comm": "shell svc 13423",
+        "ppid": 1
+      },
+      {
+        "pid": 12831,
+        "comm": "bash",
+        "ppid": 12797
+      },
+      {
+        "pid": 12884,
+        "comm": "bash",
+        "ppid": 12831
+      },
+      {
+        "pid": 13247,
+        "comm": "bash",
+        "ppid": 13193
+      },
+      {
+        "pid": 13256,
+        "comm": "bash",
+        "ppid": 13148
+      },
+      {
+        "pid": 13266,
+        "comm": "bash",
+        "ppid": 13107
+      },
+      {
+        "pid": 13303,
+        "comm": "bash",
+        "ppid": 13062
+      },
+      {
+        "pid": 13367,
+        "comm": "bash",
+        "ppid": 12940
+      },
+      {
+        "pid": 13390,
+        "comm": "bash",
+        "ppid": 12889
+      },
+      {
+        "pid": 13406,
+        "comm": "sleep",
+        "ppid": 13266
+      },
+      {
+        "pid": 13407,
+        "comm": "sleep",
+        "ppid": 13367
+      },
+      {
+        "pid": 13408,
+        "comm": "sleep",
+        "ppid": 13303
+      },
+      {
+        "pid": 13410,
+        "comm": "sleep",
+        "ppid": 13247
+      },
+      {
+        "pid": 13417,
+        "comm": "sleep",
+        "ppid": 13390
+      },
+      {
+        "pid": 13418,
+        "comm": "sleep",
+        "ppid": 13256
+      },
+      {
+        "pid": 13419,
+        "comm": "sleep",
+        "ppid": 13266
+      },
+      {
+        "pid": 13420,
+        "comm": "sleep",
+        "ppid": 13367
+      },
+      {
+        "pid": 13421,
+        "comm": "android.hardwar",
+        "ppid": 1
+      },
+      {
+        "pid": 13422,
+        "comm": "sleep",
+        "ppid": 13303
+      },
+      {
+        "pid": 13423,
+        "comm": "cut",
+        "ppid": 625
+      },
+      {
+        "pid": 13425,
+        "comm": "flags_health_ch",
+        "ppid": 1
+      },
+      {
+        "pid": 13426,
+        "comm": "sleep",
+        "ppid": 13247
+      },
+      {
+        "pid": 13427,
+        "comm": "sleep",
+        "ppid": 13390
+      },
+      {
+        "pid": 13428,
+        "comm": "sleep",
+        "ppid": 13256
+      },
+      {
+        "pid": 13429,
+        "comm": "sleep",
+        "ppid": 13266
+      },
+      {
+        "pid": 13430,
+        "comm": "sleep",
+        "ppid": 13367
+      },
+      {
+        "pid": 13431,
+        "comm": "sleep",
+        "ppid": 13303
+      },
+      {
+        "pid": 13432,
+        "comm": "sleep",
+        "ppid": 13247
+      },
+      {
+        "pid": 13433,
+        "comm": "jq",
+        "ppid": 12831
+      },
+      {
+        "pid": 13434,
+        "comm": "mktemp",
+        "ppid": 12831
+      },
+      {
+        "pid": 13435,
+        "comm": "timeout",
+        "ppid": 12831
+      },
+      {
+        "pid": 13436,
+        "comm": "prooted-2154-hA",
+        "ppid": 12831
+      },
+      {
+        "pid": 13437,
+        "comm": "bash",
+        "ppid": 12831
+      },
+      {
+        "pid": 13438,
+        "comm": "sleep",
+        "ppid": 13437
+      },
+      {
+        "pid": 13439,
+        "comm": "python3",
+        "ppid": 13435
+      },
+      {
+        "pid": 13440,
+        "comm": "sleep",
+        "ppid": 13390
+      },
+      {
+        "pid": 13441,
+        "comm": "sleep",
+        "ppid": 13256
+      },
+      {
+        "pid": 13442,
+        "comm": "sleep",
+        "ppid": 13266
+      },
+      {
+        "pid": 13443,
+        "comm": "sleep",
+        "ppid": 13367
+      },
+      {
+        "pid": 13444,
+        "comm": "bpftrace",
+        "ppid": 13439
+      },
+      {
+        "pid": 13446,
+        "comm": "sleep",
+        "ppid": 13303
+      },
+      {
+        "pid": 13447,
+        "comm": "sleep",
+        "ppid": 13247
+      },
+      {
+        "pid": 13448,
+        "comm": "sleep",
+        "ppid": 13437
+      },
+      {
+        "pid": 13449,
+        "comm": "sleep",
+        "ppid": 13390
+      },
+      {
+        "pid": 13450,
+        "comm": "sleep",
+        "ppid": 13256
+      },
+      {
+        "pid": 13451,
+        "comm": "sleep",
+        "ppid": 13266
+      },
+      {
+        "pid": 13452,
+        "comm": "sleep",
+        "ppid": 13367
+      },
+      {
+        "pid": 13453,
+        "comm": "sleep",
+        "ppid": 13303
+      },
+      {
+        "pid": 13454,
+        "comm": "sleep",
+        "ppid": 13247
+      },
+      {
+        "pid": 13455,
+        "comm": "prooted-2154-hA",
+        "ppid": 13437
+      },
+      {
+        "pid": 13456,
+        "comm": "prooted-2154-hA",
+        "ppid": 13390
+      },
+      {
+        "pid": 13457,
+        "comm": "prooted-2154-hA",
+        "ppid": 13266
+      },
+      {
+        "pid": 13458,
+        "comm": "prooted-2154-hA",
+        "ppid": 13256
+      },
+      {
+        "pid": 13459,
+        "comm": "prooted-2154-hA",
+        "ppid": 13367
+      },
+      {
+        "pid": 13460,
+        "comm": "prooted-2154-hA",
+        "ppid": 13303
+      },
+      {
+        "pid": 13461,
+        "comm": "prooted-2154-hA",
+        "ppid": 13247
+      }
+    ]
+  },
+  "resource_map": {},
+  "network": {
+    "port_landscape": [],
+    "accept_events": [],
+    "suspicious_acceptors": [],
+    "volume_by_comm": [],
+    "total_sent_bytes": 0,
+    "total_recv_bytes": 0,
+    "timeline": [],
+    "peak_send_second": null,
+    "peak_recv_second": null
+  },
+  "event_rate": {
+    "duration_s": 6.505599,
+    "event_rate_eps": 18.906790904265694
+  }
+}

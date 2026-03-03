@@ -1,0 +1,300 @@
+{
+  "total_events": 11,
+  "events_by_type": {
+    "process": 11
+  },
+  "events_by_name": {
+    "exit": 4,
+    "fork": 4,
+    "exec": 3
+  },
+  "top_processes": [
+    [
+      "bash",
+      5
+    ],
+    [
+      "prooted-2154-hA",
+      3
+    ],
+    [
+      "sleep",
+      2
+    ],
+    [
+      "jq",
+      1
+    ]
+  ],
+  "process_profiles": {
+    "sleep": {
+      "total": 2,
+      "by_type": {
+        "process": 2
+      },
+      "by_event": {
+        "exit": 2
+      }
+    },
+    "bash": {
+      "total": 5,
+      "by_type": {
+        "process": 5
+      },
+      "by_event": {
+        "fork": 4,
+        "exit": 1
+      }
+    },
+    "prooted-2154-hA": {
+      "total": 3,
+      "by_type": {
+        "process": 3
+      },
+      "by_event": {
+        "exec": 3
+      }
+    },
+    "jq": {
+      "total": 1,
+      "by_type": {
+        "process": 1
+      },
+      "by_event": {
+        "exit": 1
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "10904": [
+      [
+        "21:16:57",
+        "process",
+        "exit"
+      ]
+    ],
+    "10903": [
+      [
+        "21:16:57",
+        "process",
+        "fork"
+      ]
+    ],
+    "10918": [
+      [
+        "21:16:57",
+        "process",
+        "exec"
+      ]
+    ],
+    "10906": [
+      [
+        "21:16:57",
+        "process",
+        "exit"
+      ]
+    ],
+    "10889": [
+      [
+        "21:16:57",
+        "process",
+        "fork"
+      ]
+    ],
+    "10919": [
+      [
+        "21:16:57",
+        "process",
+        "exec"
+      ]
+    ],
+    "10528": [
+      [
+        "21:16:57",
+        "process",
+        "exit"
+      ]
+    ],
+    "10492": [
+      [
+        "21:16:57",
+        "process",
+        "fork"
+      ],
+      [
+        "21:16:58",
+        "process",
+        "fork"
+      ]
+    ],
+    "10920": [
+      [
+        "21:16:57",
+        "process",
+        "exec"
+      ],
+      [
+        "21:16:58",
+        "process",
+        "exit"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "10904": "sleep",
+    "10903": "bash",
+    "10918": "prooted-2154-hA",
+    "10906": "sleep",
+    "10889": "bash",
+    "10919": "prooted-2154-hA",
+    "10528": "bash",
+    "10492": "bash",
+    "10920": "jq"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 11.0,
+      "peak_window": {
+        "start_s": 0.0,
+        "end_s": 1.0,
+        "count": 11
+      },
+      "avg_rate": 11.0,
+      "total_windows": 1
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [
+      {
+        "pid": 10492,
+        "comm": "bash",
+        "children": [
+          {
+            "pid": 10528,
+            "comm": "bash",
+            "children": []
+          },
+          {
+            "pid": 10920,
+            "comm": "jq",
+            "children": []
+          }
+        ]
+      },
+      {
+        "pid": 10889,
+        "comm": "bash",
+        "children": [
+          {
+            "pid": 10906,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 10919,
+            "comm": "prooted-2154-hA",
+            "children": []
+          }
+        ]
+      },
+      {
+        "pid": 10903,
+        "comm": "bash",
+        "children": [
+          {
+            "pid": 10904,
+            "comm": "sleep",
+            "children": []
+          },
+          {
+            "pid": 10918,
+            "comm": "prooted-2154-hA",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "flat": [
+      {
+        "pid": 10492,
+        "comm": "bash",
+        "ppid": 10386
+      },
+      {
+        "pid": 10528,
+        "comm": "bash",
+        "ppid": 10492
+      },
+      {
+        "pid": 10889,
+        "comm": "bash",
+        "ppid": 10644
+      },
+      {
+        "pid": 10903,
+        "comm": "bash",
+        "ppid": 10537
+      },
+      {
+        "pid": 10904,
+        "comm": "sleep",
+        "ppid": 10903
+      },
+      {
+        "pid": 10906,
+        "comm": "sleep",
+        "ppid": 10889
+      },
+      {
+        "pid": 10918,
+        "comm": "prooted-2154-hA",
+        "ppid": 10903
+      },
+      {
+        "pid": 10919,
+        "comm": "prooted-2154-hA",
+        "ppid": 10889
+      },
+      {
+        "pid": 10920,
+        "comm": "jq",
+        "ppid": 10492
+      }
+    ]
+  },
+  "resource_map": {},
+  "network": {
+    "port_landscape": [],
+    "accept_events": [],
+    "suspicious_acceptors": [],
+    "volume_by_comm": [],
+    "total_sent_bytes": 0,
+    "total_recv_bytes": 0,
+    "timeline": [],
+    "peak_send_second": null,
+    "peak_recv_second": null
+  },
+  "event_rate": {
+    "duration_s": 2.050888,
+    "event_rate_eps": 5.363530334177195
+  }
+}
