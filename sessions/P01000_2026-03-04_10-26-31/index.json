@@ -1,0 +1,2066 @@
+{
+  "total_events": 144,
+  "events_by_type": {
+    "network": 144
+  },
+  "events_by_name": {
+    "bind": 144
+  },
+  "top_processes": [
+    [
+      "mdnsd",
+      93
+    ],
+    [
+      "wpa_supplicant",
+      14
+    ],
+    [
+      "IpClient.wlan0",
+      14
+    ],
+    [
+      "binder:513_4",
+      5
+    ],
+    [
+      "doh-handler",
+      2
+    ],
+    [
+      "Dns_102_1073",
+      2
+    ],
+    [
+      "init",
+      2
+    ],
+    [
+      "binder:513_3",
+      2
+    ],
+    [
+      "NsdService",
+      2
+    ],
+    [
+      "Dns_103_1073",
+      2
+    ]
+  ],
+  "process_profiles": {
+    "mdnsd": {
+      "total": 93,
+      "by_type": {
+        "network": 93
+      },
+      "by_event": {
+        "bind": 93
+      }
+    },
+    "binder:513_4": {
+      "total": 5,
+      "by_type": {
+        "network": 5
+      },
+      "by_event": {
+        "bind": 5
+      }
+    },
+    "doh-handler": {
+      "total": 2,
+      "by_type": {
+        "network": 2
+      },
+      "by_event": {
+        "bind": 2
+      }
+    },
+    "Dns_102_1073": {
+      "total": 2,
+      "by_type": {
+        "network": 2
+      },
+      "by_event": {
+        "bind": 2
+      }
+    },
+    "binder:589_1": {
+      "total": 1,
+      "by_type": {
+        "network": 1
+      },
+      "by_event": {
+        "bind": 1
+      }
+    },
+    "init": {
+      "total": 2,
+      "by_type": {
+        "network": 2
+      },
+      "by_event": {
+        "bind": 2
+      }
+    },
+    "wpa_supplicant": {
+      "total": 14,
+      "by_type": {
+        "network": 14
+      },
+      "by_event": {
+        "bind": 14
+      }
+    },
+    "IpClient.wlan0": {
+      "total": 14,
+      "by_type": {
+        "network": 14
+      },
+      "by_event": {
+        "bind": 14
+      }
+    },
+    "binder:513_3": {
+      "total": 2,
+      "by_type": {
+        "network": 2
+      },
+      "by_event": {
+        "bind": 2
+      }
+    },
+    "NsdService": {
+      "total": 2,
+      "by_type": {
+        "network": 2
+      },
+      "by_event": {
+        "bind": 2
+      }
+    },
+    "Dns_103_1073": {
+      "total": 2,
+      "by_type": {
+        "network": 2
+      },
+      "by_event": {
+        "bind": 2
+      }
+    },
+    "binder:589_2": {
+      "total": 1,
+      "by_type": {
+        "network": 1
+      },
+      "by_event": {
+        "bind": 1
+      }
+    },
+    "android.hardwar": {
+      "total": 2,
+      "by_type": {
+        "network": 2
+      },
+      "by_event": {
+        "bind": 2
+      }
+    },
+    "Dns_104_1073": {
+      "total": 2,
+      "by_type": {
+        "network": 2
+      },
+      "by_event": {
+        "bind": 2
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "641": [
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:34",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:45",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:45",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:45",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:49",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:49",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:49",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:49",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:59",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:59",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:59",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:59",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:04",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:04",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:04",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:04",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:46",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:55",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:55",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:55",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:57",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:57",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:57",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:02",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:02",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:02",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:02",
+        "network",
+        "bind"
+      ]
+    ],
+    "513": [
+      [
+        "10:27:35",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:45",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:04",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:47",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:02",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:02",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:02",
+        "network",
+        "bind"
+      ]
+    ],
+    "589": [
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:55",
+        "network",
+        "bind"
+      ]
+    ],
+    "1": [
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:55",
+        "network",
+        "bind"
+      ]
+    ],
+    "13264": [
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ],
+      [
+        "10:27:54",
+        "network",
+        "bind"
+      ]
+    ],
+    "1046": [
+      [
+        "10:27:55",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:57",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:01",
+        "network",
+        "bind"
+      ]
+    ],
+    "776": [
+      [
+        "10:28:00",
+        "network",
+        "bind"
+      ],
+      [
+        "10:29:02",
+        "network",
+        "bind"
+      ]
+    ],
+    "13829": [
+      [
+        "10:28:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:56",
+        "network",
+        "bind"
+      ]
+    ],
+    "590": [
+      [
+        "10:28:58",
+        "network",
+        "bind"
+      ],
+      [
+        "10:28:58",
+        "network",
+        "bind"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "641": "mdnsd",
+    "513": "Dns_104_1073",
+    "589": "binder:589_2",
+    "1": "init",
+    "13264": "wpa_supplicant",
+    "1046": "IpClient.wlan0",
+    "776": "NsdService",
+    "13829": "wpa_supplicant",
+    "590": "android.hardwar"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 21.0,
+      "peak_window": {
+        "start_s": 0.0,
+        "end_s": 1.0,
+        "count": 21
+      },
+      "avg_rate": 9.6,
+      "total_windows": 15
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "children": [
+          {
+            "pid": 513,
+            "comm": "Dns_104_1073",
+            "children": []
+          },
+          {
+            "pid": 589,
+            "comm": "binder:589_2",
+            "children": []
+          },
+          {
+            "pid": 590,
+            "comm": "android.hardwar",
+            "children": []
+          },
+          {
+            "pid": 641,
+            "comm": "mdnsd",
+            "children": []
+          },
+          {
+            "pid": 13264,
+            "comm": "wpa_supplicant",
+            "children": []
+          },
+          {
+            "pid": 13829,
+            "comm": "wpa_supplicant",
+            "children": []
+          }
+        ]
+      },
+      {
+        "pid": 776,
+        "comm": "NsdService",
+        "children": []
+      },
+      {
+        "pid": 1046,
+        "comm": "IpClient.wlan0",
+        "children": []
+      }
+    ],
+    "flat": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "ppid": 0
+      },
+      {
+        "pid": 513,
+        "comm": "Dns_104_1073",
+        "ppid": 1
+      },
+      {
+        "pid": 589,
+        "comm": "binder:589_2",
+        "ppid": 1
+      },
+      {
+        "pid": 590,
+        "comm": "android.hardwar",
+        "ppid": 1
+      },
+      {
+        "pid": 641,
+        "comm": "mdnsd",
+        "ppid": 1
+      },
+      {
+        "pid": 776,
+        "comm": "NsdService",
+        "ppid": 516
+      },
+      {
+        "pid": 1046,
+        "comm": "IpClient.wlan0",
+        "ppid": 516
+      },
+      {
+        "pid": 13264,
+        "comm": "wpa_supplicant",
+        "ppid": 1
+      },
+      {
+        "pid": 13829,
+        "comm": "wpa_supplicant",
+        "ppid": 1
+      }
+    ]
+  },
+  "resource_map": {},
+  "network": {
+    "port_landscape": [
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:34"
+      },
+      {
+        "comm": "binder:513_4",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:27:35"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:45"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:45"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:45"
+      },
+      {
+        "comm": "binder:513_4",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:27:45"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:49"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:49"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:49"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:49"
+      },
+      {
+        "comm": "doh-handler",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:27:50"
+      },
+      {
+        "comm": "binder:513_4",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:27:50"
+      },
+      {
+        "comm": "doh-handler",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:27:50"
+      },
+      {
+        "comm": "Dns_102_1073",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:27:50"
+      },
+      {
+        "comm": "Dns_102_1073",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:27:50"
+      },
+      {
+        "comm": "binder:589_1",
+        "pid": 589,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13264,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13264,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13264,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13264,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13264,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13264,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13264,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:54"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:27:55"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:59"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:59"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:59"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:27:59"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "binder:513_3",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "NsdService",
+        "pid": 776,
+        "uid": 1000,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "Dns_103_1073",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "Dns_103_1073",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:28:00"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:04"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:04"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:04"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:04"
+      },
+      {
+        "comm": "binder:513_3",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:28:04"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:46"
+      },
+      {
+        "comm": "binder:513_4",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:28:47"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:55"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:55"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:55"
+      },
+      {
+        "comm": "binder:589_2",
+        "pid": 589,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:28:55"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:28:55"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13829,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:28:56"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13829,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:28:56"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13829,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:28:56"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13829,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:28:56"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13829,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:28:56"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:56"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:56"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:56"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13829,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:28:56"
+      },
+      {
+        "comm": "wpa_supplicant",
+        "pid": 13829,
+        "uid": 1010,
+        "decoded": "",
+        "ts": "10:28:56"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:57"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:57"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:28:57"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:28:57"
+      },
+      {
+        "comm": "android.hardwar",
+        "pid": 590,
+        "uid": 1002,
+        "decoded": "",
+        "ts": "10:28:58"
+      },
+      {
+        "comm": "android.hardwar",
+        "pid": 590,
+        "uid": 1002,
+        "decoded": "",
+        "ts": "10:28:58"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "IpClient.wlan0",
+        "pid": 1046,
+        "uid": 1073,
+        "decoded": "",
+        "ts": "10:29:01"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:02"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:02"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:02"
+      },
+      {
+        "comm": "mdnsd",
+        "pid": 641,
+        "uid": 1020,
+        "decoded": "",
+        "ts": "10:29:02"
+      },
+      {
+        "comm": "binder:513_4",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:29:02"
+      },
+      {
+        "comm": "NsdService",
+        "pid": 776,
+        "uid": 1000,
+        "decoded": "",
+        "ts": "10:29:02"
+      },
+      {
+        "comm": "Dns_104_1073",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:29:02"
+      },
+      {
+        "comm": "Dns_104_1073",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:29:02"
+      }
+    ],
+    "accept_events": [],
+    "suspicious_acceptors": [],
+    "volume_by_comm": [],
+    "total_sent_bytes": 0,
+    "total_recv_bytes": 0,
+    "timeline": [],
+    "peak_send_second": null,
+    "peak_recv_second": null
+  },
+  "event_rate": null
+}

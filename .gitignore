@@ -9,4 +9,6 @@
 *.blg
 *.bcf
 *.run.xml
-
+sessions/P00011_2026-03-03_21-27-19/events.jsonl
+sessions/P00011_2026-03-03_20-56-39/events.jsonl
+sessions/P00011_2026-03-04_10-06-52/events.jsonl

@@ -1,0 +1,3463 @@
+{
+  "total_events": 280,
+  "events_by_type": {
+    "network": 280
+  },
+  "events_by_name": {
+    "accept": 280
+  },
+  "top_processes": [
+    [
+      "init",
+      248
+    ],
+    [
+      "binder:513_2",
+      12
+    ],
+    [
+      "prng_seeder",
+      10
+    ],
+    [
+      "traced",
+      10
+    ]
+  ],
+  "process_profiles": {
+    "init": {
+      "total": 248,
+      "by_type": {
+        "network": 248
+      },
+      "by_event": {
+        "accept": 248
+      }
+    },
+    "binder:513_2": {
+      "total": 12,
+      "by_type": {
+        "network": 12
+      },
+      "by_event": {
+        "accept": 12
+      }
+    },
+    "prng_seeder": {
+      "total": 10,
+      "by_type": {
+        "network": 10
+      },
+      "by_event": {
+        "accept": 10
+      }
+    },
+    "traced": {
+      "total": 10,
+      "by_type": {
+        "network": 10
+      },
+      "by_event": {
+        "accept": 10
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "1": [
+      [
+        "10:32:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:32:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:32:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:32:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:32:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:32:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:32:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:32:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:32:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:32:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:07",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:07",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:10",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:10",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:22",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:23",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:26",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:27",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:28",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:35",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:36",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:40",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:43",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:43",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:44",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:44",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:44",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:44",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:44",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:47",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:47",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:47",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:48",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:51",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:52",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:17",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:17",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:17",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:17",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:17",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:18",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:21",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:25",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:25",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:27",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:28",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:31",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:31",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:37",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:38",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:40",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:41",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:43",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:43",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:44",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:44",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:44",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:44",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:44",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:49",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:50",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:50",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:53",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:53",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:54",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:55",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:55",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:59",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:04",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:05",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:05",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:07",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:08",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:08",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:09",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:10",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:11",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:14",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:15",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:17",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:17",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:17",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:18",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:19",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:24",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:29",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:32",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:33",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:34",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:38",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:39",
+        "network",
+        "accept"
+      ]
+    ],
+    "513": [
+      [
+        "10:33:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:02",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:02",
+        "network",
+        "accept"
+      ]
+    ],
+    "212": [
+      [
+        "10:33:10",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:10",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:35",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:35",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:39",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:43",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:43",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:46",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:46",
+        "network",
+        "accept"
+      ]
+    ],
+    "651": [
+      [
+        "10:33:13",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:13",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:27",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:27",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:52",
+        "network",
+        "accept"
+      ],
+      [
+        "10:33:52",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:12",
+        "network",
+        "accept"
+      ],
+      [
+        "10:34:12",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:18",
+        "network",
+        "accept"
+      ],
+      [
+        "10:35:18",
+        "network",
+        "accept"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "1": "init",
+    "513": "binder:513_2",
+    "212": "prng_seeder",
+    "651": "traced"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 8.0,
+      "peak_window": {
+        "start_s": 15.0,
+        "end_s": 16.0,
+        "count": 8
+      },
+      "avg_rate": 3.3333333333333335,
+      "total_windows": 84
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "children": [
+          {
+            "pid": 212,
+            "comm": "prng_seeder",
+            "children": []
+          },
+          {
+            "pid": 513,
+            "comm": "binder:513_2",
+            "children": []
+          },
+          {
+            "pid": 651,
+            "comm": "traced",
+            "children": []
+          }
+        ]
+      }
+    ],
+    "flat": [
+      {
+        "pid": 1,
+        "comm": "init",
+        "ppid": 0
+      },
+      {
+        "pid": 212,
+        "comm": "prng_seeder",
+        "ppid": 1
+      },
+      {
+        "pid": 513,
+        "comm": "binder:513_2",
+        "ppid": 1
+      },
+      {
+        "pid": 651,
+        "comm": "traced",
+        "ppid": 1
+      }
+    ]
+  },
+  "resource_map": {},
+  "network": {
+    "port_landscape": [],
+    "accept_events": [
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:32:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:32:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:32:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:32:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:32:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:32:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:32:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:32:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:32:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:32:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:02"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:07"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:07"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:10"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:10"
+      },
+      {
+        "comm": "prng_seeder",
+        "pid": 212,
+        "uid": 1092,
+        "peer": "<unknown>",
+        "ts": "10:33:10"
+      },
+      {
+        "comm": "traced",
+        "pid": 651,
+        "uid": 9999,
+        "peer": "<unknown>",
+        "ts": "10:33:13"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:22"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:23"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:26"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:27"
+      },
+      {
+        "comm": "traced",
+        "pid": 651,
+        "uid": 9999,
+        "peer": "<unknown>",
+        "ts": "10:33:27"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:28"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:34"
+      },
+      {
+        "comm": "prng_seeder",
+        "pid": 212,
+        "uid": 1092,
+        "peer": "<unknown>",
+        "ts": "10:33:35"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:35"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:36"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:39"
+      },
+      {
+        "comm": "prng_seeder",
+        "pid": 212,
+        "uid": 1092,
+        "peer": "<unknown>",
+        "ts": "10:33:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:40"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:43"
+      },
+      {
+        "comm": "prng_seeder",
+        "pid": 212,
+        "uid": 1092,
+        "peer": "<unknown>",
+        "ts": "10:33:43"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:43"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:44"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:44"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:44"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:44"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:44"
+      },
+      {
+        "comm": "prng_seeder",
+        "pid": 212,
+        "uid": 1092,
+        "peer": "<unknown>",
+        "ts": "10:33:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:47"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:47"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:47"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:48"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:51"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:51"
+      },
+      {
+        "comm": "traced",
+        "pid": 651,
+        "uid": 9999,
+        "peer": "<unknown>",
+        "ts": "10:33:52"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:52"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:33:59"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:02"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:02"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:11"
+      },
+      {
+        "comm": "traced",
+        "pid": 651,
+        "uid": 9999,
+        "peer": "<unknown>",
+        "ts": "10:34:12"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:17"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:17"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:17"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:17"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:17"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:18"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:21"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:25"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:25"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:27"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:28"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:31"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:31"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:37"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:38"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:40"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:41"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:43"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:43"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:44"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:44"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:44"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:44"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:44"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:46"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:49"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:50"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:50"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:53"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:53"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:54"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:55"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:55"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:34:59"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:02"
+      },
+      {
+        "comm": "binder:513_2",
+        "pid": 513,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:02"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:04"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:05"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:05"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:07"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:08"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:08"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:09"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:10"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:11"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:14"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:15"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:17"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:17"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:17"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:18"
+      },
+      {
+        "comm": "traced",
+        "pid": 651,
+        "uid": 9999,
+        "peer": "<unknown>",
+        "ts": "10:35:18"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:19"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:24"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:29"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:32"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:33"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:34"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:38"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:39"
+      },
+      {
+        "comm": "init",
+        "pid": 1,
+        "uid": 0,
+        "peer": "<unknown>",
+        "ts": "10:35:39"
+      }
+    ],
+    "suspicious_acceptors": [],
+    "volume_by_comm": [],
+    "total_sent_bytes": 0,
+    "total_recv_bytes": 0,
+    "timeline": [],
+    "peak_send_second": null,
+    "peak_recv_second": null
+  },
+  "event_rate": null
+}

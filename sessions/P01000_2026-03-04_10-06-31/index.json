@@ -1,0 +1,1165 @@
+{
+  "total_events": 86,
+  "events_by_type": {
+    "network": 86
+  },
+  "events_by_name": {
+    "bind": 86
+  },
+  "top_processes": [
+    [
+      "NetworkService",
+      84
+    ],
+    [
+      "Dns_100_10073",
+      1
+    ],
+    [
+      "Chrome_DevTools",
+      1
+    ]
+  ],
+  "process_profiles": {
+    "Dns_100_10073": {
+      "total": 1,
+      "by_type": {
+        "network": 1
+      },
+      "by_event": {
+        "bind": 1
+      }
+    },
+    "Chrome_DevTools": {
+      "total": 1,
+      "by_type": {
+        "network": 1
+      },
+      "by_event": {
+        "bind": 1
+      }
+    },
+    "NetworkService": {
+      "total": 84,
+      "by_type": {
+        "network": 84
+      },
+      "by_event": {
+        "bind": 84
+      }
+    }
+  },
+  "syscalls": {
+    "counts": {},
+    "errors": {},
+    "error_rates": {},
+    "latency_overall": {},
+    "latency_by_syscall": {}
+  },
+  "timeline_by_pid": {
+    "513": [
+      [
+        "10:07:10",
+        "network",
+        "bind"
+      ]
+    ],
+    "8373": [
+      [
+        "10:07:14",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:17",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:17",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:18",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:18",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:21",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:21",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:27",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:27",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:27",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:27",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:27",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:27",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:27",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:27",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:31",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:31",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:31",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:31",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:37",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:37",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:48",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:48",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:49",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:49",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:50",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:52",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:52",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:52",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:52",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:52",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:52",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:53",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:53",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:07:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:02",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:02",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:28",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:28",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:28",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:28",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:28",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:28",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:28",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:28",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:42",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:42",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:42",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:42",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:44",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:44",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:47",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:47",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:49",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:49",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:51",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:51",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:56",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:58",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:58",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:58",
+        "network",
+        "bind"
+      ],
+      [
+        "10:08:58",
+        "network",
+        "bind"
+      ],
+      [
+        "10:09:09",
+        "network",
+        "bind"
+      ],
+      [
+        "10:09:09",
+        "network",
+        "bind"
+      ],
+      [
+        "10:09:17",
+        "network",
+        "bind"
+      ],
+      [
+        "10:09:17",
+        "network",
+        "bind"
+      ],
+      [
+        "10:09:17",
+        "network",
+        "bind"
+      ],
+      [
+        "10:09:17",
+        "network",
+        "bind"
+      ]
+    ]
+  },
+  "pid_to_comm": {
+    "513": "Dns_100_10073",
+    "8373": "NetworkService"
+  },
+  "time": {
+    "has_ts_ns": true,
+    "rate_1s": {
+      "available": true,
+      "window_s": 1.0,
+      "peak_rate": 16.0,
+      "peak_window": {
+        "start_s": 40.0,
+        "end_s": 41.0,
+        "count": 16
+      },
+      "avg_rate": 3.3076923076923075,
+      "total_windows": 26
+    }
+  },
+  "syscalls_latency": {},
+  "binder": {
+    "total_transactions": 0,
+    "oneway": 0,
+    "sync": 0,
+    "total_bytes_transferred": 0,
+    "top_codes": [],
+    "ipc_graph": {}
+  },
+  "process_tree": {
+    "roots": [
+      {
+        "pid": 513,
+        "comm": "Dns_100_10073",
+        "children": []
+      },
+      {
+        "pid": 8373,
+        "comm": "NetworkService",
+        "children": []
+      }
+    ],
+    "flat": [
+      {
+        "pid": 513,
+        "comm": "Dns_100_10073",
+        "ppid": 1
+      },
+      {
+        "pid": 8373,
+        "comm": "NetworkService",
+        "ppid": 516
+      }
+    ]
+  },
+  "resource_map": {},
+  "network": {
+    "port_landscape": [
+      {
+        "comm": "Dns_100_10073",
+        "pid": 513,
+        "uid": 0,
+        "decoded": "",
+        "ts": "10:07:10"
+      },
+      {
+        "comm": "Chrome_DevTools",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:14"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:17"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:17"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:18"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:18"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:21"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:21"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:27"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:27"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:27"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:27"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:27"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:27"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:27"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:27"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:31"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:31"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:31"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:31"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:37"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:37"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:48"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:48"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:49"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:49"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:50"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:52"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:52"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:52"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:52"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:52"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:52"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:53"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:53"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:56"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:07:56"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:02"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:02"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:28"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:28"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:28"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:28"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:28"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:28"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:28"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:28"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:42"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:42"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:42"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:42"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:44"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:44"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:47"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:47"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:49"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:49"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:51"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:51"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:56"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:56"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:58"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:58"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:58"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:08:58"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:09:09"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:09:09"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:09:17"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:09:17"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:09:17"
+      },
+      {
+        "comm": "NetworkService",
+        "pid": 8373,
+        "uid": 10064,
+        "decoded": "",
+        "ts": "10:09:17"
+      }
+    ],
+    "accept_events": [],
+    "suspicious_acceptors": [],
+    "volume_by_comm": [],
+    "total_sent_bytes": 0,
+    "total_recv_bytes": 0,
+    "timeline": [],
+    "peak_send_second": null,
+    "peak_recv_second": null
+  },
+  "event_rate": null
+}
