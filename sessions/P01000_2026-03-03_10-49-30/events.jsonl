@@ -1,2 +1,0 @@
-{"ts_ns": "6917033928608", "ts": "10:50:00", "type": "network", "event": "bind", "pid": 518, "ppid": 1, "tid": 554, "uid": 0, "comm": "doh-handler", "decoded": "", "data": {"ret": 0, "lat_us": 16}, "schema_version": 1, "probe_code": "P01000"}
-{"ts_ns": "6925690222332", "ts": "10:50:08", "type": "network", "event": "bind", "pid": 11043, "ppid": 521, "tid": 11126, "uid": 10064, "comm": "Chrome_DevTools", "decoded": "", "data": {"ret": 0, "lat_us": 5}, "schema_version": 1, "probe_code": "P01000"}

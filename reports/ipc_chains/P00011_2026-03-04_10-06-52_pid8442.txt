@@ -1,0 +1,111 @@
+Session:   P00011_2026-03-04_10-06-52
+Start:     re-initialized>  (pid 8442, uid 10074)
+Depth:     3
+
+IPC chain
+──────────────────────────────────────────────────────────────────────────────
+re-initialized>  (pid 8442, uid 10074 / app(10074))  38 tx
+├── servicemanager  (pid 221, uid 1000 / system)  4 tx  [settings, android, keychain  ...]
+│   ├── binder:605_3  (pid 605, uid 1041 / system(1041))  4 tx
+│   │   └── binder:529_2  (pid 529, uid 1041 / system(1041))  14 tx
+│   ├── binder:1016_4  (pid 1016, uid 10086 / app(10086))  1 tx  [systemui]
+│   ├── binder:1316_5  (pid 1316, uid 10080 / app(10080))  2 tx  [launcher3]
+│   ├── binder:1650_3  (pid 1650, uid 10073 / app(10073))  8 tx
+│   ├── binder:2007_3  (pid 2007, uid 10071 / app(10071))  4 tx  [inputmethod.latin]
+│   ├── android.hardwar  (pid 8214, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8271, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8359, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── re-initialized>  (pid 8406, uid 99000 / app(99000))  8 tx
+│   ├── android.hardwar  (pid 8483, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8535, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8575, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8613, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8654, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8693, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8730, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8770, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8810, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8846, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8884, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8922, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 8960, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9000, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9039, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9079, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9115, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9154, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9191, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9233, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9272, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9311, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9349, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9390, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   ├── android.hardwar  (pid 9431, uid 1002 / bluetooth)  2 tx  [bluetooth]
+│   └── android.hardwar  (pid 9469, uid 1002 / bluetooth)  2 tx  [bluetooth]
+├── binder:776_7  (pid 776, uid 1000 / system)  31 tx  [settings, android, keychain  ...]
+│   ├── binder:234_2  (pid 234, uid 0 / root)  10 tx
+│   ├── binder:245_3  (pid 245, uid 1000 / system)  38 tx  [settings, android, keychain  ...]
+│   ├── binder:246_2  (pid 246, uid 1017 / system(1017))  1 tx
+│   ├── binder:513_4  (pid 513, uid 0 / root)  33 tx
+│   ├── binder:528_1  (pid 528, uid 1000 / system)  11 tx  [settings, android, keychain  ...]
+│   ├── binder:548_2  (pid 548, uid 9999 / system(9999))  145 tx
+│   ├── android.hardwar  (pid 551, uid 9999 / system(9999))  481 tx
+│   ├── android.hardwar  (pid 553, uid 9999 / system(9999))  75 tx
+│   ├── android.hardwar  (pid 561, uid 9999 / system(9999))  156 tx
+│   ├── android.hardwar  (pid 564, uid 1000 / system)  3 tx  [settings, android, keychain  ...]
+│   ├── android.hardwar  (pid 569, uid 1000 / system)  24 tx  [settings, android, keychain  ...]
+│   ├── android.hardwar  (pid 588, uid 9999 / system(9999))  3 tx
+│   ├── binder:589_2  (pid 589, uid 1010 / wifi)  10 tx
+│   ├── android.hardwar  (pid 599, uid 1000 / system)  3 tx  [settings, android, keychain  ...]
+│   │   └── storaged  (pid 672, uid 0 / root)  3 tx
+│   ├── binder:615_5  (pid 615, uid 1000 / system)  779 tx  [settings, android, keychain  ...]
+│   │   └── _thread  (pid 525, uid 1000 / system)  1684 tx  [settings, android, keychain  ...]
+│   ├── binder:663_2  (pid 663, uid 1047 / system(1047))  40 tx
+│   ├── mediametrics  (pid 668, uid 1013 / system(1013))  12 tx
+│   ├── wificond  (pid 674, uid 1010 / wifi)  7 tx
+│   ├── wpa_supplicant  (pid 994, uid 1010 / wifi)  59 tx
+│   ├── binder:1046_5  (pid 1046, uid 1073 / networkstack)  63 tx  [networkstack, networkstack.tethering, cellbroadcastservice]
+│   ├── binder:1068_3  (pid 1068, uid 1002 / bluetooth)  40 tx  [bluetooth]
+│   ├── binder:1145_E  (pid 1145, uid 1001 / radio)  228 tx  [stk, mms.service, ons  ...]
+│   ├── ?  (pid 1159, uid ? / ?)  2 tx
+│   ├── ?  (pid 1228, uid ? / ?)  2 tx
+│   ├── ?  (pid 1290, uid ? / ?)  2 tx
+│   ├── binder:1456_4  (pid 1456, uid 10113 / app(10113))  6 tx
+│   ├── ?  (pid 1488, uid ? / ?)  2 tx
+│   ├── binder:1534_3  (pid 1534, uid 1027 / nfc)  17 tx  [nfc]
+│   │   └── binder:602_2  (pid 602, uid 1027 / nfc)  12 tx  [nfc]
+│   ├── ?  (pid 1556, uid ? / ?)  2 tx
+│   ├── ?  (pid 1564, uid ? / ?)  2 tx
+│   ├── ?  (pid 1569, uid ? / ?)  2 tx
+│   ├── ?  (pid 1591, uid ? / ?)  2 tx
+│   ├── binder:1622_6  (pid 1622, uid 10020 / app(10020))  14 tx
+│   ├── ?  (pid 1684, uid ? / ?)  2 tx
+│   ├── ?  (pid 1761, uid ? / ?)  2 tx
+│   ├── ?  (pid 1790, uid ? / ?)  2 tx
+│   ├── ?  (pid 1806, uid ? / ?)  2 tx
+│   ├── ?  (pid 1846, uid ? / ?)  2 tx
+│   ├── ?  (pid 1886, uid ? / ?)  2 tx
+│   ├── ?  (pid 1898, uid ? / ?)  2 tx
+│   ├── ?  (pid 1913, uid ? / ?)  2 tx
+│   ├── ?  (pid 1928, uid ? / ?)  2 tx
+│   ├── ?  (pid 1942, uid ? / ?)  2 tx
+│   ├── ?  (pid 1957, uid ? / ?)  2 tx
+│   ├── ?  (pid 1970, uid ? / ?)  2 tx
+│   ├── ?  (pid 1979, uid ? / ?)  2 tx
+│   ├── ?  (pid 1995, uid ? / ?)  2 tx
+│   ├── ?  (pid 2021, uid ? / ?)  2 tx
+│   ├── ?  (pid 2032, uid ? / ?)  2 tx
+│   ├── ?  (pid 2049, uid ? / ?)  2 tx
+│   ├── ?  (pid 2062, uid ? / ?)  2 tx
+│   ├── ?  (pid 2075, uid ? / ?)  2 tx
+│   ├── ?  (pid 2090, uid ? / ?)  2 tx
+│   ├── ?  (pid 2106, uid ? / ?)  2 tx
+│   ├── ?  (pid 2119, uid ? / ?)  2 tx
+│   └── ?  (pid 2134, uid ? / ?)  2 tx
+└── re-initialized>  (pid 8373, uid 10064 / app(10064))  3 tx  [webview_shell]
+    ├── binder:613_2  (pid 613, uid 1072 / network_stack)  12 tx
+    └── binder:670_6  (pid 670, uid 1013 / system(1013))  33 tx
+──────────────────────────────────────────────────────────────────────────────
+
+PIDs discovered: 101  →  221, 234, 245, 246, 513, 525, 528, 529, 548, 551, 553, 561, 564, 569, 588, 589, 599, 602, 605, 613, 615, 663, 668, 670, 672, 674, 776, 994, 1016, 1046, 1068, 1145, 1159, 1228, 1290, 1316, 1456, 1488, 1534, 1556, 1564, 1569, 1591, 1622, 1650, 1684, 1761, 1790, 1806, 1846, 1886, 1898, 1913, 1928, 1942, 1957, 1970, 1979, 1995, 2007, 2021, 2032, 2049, 2062, 2075, 2090, 2106, 2119, 2134, 8214, 8271, 8359, 8373, 8406, 8442, 8483, 8535, 8575, 8613, 8654, 8693, 8730, 8770, 8810, 8846, 8884, 8922, 8960, 9000, 9039, 9079, 9115, 9154, 9191, 9233, 9272, 9311, 9349, 9390, 9431, 9469
+UIDs discovered: 22  →  0, 1000, 1001, 1002, 1010, 1013, 1017, 1027, 1041, 1047, 1072, 1073, 9999, 10020, 10064, 10071, 10073, 10074, 10080, 10086, 10113, 99000
