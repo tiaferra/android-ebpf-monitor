@@ -235,14 +235,16 @@ def traverse(
     start_pid: int,
     pid_info:  Dict[int, Dict[str, Any]],
     binder_tx: Dict[int, List[Dict[str, Any]]],
-    max_depth: int,
 ) -> Tuple[ChainNode, Set[int], Set[int]]:
     """
-    BFS traversal of the Binder call graph starting from start_pid.
-    Returns (root_node, all_pids_found, all_uids_found).
+    Two-level traversal as suggested by the tutor:
+      Level 0 — the target process itself
+      Level 1 — services the target directly calls (reply=0)
+                + their direct replies back (reply=1)
+    No further expansion from level 1 outward.
     """
-    info     = pid_info.get(start_pid, {})
-    root     = ChainNode(
+    info = pid_info.get(start_pid, {})
+    root = ChainNode(
         pid      = start_pid,
         comm     = info.get("comm", "?"),
         uid      = info.get("uid"),
@@ -254,43 +256,59 @@ def traverse(
     if isinstance(info.get("uid"), int):
         all_uids.add(info["uid"])
 
-    # BFS queue: (node, current_depth)
-    queue: List[Tuple[ChainNode, int]] = [(root, 0)]
-
-    while queue:
-        node, depth = queue.pop(0)
-        if depth >= max_depth:
-            continue
-
-        txs = binder_tx.get(node.pid, [])
-        # Collect unique to_proc pids this node talks to
-        seen_children: Set[int] = set()
-        for tx in txs:
+    # ── Level 1: outgoing calls from the target (reply=0 only) ───────────────
+    # Collect unique pids the target app directly calls
+    called_pids: Dict[int, int] = {}  # to_pid → tx count
+    for tx in binder_tx.get(start_pid, []):
+        if tx.get("oneway") == 1 or tx.get("reply", 0) == 0:
             to_pid = tx["to_proc"]
-            if to_pid in all_pids or to_pid in seen_children:
-                continue
-            seen_children.add(to_pid)
+            called_pids[to_pid] = called_pids.get(to_pid, 0) + 1
 
-        for to_pid in sorted(seen_children):
-            child_info = pid_info.get(to_pid, {})
-            child_uid  = child_info.get("uid")
-            tx_to_child = sum(
-                1 for tx in txs if tx["to_proc"] == to_pid
+    for to_pid, tx_count in sorted(called_pids.items()):
+        child_info = pid_info.get(to_pid, {})
+        child_uid  = child_info.get("uid")
+
+        child_node = ChainNode(
+            pid      = to_pid,
+            comm     = child_info.get("comm", "?"),
+            uid      = child_uid,
+            tx_count = tx_count,
+        )
+        root.children.append(child_node)
+        all_pids.add(to_pid)
+        if isinstance(child_uid, int):
+            all_uids.add(child_uid)
+
+        # ── Level 1b: what those services do ON BEHALF of the target ─────────
+        # Include outgoing calls FROM the service, but only if they are
+        # NOT replies (reply=0) — these are calls the service makes to
+        # fulfill the target's request. Do not recurse further.
+        service_calls: Dict[int, int] = {}
+        for tx in binder_tx.get(to_pid, []):
+            if tx.get("reply", 0) == 0:
+                grandchild_pid = tx["to_proc"]
+                # Skip if it is just replying back to the original caller
+                if grandchild_pid == start_pid:
+                    continue
+                service_calls[grandchild_pid] = service_calls.get(grandchild_pid, 0) + 1
+
+        for gc_pid, gc_tx_count in sorted(service_calls.items()):
+            gc_info = pid_info.get(gc_pid, {})
+            gc_uid  = gc_info.get("uid")
+
+            gc_node = ChainNode(
+                pid      = gc_pid,
+                comm     = gc_info.get("comm", "?"),
+                uid      = gc_uid,
+                tx_count = gc_tx_count,
             )
-            child_node = ChainNode(
-                pid      = to_pid,
-                comm     = child_info.get("comm", "?"),
-                uid      = child_uid,
-                tx_count = tx_to_child,
-            )
-            node.children.append(child_node)
-            all_pids.add(to_pid)
-            if isinstance(child_uid, int):
-                all_uids.add(child_uid)
-            queue.append((child_node, depth + 1))
+            child_node.children.append(gc_node)
+            all_pids.add(gc_pid)
+            if isinstance(gc_uid, int):
+                all_uids.add(gc_uid)
+            # Hard stop — no further expansion
 
     return root, all_pids, all_uids
-
 
 # ── Tree rendering ─────────────────────────────────────────────────────────────
 def render_tree(node: ChainNode, prefix: str = "", is_last: bool = True) -> List[str]:
@@ -367,10 +385,6 @@ def main() -> None:
         help="Path to a session directory (must contain events.jsonl)",
     )
     ap.add_argument(
-        "--depth", type=int, default=3,
-        help="Maximum traversal depth (default: 3)",
-    )
-    ap.add_argument(
         "--out", default="reports/ipc_chains",
         help="Output directory for saved chain reports (default: reports/ipc_chains)",
     )
@@ -416,14 +430,12 @@ def main() -> None:
 
     # ── Traverse ──────────────────────────────────────────────────────────────
     print(f"\n  Tracing from: {chosen['comm']} "
-          f"(pid {chosen['pid']}, uid {chosen['uid']})  "
-          f"depth={args.depth} ...")
+          f"(pid {chosen['pid']}, uid {chosen['uid']})  ")
 
     root, all_pids, all_uids = traverse(
         start_pid = chosen["pid"],
         pid_info  = pid_info,
         binder_tx = binder_tx,
-        max_depth = args.depth,
     )
 
     # ── Print result ──────────────────────────────────────────────────────────
@@ -439,7 +451,7 @@ def main() -> None:
     lines = []
     lines.append(f"Session:   {session_path.name}")
     lines.append(f"Start:     {chosen['comm']}  (pid {chosen['pid']}, uid {chosen['uid']})")
-    lines.append(f"Depth:     {args.depth}")
+    lines.append(f"Depth:     2 (fixed — target + direct services)")
     lines.append("")
 
     # Render tree into lines
