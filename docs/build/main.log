@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.10)  7 MAR 2026 22:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.10)  8 MAR 2026 10:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -925,11 +925,11 @@ Capitolo 2.
 
 LaTeX Warning: Citation 'linux_kernel' on page 5 undefined on input line 3.
 
-<images/placeholder.jpg, id=280, 147.4308pt x 147.4308pt>
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 11.
-(pdftex.def)             Requested size: 341.43437pt x 341.48853pt.
+<images/linux-architettura.png, id=280, 1027.84pt x 1027.84pt>
+File: images/linux-architettura.png Graphic file (type png)
+<use images/linux-architettura.png>
+Package pdftex.def Info: images/linux-architettura.png  used on input line 11.
+(pdftex.def)             Requested size: 341.43437pt x 341.431pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -942,48 +942,47 @@ Underfull \vbox (badness 7944) has occurred while \output is active []
  [5
 
 ]
-Underfull \vbox (badness 4531) has occurred while \output is active []
+Underfull \vbox (badness 4582) has occurred while \output is active []
 
- [6 <./images/placeholder.jpg>]
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 31.
-(pdftex.def)             Requested size: 341.43437pt x 341.48853pt.
- [7] [8]
+ [6 <./images/linux-architettura.png (PNG copy)>]
+<images/android-architettura.png, id=291, 1027.84pt x 1027.84pt>
+File: images/android-architettura.png Graphic file (type png)
+<use images/android-architettura.png>
+Package pdftex.def Info: images/android-architettura.png  used on input line 31
+.
+(pdftex.def)             Requested size: 341.43437pt x 341.431pt.
+ [7 <./images/android-architettura.png (PNG copy)>] [8]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 5
 7.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ) [9]
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 71.
-(pdftex.def)             Requested size: 341.43437pt x 341.48853pt.
+<images/ebpf-diagram.png, id=317, 817.0525pt x 427.5975pt>
+File: images/ebpf-diagram.png Graphic file (type png)
+<use images/ebpf-diagram.png>
+Package pdftex.def Info: images/ebpf-diagram.png  used on input line 71.
+(pdftex.def)             Requested size: 341.43437pt x 178.68932pt.
 
-Underfull \vbox (badness 2027) has occurred while \output is active []
+[10 <./images/ebpf-diagram.png>]
+<images/bpftrace-probe.png, id=327, 1027.84pt x 1027.84pt>
+File: images/bpftrace-probe.png Graphic file (type png)
+<use images/bpftrace-probe.png>
+Package pdftex.def Info: images/bpftrace-probe.png  used on input line 100.
+(pdftex.def)             Requested size: 298.75264pt x 298.75604pt.
+ [11 <./images/bpftrace-probe.png (PNG copy)>]
+<images/tracepoin-list.png, id=335, 1027.84pt x 1027.84pt>
+File: images/tracepoin-list.png Graphic file (type png)
+<use images/tracepoin-list.png>
+Package pdftex.def Info: images/tracepoin-list.png  used on input line 111.
+(pdftex.def)             Requested size: 384.1096pt x 384.10596pt.
+) (./chapters/chap03.tex
+Underfull \vbox (badness 1609) has occurred while \output is active []
 
- [10]
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 100.
-(pdftex.def)             Requested size: 298.75264pt x 298.79993pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 111.
-(pdftex.def)             Requested size: 384.1096pt x 384.17038pt.
-[11]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-) (./chapters/chap03.tex [12] [13] [14
+ [12 <./images/tracepoin-list.png (PNG copy)>] [13] [14
 
 ]
 Capitolo 3.
+<images/placeholder.jpg, id=351, 147.4308pt x 147.4308pt>
 File: images/placeholder.jpg Graphic file (type jpg)
 <use images/placeholder.jpg>
 Package pdftex.def Info: images/placeholder.jpg  used on input line 8.
@@ -995,7 +994,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
-[16] [17]
+[16 <./images/placeholder.jpg>] [17]
 Overfull \hbox (37.53973pt too wide) in paragraph at lines 52--53
 \T1/cmtt/m/n/12 sched:sched_process_fork\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 sched:
 sched_process_exec \T1/cmr/m/n/12 e \T1/cmtt/m/n/12 sched:sched_process_exit\T1
@@ -1178,10 +1177,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 22274 strings out of 480236
- 387532 string characters out of 5895675
+ 22309 strings out of 480236
+ 388583 string characters out of 5895675
  1089147 words of memory out of 5000000
- 39808 multiletter control sequences out of 15000+600000
+ 39838 multiletter control sequences out of 15000+600000
  481624 words of font info for 53 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,12n,82p,1018b,1545s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1198,10 +1197,10 @@ n/ec/ecbx2488.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknap
 pen/ec/ecrm1200.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsy10.pfb>
 Output written on /home/sbriaz/Documents/Tesi/android-ebpf-monitor/docs/build/m
-ain.pdf (51 pages, 556704 bytes).
+ain.pdf (51 pages, 4557605 bytes).
 PDF statistics:
- 1010 PDF objects out of 1200 (max. 8388607)
+ 1016 PDF objects out of 1200 (max. 8388607)
  535 compressed objects within 6 object streams
  129 named destinations out of 1000 (max. 500000)
- 354 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 379 words of extra memory for PDF output out of 10000 (max. 10000000)
 
