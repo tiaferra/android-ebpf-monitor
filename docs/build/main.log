@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.10)  8 MAR 2026 10:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.10)  8 MAR 2026 19:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -712,20 +712,7 @@ Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'italian'.
 
-(/home/sbriaz/Documents/Tesi/android-ebpf-monitor/docs/build/main.aux
-
-LaTeX Warning: Label `fig:process-lifecycle' multiply defined.
-
-
-LaTeX Warning: Label `fig:binder-correlazione' multiply defined.
-
-
-LaTeX Warning: Label `fig:monitor-pipeline' multiply defined.
-
-
-LaTeX Warning: Label `fig:albero-processi' multiply defined.
-
-)
+(/home/sbriaz/Documents/Tesi/android-ebpf-monitor/docs/build/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
@@ -748,7 +735,8 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 19.
 LaTeX Font Info:    ... okay on input line 19.
 Package biblatex Info: Trying to load language 'italian'...
 Package biblatex Info: ... file 'italian.lbx' found.
- (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/italian.lbx
+
+(/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/italian.lbx
 File: italian.lbx 2022/02/02 v3.17 biblatex localization (PK/MW)
 )
 Package biblatex Info: Input encoding 'utf8' detected.
@@ -982,11 +970,12 @@ Underfull \vbox (badness 1609) has occurred while \output is active []
 
 ]
 Capitolo 3.
-<images/placeholder.jpg, id=351, 147.4308pt x 147.4308pt>
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 8.
-(pdftex.def)             Requested size: 384.1096pt x 384.17038pt.
+<images/architettura-sistema.png, id=351, 1027.84pt x 1192.455pt>
+File: images/architettura-sistema.png Graphic file (type png)
+<use images/architettura-sistema.png>
+Package pdftex.def Info: images/architettura-sistema.png  used on input line 8.
+
+(pdftex.def)             Requested size: 341.43437pt x 396.11331pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -994,7 +983,9 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
-[16 <./images/placeholder.jpg>] [17]
+Underfull \vbox (badness 2005) has occurred while \output is active []
+
+ [16 <./images/architettura-sistema.png>] [17]
 Overfull \hbox (37.53973pt too wide) in paragraph at lines 52--53
 \T1/cmtt/m/n/12 sched:sched_process_fork\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 sched:
 sched_process_exec \T1/cmr/m/n/12 e \T1/cmtt/m/n/12 sched:sched_process_exit\T1
@@ -1002,171 +993,147 @@ sched_process_exec \T1/cmr/m/n/12 e \T1/cmtt/m/n/12 sched:sched_process_exit\T1
  []
 
 [18]
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 62.
-(pdftex.def)             Requested size: 320.0935pt x 320.14423pt.
+<images/process-lifecycle.png, id=374, 1027.84pt x 1212.53pt>
+File: images/process-lifecycle.png Graphic file (type png)
+<use images/process-lifecycle.png>
+Package pdftex.def Info: images/process-lifecycle.png  used on input line 62.
+(pdftex.def)             Requested size: 320.0935pt x 377.60107pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 69.
-(pdftex.def)             Requested size: 320.0935pt x 320.14423pt.
+[19]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[19] [20]
-Overfull \hbox (53.41086pt too wide) in paragraph at lines 92--93
+ [20 <./images/process-lifecycle.png>]
+Overfull \hbox (53.41086pt too wide) in paragraph at lines 85--86
 \T1/cmr/m/n/12 nee in-di-ciz-za-te per \T1/cmtt/m/n/12 tid\T1/cmr/m/n/12 , la p
 ro-be in-clu-de un hand-ler del tra-ce-point \T1/cmtt/m/n/12 sched:sched_proces
 s_exit
  []
 
-
-Underfull \vbox (badness 1675) has occurred while \output is active []
-
- [21]
-Overfull \hbox (14.07886pt too wide) in paragraph at lines 110--111
+[21]
+Overfull \hbox (14.07886pt too wide) in paragraph at lines 103--104
 \T1/cmr/m/n/12 do \T1/cmtt/m/n/12 binder_transaction \T1/cmr/m/n/12 (che ha i d
 a-ti del mit-ten-te), \T1/cmtt/m/n/12 binder_transaction_alloc_buf
  []
 
-[22]
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 114.
-(pdftex.def)             Requested size: 341.43437pt x 341.48853pt.
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 121.
-(pdftex.def)             Requested size: 341.43437pt x 341.48853pt.
+<images/inder-correlazione.png, id=392, 1541.76pt x 1027.84pt>
+File: images/inder-correlazione.png Graphic file (type png)
+<use images/inder-correlazione.png>
+Package pdftex.def Info: images/inder-correlazione.png  used on input line 107.
 
+(pdftex.def)             Requested size: 341.43437pt x 227.61543pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (18.69441pt too wide) in paragraph at lines 126--126
+Overfull \hbox (18.69441pt too wide) in paragraph at lines 112--112
 []\T1/cmr/bx/n/14.4 Probe di re-te: net_send, net_recv, net_bind, net_accept 
  []
 
-[23]
-Overfull \hbox (23.90485pt too wide) in paragraph at lines 132--133
+[22]
+Overfull \hbox (23.90485pt too wide) in paragraph at lines 118--119
 \T1/cmr/m/n/12 Traccia la sy-scall \T1/cmtt/m/n/12 sendto \T1/cmr/m/n/12 (id 44
 ). Uti-liz-za la tec-ni-ca di cor-re-la-zio-ne \T1/cmtt/m/n/12 sys_enter\T1/cmr
 /m/n/12 /\T1/cmtt/m/n/12 sys_exit\T1/cmr/m/n/12 :
  []
 
-[24] [25] [26]
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 168.
-(pdftex.def)             Requested size: 341.43437pt x 341.48853pt.
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 175.
-(pdftex.def)             Requested size: 341.43437pt x 341.48853pt.
+
+Underfull \vbox (badness 1838) has occurred while \output is active []
+
+ [23 <./images/inder-correlazione.png (PNG copy)>] [24] [25]
+<images/monitor-pipeline.png, id=412, 1027.84pt x 1541.76pt>
+File: images/monitor-pipeline.png Graphic file (type png)
+<use images/monitor-pipeline.png>
+Package pdftex.def Info: images/monitor-pipeline.png  used on input line 154.
+(pdftex.def)             Requested size: 341.43437pt x 512.1465pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Overfull \hbox (9.99918pt too wide) in paragraph at lines 182--183
+Overfull \hbox (9.99918pt too wide) in paragraph at lines 161--162
 \T1/cmr/m/n/12 Alla ri-ce-zio-ne del se-gna-le di in-ter-ru-zio-ne (Ctrl-C, ge-
 sti-to tra-mi-te un bloc-co \T1/cmtt/m/n/12 try/except
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [27]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [28]
-Underfull \vbox (badness 1052) has occurred while \output is active []
-
- [29]
-Overfull \hbox (4.80467pt too wide) in paragraph at lines 208--209
+[26]
+Overfull \hbox (4.80467pt too wide) in paragraph at lines 187--188
 \T1/cmr/m/n/12 go-men-to il per-cor-so di una di-rec-to-ry di ses-sio-ne, leg-g
 e \T1/cmtt/m/n/12 events.jsonl \T1/cmr/m/n/12 e \T1/cmtt/m/n/12 session.json\T1
 /cmr/m/n/12 ,
  []
 
-[30]
-Overfull \hbox (112.8226pt too wide) in paragraph at lines 220--221
+[27]
+Overfull \hbox (112.8226pt too wide) in paragraph at lines 199--200
 \T1/cmr/m/n/12 strui-sce due in-di-ci in me-mo-ria: uno in-di-ciz-za-to per \T1
 /cmtt/m/n/12 debug_id \T1/cmr/m/n/12 su-gli even-ti \T1/cmtt/m/n/12 binder_tran
 saction_alloc_buf
  []
 
 
-Overfull \hbox (44.47003pt too wide) in paragraph at lines 220--221
+Overfull \hbox (44.47003pt too wide) in paragraph at lines 199--200
 \T1/cmr/m/n/12 (per re-cu-pe-ra-re la di-men-sio-ne del pay-load) e uno su-gli 
 even-ti \T1/cmtt/m/n/12 binder_transaction_received
  []
 
 
-Overfull \hbox (17.3095pt too wide) in paragraph at lines 220--221
+Overfull \hbox (17.3095pt too wide) in paragraph at lines 199--200
 \T1/cmr/m/n/12 (per re-cu-pe-ra-re il \T1/cmtt/m/n/12 comm \T1/cmr/m/n/12 del p
 ro-ces-so de-sti-na-ta-rio). Per ogni even-to \T1/cmtt/m/n/12 binder_transactio
 n
  []
 
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 226.
-(pdftex.def)             Requested size: 384.1096pt x 384.17038pt.
+<images/report-binder.png, id=421, 1541.76pt x 744.7825pt>
+File: images/report-binder.png Graphic file (type png)
+<use images/report-binder.png>
+Package pdftex.def Info: images/report-binder.png  used on input line 205.
+(pdftex.def)             Requested size: 384.1096pt x 185.5474pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 237.
-(pdftex.def)             Requested size: 384.1096pt x 384.17038pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[31]
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 248.
-(pdftex.def)             Requested size: 320.0935pt x 320.14423pt.
+[28]
+<images/report-rete.png, id=426, 1027.84pt x 1541.76pt>
+File: images/report-rete.png Graphic file (type png)
+<use images/report-rete.png>
+Package pdftex.def Info: images/report-rete.png  used on input line 216.
+(pdftex.def)             Requested size: 384.1096pt x 576.15894pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-File: images/placeholder.jpg Graphic file (type jpg)
-<use images/placeholder.jpg>
-Package pdftex.def Info: images/placeholder.jpg  used on input line 255.
-(pdftex.def)             Requested size: 320.0935pt x 320.14423pt.
+<images/albero-processi.png, id=427, 1541.76pt x 819.06pt>
+File: images/albero-processi.png Graphic file (type png)
+<use images/albero-processi.png>
+Package pdftex.def Info: images/albero-processi.png  used on input line 227.
+(pdftex.def)             Requested size: 320.0935pt x 170.04552pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[32] [33]) (./chapters/chap04.tex [34] [35] [36
-
-]
+[29]) (./chapters/chap04.tex [30] [31 <./images/monitor-pipeline.png (PNG copy)
+>] [32 <./images/report-binder.png>] [33 <./images/report-rete.png (PNG copy)>]
+[34 <./images/albero-processi.png>]
 Capitolo 4.
-) (./chapters/chap05.tex [37] [38
+) (./chapters/chap05.tex [35
+
+] [36
 
 ]
 Capitolo 5.
-) (./chapters/chap06.tex [39] [40
+) (./chapters/chap06.tex [37] [38
 
 ]
 Capitolo 6.
-) (./chapters/chap07.tex) [41] [42
+) (./chapters/chap07.tex) [39] [40
 
-] [43] [44]
+] [41] [42]
 (/home/sbriaz/Documents/Tesi/android-ebpf-monitor/docs/build/main.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: CC41A25F28910FF4D9863B421B98D897;7889.
+(rerunfilecheck)             Checksum: FBC45776F7CFC05C548ABE46946CF288;7889.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -1177,10 +1144,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 22309 strings out of 480236
- 388583 string characters out of 5895675
- 1089147 words of memory out of 5000000
- 39838 multiletter control sequences out of 15000+600000
+ 22344 strings out of 480236
+ 389796 string characters out of 5895675
+ 1089107 words of memory out of 5000000
+ 39874 multiletter control sequences out of 15000+600000
  481624 words of font info for 53 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,12n,82p,1018b,1545s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1197,10 +1164,10 @@ n/ec/ecbx2488.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknap
 pen/ec/ecrm1200.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmsy10.pfb>
 Output written on /home/sbriaz/Documents/Tesi/android-ebpf-monitor/docs/build/m
-ain.pdf (51 pages, 4557605 bytes).
+ain.pdf (49 pages, 16395778 bytes).
 PDF statistics:
- 1016 PDF objects out of 1200 (max. 8388607)
- 535 compressed objects within 6 object streams
- 129 named destinations out of 1000 (max. 500000)
- 379 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1009 PDF objects out of 1200 (max. 8388607)
+ 524 compressed objects within 6 object streams
+ 123 named destinations out of 1000 (max. 500000)
+ 409 words of extra memory for PDF output out of 10000 (max. 10000000)
 
