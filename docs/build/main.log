@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.10)  8 MAR 2026 19:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.2.10)  9 MAR 2026 23:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -746,12 +746,10 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
-
-(/home/sbriaz/Documents/Tesi/android-ebpf-monitor/docs/build/main.bbl)
+ (./main.bbl)
 Package biblatex Info: Reference section=0 on input line 19.
 Package biblatex Info: Reference segment=0 on input line 19.
 Package hyperref Info: Link coloring OFF on input line 19.
-
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -837,7 +835,7 @@ e
 \c@lstlisting=\count458
 
 (./translations/italian.tex) (./templates/bachelor.tex
-<images/unibg-logo-wide.png, id=168, 289.08pt x 143.8173pt>
+<images/unibg-logo-wide.png, id=176, 289.08pt x 143.8173pt>
 File: images/unibg-logo-wide.png Graphic file (type png)
 <use images/unibg-logo-wide.png>
 Package pdftex.def Info: images/unibg-logo-wide.png  used on input line 2.
@@ -882,7 +880,18 @@ l.36 \clearpage
 
 ] (./chapters/chap01.tex
 Capitolo 1.
-<images/architettura-ebpf.png, id=249, 963.6pt x 554.07pt>
+
+LaTeX Warning: Citation 'android_marketshare' on page 1 undefined on input line
+ 4.
+
+
+LaTeX Warning: Citation 'ebpf_kernel' on page 1 undefined on input line 20.
+
+
+LaTeX Warning: Citation 'ebpf_observability' on page 1 undefined on input line 
+23.
+
+<images/architettura-ebpf.png, id=256, 963.6pt x 554.07pt>
 File: images/architettura-ebpf.png Graphic file (type png)
 <use images/architettura-ebpf.png>
 Package pdftex.def Info: images/architettura-ebpf.png  used on input line 26.
@@ -895,14 +904,23 @@ l.30
       [1
 
 
-] [2 <./images/architettura-ebpf.png (PNG copy)>]
-<images/confronto_ambienti.png, id=264, 844.15375pt x 261.97874pt>
+]
+
+LaTeX Warning: Citation 'bpftrace_docs' on page 2 undefined on input line 33.
+
+[2 <./images/architettura-ebpf.png (PNG copy)>]
+<images/confronto_ambienti.png, id=266, 844.15375pt x 261.97874pt>
 File: images/confronto_ambienti.png Graphic file (type png)
 <use images/confronto_ambienti.png>
 Package pdftex.def Info: images/confronto_ambienti.png  used on input line 46.
 (pdftex.def)             Requested size: 341.43437pt x 105.96489pt.
- [3 <./images/confronto_ambienti.png>]
-<images/architettura-soluzione.png, id=272, 241.90375pt x 181.67876pt>
+
+
+LaTeX Warning: Citation 'cuttlefish_docs' on page 3 undefined on input line 65.
+
+
+[3 <./images/confronto_ambienti.png>]
+<images/architettura-soluzione.png, id=273, 241.90375pt x 181.67876pt>
 File: images/architettura-soluzione.png Graphic file (type png)
 <use images/architettura-soluzione.png>
 Package pdftex.def Info: images/architettura-soluzione.png  used on input line 
@@ -939,38 +957,71 @@ File: images/android-architettura.png Graphic file (type png)
 Package pdftex.def Info: images/android-architettura.png  used on input line 31
 .
 (pdftex.def)             Requested size: 341.43437pt x 341.431pt.
- [7 <./images/android-architettura.png (PNG copy)>] [8]
+
+
+LaTeX Warning: Citation 'cuttlefish_docs' on page 7 undefined on input line 36.
+
+
+
+Overfull \hbox (57.16948pt too wide) in paragraph at lines 36--37
+[]\T1/cmr/m/n/12 Per lo svi-lup-po e la spe-ri-men-ta-zio-ne è sta-to uti-liz-z
+a-to An-droid Cut-tle-fish [[]],
+ []
+
+[7 <./images/android-architettura.png (PNG copy)>] [8]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 5
 7.
- (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [9]
-<images/ebpf-diagram.png, id=317, 817.0525pt x 427.5975pt>
+)
+
+LaTeX Warning: Citation 'ptrace_man' on page 9 undefined on input line 57.
+
+
+LaTeX Warning: Citation 'strace_docs' on page 9 undefined on input line 57.
+
+
+LaTeX Warning: Citation 'ftrace_docs' on page 9 undefined on input line 58.
+
+
+LaTeX Warning: Citation 'perf_docs' on page 9 undefined on input line 58.
+
+
+LaTeX Warning: Citation 'ebpf_kernel' on page 9 undefined on input line 62.
+
+[9]
+<images/ebpf-diagram.png, id=307, 817.0525pt x 427.5975pt>
 File: images/ebpf-diagram.png Graphic file (type png)
 <use images/ebpf-diagram.png>
 Package pdftex.def Info: images/ebpf-diagram.png  used on input line 71.
 (pdftex.def)             Requested size: 341.43437pt x 178.68932pt.
 
+
+LaTeX Warning: Citation 'bpftrace_docs' on page 10 undefined on input line 85.
+
 [10 <./images/ebpf-diagram.png>]
-<images/bpftrace-probe.png, id=327, 1027.84pt x 1027.84pt>
+<images/bpftrace-probe.png, id=315, 1027.84pt x 1027.84pt>
 File: images/bpftrace-probe.png Graphic file (type png)
 <use images/bpftrace-probe.png>
 Package pdftex.def Info: images/bpftrace-probe.png  used on input line 100.
 (pdftex.def)             Requested size: 298.75264pt x 298.75604pt.
  [11 <./images/bpftrace-probe.png (PNG copy)>]
-<images/tracepoin-list.png, id=335, 1027.84pt x 1027.84pt>
+<images/tracepoin-list.png, id=324, 1027.84pt x 1027.84pt>
 File: images/tracepoin-list.png Graphic file (type png)
 <use images/tracepoin-list.png>
 Package pdftex.def Info: images/tracepoin-list.png  used on input line 111.
 (pdftex.def)             Requested size: 384.1096pt x 384.10596pt.
-) (./chapters/chap03.tex
-Underfull \vbox (badness 1609) has occurred while \output is active []
 
- [12 <./images/tracepoin-list.png (PNG copy)>] [13] [14
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (./chapters/chap03.tex [12] [13 <./images/tracepoin-list.png (PNG copy)>]
+[14
 
 ]
 Capitolo 3.
-<images/architettura-sistema.png, id=351, 1027.84pt x 1192.455pt>
+<images/architettura-sistema.png, id=340, 1027.84pt x 1192.455pt>
 File: images/architettura-sistema.png Graphic file (type png)
 <use images/architettura-sistema.png>
 Package pdftex.def Info: images/architettura-sistema.png  used on input line 8.
@@ -980,12 +1031,21 @@ Package pdftex.def Info: images/architettura-sistema.png  used on input line 8.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
+LaTeX Warning: Citation 'linux_task_struct' on page 15 undefined on input line 
+19.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [15]
 Underfull \vbox (badness 2005) has occurred while \output is active []
 
  [16 <./images/architettura-sistema.png>] [17]
+
+LaTeX Warning: Citation 'unix_philosophy' on page 18 undefined on input line 42
+.
+
+
 Overfull \hbox (37.53973pt too wide) in paragraph at lines 52--53
 \T1/cmtt/m/n/12 sched:sched_process_fork\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 sched:
 sched_process_exec \T1/cmr/m/n/12 e \T1/cmtt/m/n/12 sched:sched_process_exit\T1
@@ -993,7 +1053,7 @@ sched_process_exec \T1/cmr/m/n/12 e \T1/cmtt/m/n/12 sched:sched_process_exit\T1
  []
 
 [18]
-<images/process-lifecycle.png, id=374, 1027.84pt x 1212.53pt>
+<images/process-lifecycle.png, id=359, 1027.84pt x 1212.53pt>
 File: images/process-lifecycle.png Graphic file (type png)
 <use images/process-lifecycle.png>
 Package pdftex.def Info: images/process-lifecycle.png  used on input line 62.
@@ -1003,6 +1063,10 @@ Package pdftex.def Info: images/process-lifecycle.png  used on input line 62.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [19]
+
+LaTeX Warning: Citation 'toctou' on page 20 undefined on input line 81.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [20 <./images/process-lifecycle.png>]
@@ -1012,13 +1076,16 @@ ro-be in-clu-de un hand-ler del tra-ce-point \T1/cmtt/m/n/12 sched:sched_proces
 s_exit
  []
 
+
+LaTeX Warning: Citation 'binder_ipc' on page 21 undefined on input line 89.
+
 [21]
 Overfull \hbox (14.07886pt too wide) in paragraph at lines 103--104
 \T1/cmr/m/n/12 do \T1/cmtt/m/n/12 binder_transaction \T1/cmr/m/n/12 (che ha i d
 a-ti del mit-ten-te), \T1/cmtt/m/n/12 binder_transaction_alloc_buf
  []
 
-<images/inder-correlazione.png, id=392, 1541.76pt x 1027.84pt>
+<images/inder-correlazione.png, id=373, 1541.76pt x 1027.84pt>
 File: images/inder-correlazione.png Graphic file (type png)
 <use images/inder-correlazione.png>
 Package pdftex.def Info: images/inder-correlazione.png  used on input line 107.
@@ -1043,7 +1110,7 @@ Overfull \hbox (23.90485pt too wide) in paragraph at lines 118--119
 Underfull \vbox (badness 1838) has occurred while \output is active []
 
  [23 <./images/inder-correlazione.png (PNG copy)>] [24] [25]
-<images/monitor-pipeline.png, id=412, 1027.84pt x 1541.76pt>
+<images/monitor-pipeline.png, id=393, 1027.84pt x 1541.76pt>
 File: images/monitor-pipeline.png Graphic file (type png)
 <use images/monitor-pipeline.png>
 Package pdftex.def Info: images/monitor-pipeline.png  used on input line 154.
@@ -1085,7 +1152,7 @@ ro-ces-so de-sti-na-ta-rio). Per ogni even-to \T1/cmtt/m/n/12 binder_transactio
 n
  []
 
-<images/report-binder.png, id=421, 1541.76pt x 744.7825pt>
+<images/report-binder.png, id=402, 1541.76pt x 744.7825pt>
 File: images/report-binder.png Graphic file (type png)
 <use images/report-binder.png>
 Package pdftex.def Info: images/report-binder.png  used on input line 205.
@@ -1094,7 +1161,7 @@ Package pdftex.def Info: images/report-binder.png  used on input line 205.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [28]
-<images/report-rete.png, id=426, 1027.84pt x 1541.76pt>
+<images/report-rete.png, id=407, 1027.84pt x 1541.76pt>
 File: images/report-rete.png Graphic file (type png)
 <use images/report-rete.png>
 Package pdftex.def Info: images/report-rete.png  used on input line 216.
@@ -1103,7 +1170,7 @@ Package pdftex.def Info: images/report-rete.png  used on input line 216.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<images/albero-processi.png, id=427, 1541.76pt x 819.06pt>
+<images/albero-processi.png, id=408, 1541.76pt x 819.06pt>
 File: images/albero-processi.png Graphic file (type png)
 <use images/albero-processi.png>
 Package pdftex.def Info: images/albero-processi.png  used on input line 227.
@@ -1111,29 +1178,195 @@ Package pdftex.def Info: images/albero-processi.png  used on input line 227.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+
+LaTeX Warning: Citation 'data_persistence' on page 29 undefined on input line 2
+39.
+
+
+LaTeX Warning: Citation 'jsonlines' on page 29 undefined on input line 239.
+
+
+LaTeX Warning: Citation 'jq_tool' on page 29 undefined on input line 239.
+
+
+LaTeX Warning: Citation 'pandas' on page 29 undefined on input line 239.
+
+
+LaTeX Warning: Citation 'apache_spark' on page 29 undefined on input line 239.
+
 [29]) (./chapters/chap04.tex [30] [31 <./images/monitor-pipeline.png (PNG copy)
 >] [32 <./images/report-binder.png>] [33 <./images/report-rete.png (PNG copy)>]
 [34 <./images/albero-processi.png>]
 Capitolo 4.
-) (./chapters/chap05.tex [35
+[35
 
-] [36
+]
+<images/binder_chain_aereo.png, id=444, 560.0925pt x 67.25125pt>
+File: images/binder_chain_aereo.png Graphic file (type png)
+<use images/binder_chain_aereo.png>
+Package pdftex.def Info: images/binder_chain_aereo.png  used on input line 42.
+(pdftex.def)             Requested size: 256.07741pt x 30.74918pt.
+
+Overfull \hbox (5.01955pt too wide) in paragraph at lines 49--58
+\T1/cmr/m/n/12 ugual-men-te il mo-men-to del tog-gle. A par-ti-re dal-le 10:28:
+57, il th-read \T1/cmtt/m/n/12 IpClient.wlan0
+ []
+
+[36 <./images/binder_chain_aereo.png>]
+<images/timeline_aereo.png, id=454, 616.3025pt x 375.4025pt>
+File: images/timeline_aereo.png Graphic file (type png)
+<use images/timeline_aereo.png>
+Package pdftex.def Info: images/timeline_aereo.png  used on input line 105.
+(pdftex.def)             Requested size: 362.77525pt x 220.97574pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[37] [38 <./images/timeline_aereo.png>]
+Overfull \hbox (26.4271pt too wide) in paragraph at lines 155--176
+\T1/cmtt/m/n/12 /dev/ashmem \T1/cmr/m/n/12 e \T1/cmtt/m/n/12 /dev/__properties_
+_ \T1/cmr/m/n/12 per l'i-ni-zia-liz-za-zio-ne IPC, e al fi-le \T1/cmtt/m/n/12 l
+ast-exit-info
+ []
+
+
+Overfull \hbox (113.63591pt too wide) in paragraph at lines 155--176
+\T1/cmr/m/n/12 se del-la pa-gi-na Goo-gle. In-fi-ne, a 10:08:44 com-pa-re \T1/c
+mtt/m/n/12 /apex/com.android.conscrypt/cacerts/5acf816d.0\T1/cmr/m/n/12 ,
+ []
+
+[39]
+Overfull \hbox (19.37456pt too wide) in paragraph at lines 204--212
+[]\T1/cmr/m/n/12 Un even-to iso-la-to di par-ti-co-la-re in-te-res-se si os-ser
+-va a 10:08:48--10:08:49: \T1/cmtt/m/n/12 AudioThread
+ []
+
+[40] [41] [42]
+Overfull \hbox (25.21216pt too wide) in paragraph at lines 321--325
+[]\T1/cmr/m/n/12 Tra 10:33:10 e 10:33:11 com-pa-re bre-ve-men-te il pro-ces-so 
+\T1/cmtt/m/n/12 .intentresolver \T1/cmr/m/n/12 (pid 15043),
+ []
+
+
+Overfull \hbox (37.49947pt too wide) in paragraph at lines 326--341
+\T1/cmtt/m/n/12 fifo-pool-thread \T1/cmr/m/n/12 (th-read a prio-ri-tà real-time
+ per il pro-ces-sing dei fra-me), \T1/cmtt/m/n/12 CameraHandler\T1/cmr/m/n/12 ,
+
+ []
+
+
+Overfull \hbox (34.04607pt too wide) in paragraph at lines 342--353
+\T1/cmr/m/n/12 mas-sa: ter-mi-na-no \T1/cmtt/m/n/12 Cam0_ResultDisp\T1/cmr/m/n/
+12 , \T1/cmtt/m/n/12 C3Dev-0-ReqQueu\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 C3Dev-0-St
+atus\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 StreamBufMgr\T1/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (2.4061pt too wide) in paragraph at lines 342--353
+\T1/cmtt/m/n/12 EmulatedSensor \T1/cmr/m/n/12 e \T1/cmtt/m/n/12 camera.provider
+\T1/cmr/m/n/12 . Al-la pri-ma ria-per-tu-ra del-la gal-le-ria (10:33:51),
+ []
+
+
+Overfull \hbox (76.33292pt too wide) in paragraph at lines 361--375
+\T1/cmr/m/n/12 10:33:52 e 10:35:17--10:35:19 per le suc-ces-si-ve), i th-read p
+rin-ci-pa-li ac-ce-do-no a \T1/cmtt/m/n/12 /dev/__properties__
+ []
+
+
+Overfull \hbox (194.3251pt too wide) in paragraph at lines 361--375
+\T1/cmr/m/n/12 per leg-ge-re le pro-prie-tà di si-ste-ma, a \T1/cmtt/m/n/12 /da
+ta/dalvik-cache/x86_64/product@app@Gallery2@Gallery2.apk@classes.dex
+ []
+
+
+Overfull \hbox (14.99336pt too wide) in paragraph at lines 361--375
+\T1/cmr/m/n/12 gra-fi-co in \T1/cmtt/m/n/12 /apex/com.google.cf.vulkan/lib64/ \
+T1/cmr/m/n/12 e \T1/cmtt/m/n/12 /vendor/lib64/\T1/cmr/m/n/12 . Il \T1/cmtt/m/n/
+12 RenderThread
+ []
+
+[43]
+Overfull \hbox (28.10591pt too wide) in paragraph at lines 376--388
+\T1/cmr/m/n/12 pli-ca-zio-ne da \T1/cmtt/m/n/12 /data/user/0/com.android.galler
+y3d/shared_prefs/ \T1/cmr/m/n/12 e \T1/cmtt/m/n/12 thread-pool-1
+ []
+
+
+Overfull \hbox (2.87033pt too wide) in paragraph at lines 376--388
+\T1/cmr/m/n/12 av-via la scan-sio-ne del-la ca-che di mi-nia-tu-re in \T1/cmtt/
+m/n/12 /storage/emulated/0/Android/data/
+ []
+
+
+Overfull \hbox (85.12105pt too wide) in paragraph at lines 376--388
+\T1/cmr/m/n/12 ta vi-si-va, il th-read prin-ci-pa-le ac-ce-de a\T1/cmtt/m/n/12 
+/storage/emulated/0/Pictures/IMG_20260303_221740.jpg\T1/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (35.79294pt too wide) in paragraph at lines 376--388
+\T1/cmr/m/n/12 la fo-to più re-cen-te pre-sen-te nel di-spo-si-ti-vo pri-ma del
+-la ses-sio-ne, e al fi-le \T1/cmtt/m/n/12 share_history.xml\T1/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (29.45544pt too wide) in paragraph at lines 389--405
+[]\T1/cmr/m/n/12 Dopo lo scat-to (10:33:57--10:34:01), i th-read del pool (\T1/
+cmtt/m/n/12 thread-pool-0\T1/cmr/m/n/12 , \T1/cmtt/m/n/12 thread-pool-2\T1/cmr/
+m/n/12 ,
+ []
+
+
+Overfull \hbox (104.49976pt too wide) in paragraph at lines 389--405
+\T1/cmtt/m/n/12 thread-pool-3\T1/cmr/m/n/12 ) apro-no in se-quen-za i tre fi-le
+ pre-sen-ti nel-la car-tel-la Pic-tu-res: \T1/cmtt/m/n/12 IMG_20260304_113335.j
+pg\T1/cmr/m/n/12 ,
+ []
+
+
+Overfull \hbox (32.945pt too wide) in paragraph at lines 412--425
+[]\T1/cmr/m/n/12 Il pri-mo e prin-ci-pa-le de-sti-na-ta-rio è \T1/cmtt/m/n/12 b
+inder:615_4\T1/cmr/m/n/12 , un wor-ker th-read di \T1/cmtt/m/n/12 surfaceflinge
+r
+ []
+
+[44]
+Overfull \hbox (33.32259pt too wide) in paragraph at lines 438--458
+\T1/cmtt/m/n/12 droid.gallery3d \T1/cmr/m/n/12 in-via 43 tran-sa-zio-ni sin-cro
+-ne nel-lo stes-so se-con-do ver-so \T1/cmtt/m/n/12 servicemanager\T1/cmr/m/n/1
+2 ,
+ []
+
+
+Overfull \hbox (21.43532pt too wide) in paragraph at lines 474--483
+[]\T1/cmr/m/n/12 Il mit-ten-te do-mi-nan-te nel-la trac-cia net_send è \T1/cmtt
+/m/n/12 app \T1/cmr/m/n/12 (pid 615, ov-ve-ro \T1/cmtt/m/n/12 surfaceflinger\T1
+/cmr/m/n/12 )
+ []
+
+[45]
+Underfull \vbox (badness 2245) has occurred while \output is active []
+
+ [46])
+(./chapters/chap05.tex [47] [48
 
 ]
 Capitolo 5.
-) (./chapters/chap06.tex [37] [38
+) (./chapters/chap06.tex [49] [50
 
 ]
 Capitolo 6.
-) (./chapters/chap07.tex) [39] [40
+) (./chapters/chap07.tex)
 
-] [41] [42]
-(/home/sbriaz/Documents/Tesi/android-ebpf-monitor/docs/build/main.aux)
+LaTeX Warning: Empty bibliography on input line 49.
+
+[51] (/home/sbriaz/Documents/Tesi/android-ebpf-monitor/docs/build/main.aux)
 
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: FBC45776F7CFC05C548ABE46946CF288;7889.
+(rerunfilecheck)             Checksum: 551E2FCEDB7069AB4C829D994C110F42;8524.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -1144,30 +1377,29 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 22344 strings out of 480236
- 389796 string characters out of 5895675
- 1089107 words of memory out of 5000000
- 39874 multiletter control sequences out of 15000+600000
- 481624 words of font info for 53 fonts, out of 8000000 for 9000
+ 22279 strings out of 480236
+ 386745 string characters out of 5895675
+ 1087785 words of memory out of 5000000
+ 39799 multiletter control sequences out of 15000+600000
+ 480949 words of font info for 52 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  75i,12n,82p,1018b,1545s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.60
-0pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.
-600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt120
+ </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.60
+0pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1200.
+600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx144
 0.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1
-440.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecb
-x1728.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/e
-cbx1200.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecti1200.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecrm2074.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappe
-n/ec/ecbx2488.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecrm1200.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmsy10.pfb>
+728.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/ecb
+x1200.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+cti1200.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec
+/ecrm2074.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/
+ec/ecbx2488.600pk> </home/sbriaz/.texlive2021/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecrm1200.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb>
 Output written on /home/sbriaz/Documents/Tesi/android-ebpf-monitor/docs/build/m
-ain.pdf (49 pages, 16395778 bytes).
+ain.pdf (58 pages, 16472023 bytes).
 PDF statistics:
- 1009 PDF objects out of 1200 (max. 8388607)
- 524 compressed objects within 6 object streams
- 123 named destinations out of 1000 (max. 500000)
- 409 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 991 PDF objects out of 1000 (max. 8388607)
+ 507 compressed objects within 6 object streams
+ 132 named destinations out of 1000 (max. 500000)
+ 435 words of extra memory for PDF output out of 10000 (max. 10000000)
 
