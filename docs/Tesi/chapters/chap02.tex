@@ -1,0 +1,116 @@
+\chapter{Tecnologie di base}
+\section{Linux}
+Linux è un sistema operativo di tipo Unix-like ampiamente utilizzato sia in ambito accademico sia industriale~\cite{linux_kernel} grazie alla sua stabilità, 
+flessibilità e natura open source. Il sistema è basato su un’architettura in cui il kernel gestisce le risorse hardware e fornisce ai programmi 
+un’interfaccia standardizzata attraverso le system call, mentre l’insieme dei programmi in spazio utente costituisce l’ambiente operativo vero e proprio. 
+Questa organizzazione rende Linux particolarmente adatto allo sviluppo software e alle attività di sperimentazione, poiché consente un controllo 
+dettagliato del sistema e un facile accesso agli strumenti di analisi e debugging.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/linux-architettura.png}
+    \caption{Architettura del sistema Linux: kernel space, user space e system call.}
+    \label{fig:linux-architettura}
+\end{figure}
+
+Nel presente lavoro è stato utilizzato come sistema operativo di base Ubuntu 22.04 LTS, una distribuzione Linux ampiamente diffusa e supportata a 
+lungo termine. Ubuntu è stata scelta per la disponibilità di pacchetti software aggiornati e per la semplicità di configurazione dell’ambiente di 
+sviluppo. Il sistema Ubuntu ha costituito la piattaforma principale su cui sono stati installati gli strumenti necessari allo svolgimento della tesi, 
+tra cui l’ambiente di virtualizzazione Android Cuttlefish e i componenti utilizzati per il tracing basato su eBPF. L’utilizzo di una distribuzione Linux 
+standard ha permesso di disporre di un ambiente stabile e riproducibile, facilitando l’installazione delle dipendenze e la gestione degli strumenti software impiegati nelle sperimentazioni.
+
+\section{Android Cuttlefish}
+Android~\cite{android_aosp} è un sistema operativo per dispositivi mobili basato sul kernel Linux e progettato per supportare l’esecuzione di applicazioni in un ambiente isolato e controllato. Il sistema è organizzato in una struttura a livelli che comprende il kernel Linux, le librerie di sistema, il runtime Android, il framework delle applicazioni e il livello delle applicazioni utente. Il kernel Linux costituisce il livello più basso dell’architettura e si occupa della gestione delle risorse hardware, della memoria, dei processi, dei dispositivi di input/output e delle comunicazioni di rete. I livelli superiori forniscono invece i servizi necessari all’esecuzione delle applicazioni e definiscono l’ambiente software tipico della piattaforma Android.
+
+Ogni applicazione Android viene eseguita in uno spazio isolato rispetto alle altre applicazioni, generalmente associato a un identificatore utente distinto. Questo meccanismo di isolamento contribuisce alla sicurezza del sistema ma limita l’accesso diretto alle risorse e alle funzionalità di basso livello. Inoltre, molte componenti tipiche delle distribuzioni Linux tradizionali non sono presenti oppure risultano fortemente ridotte, rendendo più complesso l’utilizzo di strumenti di analisi progettati per ambienti Linux standard.
+
+Nonostante Android utilizzi il kernel Linux, l’ambiente software differisce in modo significativo da quello di una distribuzione Linux tradizionale. In particolare, l’organizzazione del file system, la disponibilità delle librerie e la gestione dei permessi rendono spesso necessario un adattamento degli strumenti sviluppati per sistemi Linux convenzionali. Questo aspetto è particolarmente rilevante nel caso degli strumenti di tracing, che richiedono generalmente l’accesso a funzionalità di basso livello del sistema operativo.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/android-architettura.png}
+    \caption{Architettura a livelli del sistema operativo Android.}
+    \label{fig:android-architettura}
+\end{figure}
+
+Per lo sviluppo e la sperimentazione è stato utilizzato Android Cuttlefish~\cite{cuttlefish_docs}, un emulatore ufficiale della piattaforma Android progettato per l'esecuzione su sistemi Linux. Cuttlefish permette di eseguire una o più istanze complete del sistema operativo Android all'interno di un ambiente virtualizzato, consentendo di simulare il comportamento di un dispositivo reale senza la necessità di utilizzare hardware fisico.
+
+Cuttlefish utilizza tecnologie di virtualizzazione disponibili in ambiente Linux per eseguire il sistema Android in una macchina virtuale che riproduce i principali componenti di un dispositivo reale. L’ambiente virtualizzato include il kernel Android, il sistema operativo e i servizi necessari all’esecuzione delle applicazioni. Questo approccio permette di ottenere un ambiente di test controllato e riproducibile, caratteristica particolarmente importante nelle attività di sviluppo e sperimentazione.
+
+Nel presente lavoro Cuttlefish è stato utilizzato come ambiente di esecuzione del sistema Android su cui effettuare le attività di tracing. L'emulatore è stato eseguito su sistema operativo Ubuntu, che ha costituito la piattaforma principale per l'installazione e la configurazione degli strumenti necessari allo svolgimento della tesi. L’utilizzo di un ambiente virtualizzato ha permesso di effettuare le sperimentazioni in modo riproducibile e di controllare la configurazione del sistema senza intervenire su dispositivi fisici.
+\section{Tracing, eBPF e bpftrace}
+\subsection{Tracing delle applicazioni}
+Il tracing delle applicazioni è una tecnica di analisi che consiste nella raccolta sistematica di informazioni durante l’esecuzione di un programma o di un sistema operativo, 
+con l’obiettivo di osservare il comportamento dinamico del software e le sue interazioni con il sistema. A differenza dell’analisi statica, che si basa sull’esame del codice 
+sorgente o dei file eseguibili, il tracing consente di studiare ciò che avviene realmente durante l’esecuzione, permettendo di ottenere informazioni temporali sugli eventi generati dal sistema.
+
+Nel contesto dei sistemi operativi moderni, il tracing può essere effettuato a diversi livelli di osservazione. A livello applicativo è possibile monitorare le operazioni 
+effettuate da un processo, come la creazione di nuovi processi, l’accesso ai file o le comunicazioni di rete. A livello di sistema operativo è invece possibile osservare 
+eventi gestiti dal kernel, come le chiamate di sistema, la schedulazione dei processi o le operazioni di input/output. Questa possibilità di osservare eventi a diversi 
+livelli rende il tracing uno strumento fondamentale per comprendere il funzionamento complessivo di un sistema software.
+
+Le tecniche di tracing vengono utilizzate principalmente per tre scopi. Il primo è il debugging del software, dove l’osservazione dettagliata delle operazioni eseguite 
+da un programma permette di individuare errori o comportamenti inattesi. Il secondo è l’analisi delle prestazioni, in cui il tracing consente di identificare colli di 
+bottiglia e di comprendere come le risorse del sistema vengono utilizzate dalle applicazioni. Il terzo ambito è quello della sicurezza informatica, dove l’osservazione 
+delle attività dei processi permette di individuare comportamenti anomali o potenzialmente malevoli.
+
+Tradizionalmente il tracing in ambiente Linux è stato realizzato tramite strumenti basati su meccanismi come \texttt{ptrace}~\cite{ptrace_man}, utilizzati ad esempio da programmi come \texttt{strace}~\cite{strace_docs}, oppure 
+tramite infrastrutture di tracing integrate nel kernel come \texttt{ftrace}~\cite{ftrace_docs} e \texttt{perf}~\cite{perf_docs}. Questi strumenti permettono di ottenere informazioni dettagliate sul comportamento del sistema, 
+ma possono risultare complessi da utilizzare oppure introdurre un overhead significativo durante l’esecuzione.
+
+\subsection{Tracing mediante eBPF}
+Una delle tecnologie più recenti per il tracing nei sistemi Linux è rappresentata dall’extended Berkeley Packet Filter (eBPF)~\cite{ebpf_kernel}. eBPF permette di eseguire piccoli programmi 
+all’interno del sistema operativo in modo controllato e sicuro, consentendo di intercettare eventi durante l’esecuzione senza modificare il codice del kernel o delle applicazioni.
+
+Il funzionamento di eBPF si basa sull’inserimento dinamico di programmi che vengono eseguiti quando si verificano determinati eventi, come l’ingresso in una funzione del kernel o 
+l’attivazione di un tracepoint. Prima di essere caricati, i programmi eBPF vengono verificati da un componente del sistema operativo chiamato verifier, che ne controlla la sicurezza 
+e garantisce che non possano compromettere la stabilità del sistema. Questo meccanismo permette di eseguire codice in modo sicuro anche all’interno di parti critiche del sistema operativo.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/ebpf-diagram.png}
+    \caption{Flusso di caricamento ed esecuzione di un programma eBPF nel kernel Linux.}
+    \label{fig:ebpf-flusso}
+\end{figure}
+
+Rispetto alle tecniche di tracing tradizionali, eBPF presenta alcune caratteristiche distintive. In primo luogo consente di raccogliere informazioni con un overhead generalmente 
+ridotto, poiché i programmi vengono eseguiti direttamente nel contesto dell’evento osservato. Inoltre, le sonde possono essere attivate e disattivate dinamicamente senza riavviare 
+il sistema operativo. Un ulteriore vantaggio è la grande flessibilità, che permette di definire nuove sonde e nuovi tipi di analisi senza modificare il sistema.
+
+Grazie a queste caratteristiche eBPF rappresenta oggi una tecnologia particolarmente adatta per il tracing dinamico dei sistemi Linux e costituisce la base di numerosi strumenti moderni 
+di osservabilità.
+
+\subsection{bpftrace}
+
+Per utilizzare eBPF in modo pratico sono stati sviluppati diversi strumenti software. Tra questi, \texttt{bpftrace}~\cite{bpftrace_docs} rappresenta uno degli strumenti più diffusi per la realizzazione di script di tracing basati su eBPF.
+
+\texttt{bpftrace} è un linguaggio di scripting e un interprete che permette di definire programmi di tracing in forma compatta e leggibile. Gli script vengono tradotti automaticamente in programmi eBPF ed eseguiti dal sistema operativo, semplificando notevolmente lo sviluppo rispetto alla scrittura diretta di codice eBPF.
+
+Un programma \texttt{bpftrace} è costituito da una o più probe, cioè punti di osservazione associati a eventi specifici. Ogni probe è composta da due parti principali:
+
+\begin{itemize}
+\item la definizione dell’evento da osservare
+\item le azioni da eseguire quando l’evento si verifica
+\end{itemize}
+
+La struttura generale di una probe è illustrata in Figura~\ref{fig:bpftrace-probe}, che evidenzia la separazione tra la definizione dell'evento da osservare e il blocco delle azioni da eseguire.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/bpftrace-probe.png}
+    \caption{Struttura di una probe bpftrace: definizione dell'evento e blocco delle azioni.}
+    \label{fig:bpftrace-probe}
+\end{figure}
+
+\texttt{bpftrace} supporta diversi tipi di probe, che permettono di osservare eventi a diversi livelli del sistema. Nel presente lavoro sono stati utilizzati esclusivamente i tracepoint, in quanto rappresentano la soluzione più stabile e compatibile tra diverse versioni del kernel.
+
+I tracepoint sono punti di osservazione statici definiti all'interno del sistema operativo. A differenza di altre tipologie di probe, la loro interfaccia è stabile tra diverse versioni del kernel, il che li rende particolarmente adatti a un ambiente come Android, dove la versione del kernel può variare. Ogni tracepoint espone un insieme strutturato di argomenti che descrivono l'evento osservato, consentendo di accedere direttamente a informazioni quali il processo coinvolto, i parametri della chiamata e il risultato dell'operazione. I tracepoint disponibili nel sistema utilizzato durante le sperimentazioni sono illustrati in Figura~\ref{fig:tracepoint-list}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/tracepoin-list.png}
+    \caption{Lista dei tracepoint disponibili nell'ambiente Android Cuttlefish utilizzato nelle sperimentazioni.}
+    \label{fig:tracepoint-list}
+\end{figure}
+
+\texttt{bpftrace} supporta anche altri due tipi di probe. I kprobe consentono di inserire sonde dinamiche all'ingresso o all'uscita di funzioni del kernel, offrendo grande flessibilità anche in punti privi di tracepoint predefiniti; la loro stabilità è tuttavia inferiore, poiché dipendono dai nomi interni delle funzioni del kernel che possono variare tra versioni diverse. Le uprobe operano invece in spazio utente e permettono di tracciare funzioni di librerie o applicazioni specifiche senza modificarne il codice, risultando utili quando l'obiettivo è osservare il comportamento interno di un singolo processo piuttosto che eventi di sistema.

@@ -1,0 +1,92 @@
+\chapter{Introduzione}
+\section{Scenario Applicativo}
+Negli ultimi anni i dispositivi mobili hanno assunto un ruolo centrale nell’ambito dell’informatica personale e professionale.
+Tra i sistemi operativi per dispositivi mobili, Android rappresenta una delle piattaforme più diffuse a livello mondiale~\cite{android_marketshare} e 
+viene utilizzato in una grande varietà di dispositivi, dagli smartphone ai sistemi embedded. La complessità crescente delle 
+applicazioni e del sistema operativo rende sempre più importante disporre di strumenti in grado di analizzare e comprendere il 
+comportamento delle applicazioni durante l’esecuzione.
+
+Il monitoraggio delle attività delle applicazioni è fondamentale in diversi ambiti, tra cui il debugging del software, 
+l’analisi delle prestazioni e la sicurezza informatica. In particolare, la possibilità di osservare le interazioni tra le 
+applicazioni e il sistema operativo consente di individuare anomalie di funzionamento, colli di bottiglia prestazionali e 
+potenziali comportamenti malevoli.  
+
+Tradizionalmente il tracing del sistema operativo viene realizzato mediante strumenti specifici che permettono di raccogliere 
+informazioni sull’esecuzione dei processi e sulle attività del kernel. Tali strumenti possono tuttavia introdurre un significativo 
+overhead computazionale oppure richiedere modifiche al sistema operativo, rendendone difficile l’utilizzo in ambienti reali. 
+Inoltre, molti strumenti di analisi disponibili nei sistemi operativi tradizionali, e in particolare in ambiente Linux, non 
+sono direttamente utilizzabili su Android senza adattamenti specifici.
+
+Dal 2014, con l’introduzione dell’extended Berkeley Packet Filter (eBPF) in Linux~\cite{ebpf_kernel}, è stata resa disponibile una tecnologia che 
+permette di eseguire piccoli programmi in modo sicuro ed efficiente all’interno del sistema operativo. Questo consente di osservare 
+il comportamento delle applicazioni e del sistema senza la necessità di modifiche al codice sorgente o dello sviluppo di moduli dedicati. 
+Per queste ragioni eBPF è diventato uno strumento sempre più utilizzato per attività di tracing e osservabilità nei sistemi Linux~\cite{ebpf_observability}.
+\begin{figure}[h]         
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/architettura-ebpf.png}
+    \caption{Architettura di eBPF nel kernel Linux}
+    \label{fig:architettura-ebpf}
+\end{figure}
+
+\section{Criticità}
+Tra gli strumenti che permettono di utilizzare eBPF in modo pratico, bpftrace costituisce una soluzione particolarmente efficace per 
+il tracing delle applicazioni e del sistema operativo. bpftrace~\cite{bpftrace_docs} mette a disposizione un linguaggio di scripting ad alto livello che 
+consente di definire sonde e azioni associate agli eventi osservati, permettendo di raccogliere informazioni durante l’esecuzione senza 
+sviluppare programmi eBPF completi. Questo approccio semplifica notevolmente la realizzazione di strumenti di analisi dinamica.
+
+Tuttavia, l’utilizzo di bpftrace in ambiente Android presenta diverse difficoltà pratiche. In molti dispositivi l’accesso alle 
+funzionalità di basso livello del sistema è limitato e spesso non sono disponibili gli strumenti e le librerie necessari per l’esecuzione di programmi basati su eBPF. Inoltre, l’installazione diretta di tali strumenti sul sistema Android può risultare complessa 
+o non praticabile, soprattutto in ambienti di produzione, dove tipicamente non sono disponibili 
+i permessi di root necessari all'installazione e all'utilizzo di tali strumenti. Ottenere tali 
+permessi richiederebbe di effettuare il rooting del dispositivo o di sostituire la release 
+Android installata, operazioni spesso non praticabili in contesti reali.
+
+\begin{figure}[h]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        & \textbf{Emulatore} & \textbf{Dispositivo di Produzione} \\
+        \midrule
+        \textbf{Accesso root}           & Disponibile     & Richiede rooting   \\
+        \textbf{Installazione strumenti} & Possibile       & Richiede rooting  \\
+        \textbf{Modifica della ROM}     & Non necessaria  & Spesso necessaria \\
+        \textbf{Utilizzo di bpftrace}   & Fattibile       & Non praticabile   \\
+        \textbf{Riproducibilità}        & Alta            & Bassa             \\
+        \bottomrule
+    \end{tabular}
+    \caption{Confronto tra ambiente di test e dispositivo di produzione Android.}
+    \label{fig:confronto-ambienti}
+\end{figure}
+
+Queste limitazioni rendono difficile l’impiego delle tecnologie basate su eBPF per l’analisi del comportamento delle applicazioni Android, 
+nonostante il loro potenziale per il monitoring del sistema. Risulta quindi necessario definire un ambiente di lavoro che consenta l’utilizzo 
+di bpftrace in modo stabile e riproducibile, permettendo allo stesso tempo l’osservazione delle attività delle applicazioni durante l’esecuzione.
+
+Il problema affrontato in questa tesi consiste quindi nel rendere possibile l’utilizzo di bpftrace per il tracing delle applicazioni 
+in ambiente Android, individuando una configurazione che consenta di superare le limitazioni tipiche del sistema e di ottenere dati significativi sull’esecuzione delle applicazioni.
+
+\section{Approccio proposto}
+Per superare le difficoltà legate all’utilizzo degli strumenti basati su eBPF in ambiente Android, in questo lavoro è stata 
+sviluppata una soluzione che permette di eseguire lo strumento bpftrace in un ambiente controllato e riproducibile, mantenendo 
+allo stesso tempo la possibilità di osservare il comportamento delle applicazioni Android.
+
+La soluzione proposta si basa sulla creazione di un ambiente di sviluppo virtualizzato in cui sia possibile eseguire Android e 
+utilizzare strumenti tipicamente disponibili nei sistemi Linux tradizionali. A questo scopo è stato utilizzato l’emulatore 
+Android Cuttlefish~\cite{cuttlefish_docs}, eseguito su sistema operativo Ubuntu, che consente di disporre di un ambiente Android completo e 
+configurabile per attività di sviluppo e sperimentazione.
+
+All’interno dell’ambiente Android è stata installata una distribuzione Linux minimale basata su Debian. Questa distribuzione è 
+stata utilizzata come ambiente di lavoro per l’esecuzione di bpftrace e degli strumenti necessari al tracing. L’utilizzo di una 
+distribuzione Linux separata ha permesso di evitare la compilazione nativa di bpftrace su Android e di semplificare l’
+installazione delle dipendenze necessarie.
+
+In questo modo è stato possibile realizzare un ambiente che combina la flessibilità degli strumenti Linux con la possibilità di 
+osservare il comportamento di applicazioni eseguite su Android. Su questa base è stato sviluppato un insieme di script e 
+strumenti software che permettono di eseguire sessioni di tracing e di raccogliere automaticamente i dati prodotti da bpftrace.
+\begin{figure}[h]
+      \centering
+      \includegraphics[width=0.3\textwidth]{images/architettura-soluzione.png}
+      \caption{Architettura della soluzione proposta: Ubuntu, Cuttlefish e ambiente Debian.}
+      \label{fig:architettura-soluzione}
+\end{figure}
+
