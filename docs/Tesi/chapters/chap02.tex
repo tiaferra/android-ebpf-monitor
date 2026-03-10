@@ -6,10 +6,10 @@ un’interfaccia standardizzata attraverso le system call, mentre l’insieme de
 Questa organizzazione rende Linux particolarmente adatto allo sviluppo software e alle attività di sperimentazione, poiché consente un controllo 
 dettagliato del sistema e un facile accesso agli strumenti di analisi e debugging.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/linux-architettura.png}
-    \caption{Architettura del sistema Linux: kernel space, user space e system call.}
+    \caption{Architettura del sistema Linux: kernel space, user space e system call~\cite{linux_architettura_img}.}
     \label{fig:linux-architettura}
 \end{figure}
 
@@ -26,10 +26,10 @@ Ogni applicazione Android viene eseguita in uno spazio isolato rispetto alle alt
 
 Nonostante Android utilizzi il kernel Linux, l’ambiente software differisce in modo significativo da quello di una distribuzione Linux tradizionale. In particolare, l’organizzazione del file system, la disponibilità delle librerie e la gestione dei permessi rendono spesso necessario un adattamento degli strumenti sviluppati per sistemi Linux convenzionali. Questo aspetto è particolarmente rilevante nel caso degli strumenti di tracing, che richiedono generalmente l’accesso a funzionalità di basso livello del sistema operativo.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/android-architettura.png}
-    \caption{Architettura a livelli del sistema operativo Android.}
+    \caption{Architettura a livelli del sistema operativo Android~\cite{android_architettura_img}.}
     \label{fig:android-architettura}
 \end{figure}
 
@@ -66,10 +66,10 @@ Il funzionamento di eBPF si basa sull’inserimento dinamico di programmi che ve
 l’attivazione di un tracepoint. Prima di essere caricati, i programmi eBPF vengono verificati da un componente del sistema operativo chiamato verifier, che ne controlla la sicurezza 
 e garantisce che non possano compromettere la stabilità del sistema. Questo meccanismo permette di eseguire codice in modo sicuro anche all’interno di parti critiche del sistema operativo.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/ebpf-diagram.png}
-    \caption{Flusso di caricamento ed esecuzione di un programma eBPF nel kernel Linux.}
+    \caption{Flusso di caricamento ed esecuzione di un programma eBPF nel kernel Linux~\cite{ebpf_observability}.}
     \label{fig:ebpf-flusso}
 \end{figure}
 
@@ -95,7 +95,7 @@ Un programma \texttt{bpftrace} è costituito da una o più probe, cioè punti di
 
 La struttura generale di una probe è illustrata in Figura~\ref{fig:bpftrace-probe}, che evidenzia la separazione tra la definizione dell'evento da osservare e il blocco delle azioni da eseguire.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{images/bpftrace-probe.png}
     \caption{Struttura di una probe bpftrace: definizione dell'evento e blocco delle azioni.}
@@ -106,7 +106,7 @@ La struttura generale di una probe è illustrata in Figura~\ref{fig:bpftrace-pro
 
 I tracepoint sono punti di osservazione statici definiti all'interno del sistema operativo. A differenza di altre tipologie di probe, la loro interfaccia è stabile tra diverse versioni del kernel, il che li rende particolarmente adatti a un ambiente come Android, dove la versione del kernel può variare. Ogni tracepoint espone un insieme strutturato di argomenti che descrivono l'evento osservato, consentendo di accedere direttamente a informazioni quali il processo coinvolto, i parametri della chiamata e il risultato dell'operazione. I tracepoint disponibili nel sistema utilizzato durante le sperimentazioni sono illustrati in Figura~\ref{fig:tracepoint-list}.
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{images/tracepoint-list.png}
     \caption{Lista dei tracepoint presenti nell'ambiente Android Cuttlefish e utilizzati durante le sperimentazioni.}
