@@ -18,15 +18,15 @@ Questa separazione delle responsabilità risponde a un principio architetturale 
 
 Le probe operano interamente in spazio kernel, con accesso diretto alle strutture dati del kernel quali \texttt{task\_struct}~\cite{linux_task_struct}, e producono output in formato JSON su stdout. La scelta di JSON come formato di output permette a bpftrace di comportarsi come un produttore di eventi strutturati che il livello superiore può consumare senza logica di parsing ad hoc. Ogni evento emesso segue uno schema comune con i campi: \texttt{ts\_ns} (timestamp in nanosecondi), \texttt{ts} (orario leggibile), \texttt{type} (categoria dell'evento), \texttt{event} (nome specifico dell'evento), \texttt{pid}, \texttt{ppid}, \texttt{tid}, \texttt{uid}, \texttt{comm} (nome del processo, massimo 15 caratteri imposto dal kernel) e un oggetto \texttt{data} contenente i campi specifici della probe.
 
-\subsection{Il modulo di orchestrazione: monitor.py}
+\subsection{Il modulo di orchestrazione}
 
 \texttt{monitor.py} è il cuore del sistema. Si occupa di avviare bpftrace come sottoprocesso, gestire il ciclo di vita della sessione di raccolta dati, normalizzare e validare gli eventi ricevuti, arricchirli dove necessario tramite il filesystem \texttt{/proc} e salvarli su disco in formato JSON Lines (\texttt{.jsonl}). Opera come consumer dello stream stdout di bpftrace, consumando gli eventi riga per riga in modo sincrono, mentre un thread dedicato drena contemporaneamente stderr per separare gli errori diagnostici.
 
-\subsection{Il modulo di analisi: summary.py}
+\subsection{Il modulo di analisi}
 
 \texttt{summary.py} è il modulo di analisi post-sessione. Legge il file \texttt{events.jsonl} prodotto da \texttt{monitor.py}, calcola statistiche aggregate su syscall, processi, Binder IPC e attività di rete, e genera un report testuale sia in formato plain text che Markdown. Il modulo produce inoltre un file \texttt{index.json} all'interno della directory di sessione, contenente tutti i dati analitici in forma strutturata.
 
-\subsection{L'interfaccia utente: launcher.sh}
+\subsection{L'interfaccia utente}
 
 \texttt{launcher.sh} è lo script bash che funge da interfaccia utente per il sistema. Offre un menu interattivo a colori che permette di scegliere quale probe eseguire, per quanto tempo, e se generare automaticamente un report al termine della sessione. Supporta anche una modalità non interattiva tramite flag da riga di comando (\texttt{-p} per specificare la probe, \texttt{-t} per il timer).
 
@@ -43,7 +43,7 @@ Infine, la presenza di \texttt{launcher.sh} come wrapper bash — invece di inte
 
 
 % -------------------------------------------------------
-\section{Le probe bpftrace}
+\section{Le probe}
 
 Il progetto include sette probe bpftrace, ognuna dedicata a osservare una specifica classe di eventi di sistema. La directory \texttt{probes/} contiene tutti gli script \texttt{.bt}, mentre la loro configurazione — metadati, codice identificativo, tipo di evento atteso — è centralizzata nel file \texttt{config/probes\_map.json}, che funge da registro consultato sia da \texttt{monitor.py} che da \texttt{launcher.sh}.
 
@@ -59,8 +59,8 @@ Gli eventi generati da questa probe sono utilizzati da \texttt{summary.py} per c
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.75\textwidth]{images/process-lifecycle.png}
-    \caption{Diagramma del ciclo di vita di un processo Linux: fork, exec e exit con i relativi tracepoint osservati.}
+    \includegraphics[width=0.6\textwidth]{images/process-lifecycle.png}
+    \caption{Diagramma del ciclo di vita di un processo Linux}
     \label{fig:process-lifecycle}
 \end{figure}
 
@@ -84,7 +84,7 @@ Un aspetto tecnico degno di nota riguarda la gestione di \texttt{AF\_INET}: la f
 
 Per evitare memory leak nelle mappe bpftrace utilizzate come variabili temporanee indicizzate per \texttt{tid}, la probe include un handler del tracepoint \texttt{sched:sched\_process\_exit} che cancella i valori residui, e un handler \texttt{END} che pulisce le mappe al termine.
 
-\subsection{binder.bt — Monitoraggio IPC Binder}
+\subsection{Monitoraggio IPC Binder}
 
 Binder~\cite{binder_ipc} è il meccanismo di Inter-Process Communication (IPC) fondamentale di Android. Ogni chiamata a un servizio di sistema, ogni interazione tra applicazioni e framework Android, ogni chiamata a un Content Provider passa attraverso Binder. Monitorare Binder significa quindi avere visibilità sul tessuto connettivo dell'intero sistema operativo Android.
 
@@ -109,27 +109,27 @@ La correlazione tra i tre eventi tramite \texttt{debug\_id} è fondamentale: sol
     \label{fig:binder-correlazione}
 \end{figure}
 
-\subsection{Probe di rete: net\_send, net\_recv, net\_bind, net\_accept}
+\subsection{Probe di rete}
 
 L'attività di rete è monitorata tramite quattro probe specializzate, ciascuna dedicata a una syscall diversa. La scelta di osservare le syscall di rete tramite il tracepoint generico \texttt{raw\_syscalls:sys\_enter/sys\_exit} — filtrato per numero di syscall — invece di tracepoint specifici è motivata dalla necessità di correlare ingresso e uscita della stessa syscall per calcolare la latenza e leggere il valore di ritorno. Questa tecnica di correlazione richiede di salvare il timestamp e il contesto all'ingresso in una mappa indicizzata per \texttt{tid}, e di recuperarli all'uscita. La suddivisione in probe separate è inoltre una scelta progettuale che offre flessibilità: è possibile attivare solo il monitoraggio delle connessioni in uscita, o solo il volume di dati inviati, o solo i servizi in ascolto, senza attivare l'intero set.
 
 Anche per le probe di rete vale la considerazione TOCTOU già discussa per \texttt{syscalls.bt}: gli indirizzi letti dalla struttura \texttt{sockaddr} in memoria utente potrebbero in teoria essere modificati dal processo tra il momento della lettura da parte della probe e il momento in cui il kernel utilizza effettivamente il valore.
 
-\textbf{net\_send.bt}\\ Traccia la syscall \texttt{sendto} (id 44). Utilizza la tecnica di correlazione \texttt{sys\_enter}/\texttt{sys\_exit}: all'ingresso della syscall vengono salvate in mappe bpftrace indicizzate per \texttt{tid} le informazioni di contesto (timestamp, ppid, file descriptor, dimensione richiesta); all'uscita viene calcolata la latenza come differenza di timestamp in nanosecondi e convertita in microsecondi. Il valore di ritorno \texttt{args->ret} corrisponde al numero di byte effettivamente inviati, che può differire dalla dimensione richiesta in caso di invio parziale.
+\noindent\textbf{net\_send.bt}; traccia la syscall \texttt{sendto} (id 44). Utilizza la tecnica di correlazione \texttt{sys\_enter}/\texttt{sys\_exit}: all'ingresso della syscall vengono salvate in mappe bpftrace indicizzate per \texttt{tid} le informazioni di contesto (timestamp, ppid, file descriptor, dimensione richiesta); all'uscita viene calcolata la latenza come differenza di timestamp in nanosecondi e convertita in microsecondi. Il valore di ritorno \texttt{args->ret} corrisponde al numero di byte effettivamente inviati, che può differire dalla dimensione richiesta in caso di invio parziale.
 
 
-\textbf{net\_recv.bt}\\ Funziona in modo simmetrico rispetto a \texttt{net\_send.bt} ma aggancia \texttt{recvfrom} (id 45). Registra la dimensione del buffer allocato per la ricezione e il numero di byte effettivamente ricevuti, oltre alla latenza della syscall.
+\noindent\textbf{net\_recv.bt}; funziona in modo simmetrico rispetto a \texttt{net\_send.bt} ma aggancia \texttt{recvfrom} (id 45). Registra la dimensione del buffer allocato per la ricezione e il numero di byte effettivamente ricevuti, oltre alla latenza della syscall.
 
 
-\textbf{net\_bind.bt}\\ Traccia \texttt{bind} (id 49), la syscall con cui un processo richiede al kernel di associare un socket a un indirizzo locale, tipicamente per mettersi in ascolto su una porta. La probe decodifica la struttura \texttt{sockaddr} all'ingresso della syscall, distinguendo \texttt{AF\_INET} (indirizzi IPv4, con decodifica di porta e indirizzo tramite \texttt{ntop()}) e \texttt{AF\_UNIX} (socket locali, con lettura del percorso). Solo i bind andati a buon fine (valore di ritorno uguale a 0) vengono evidenziati nell'analisi come porte effettivamente aperte.
+\noindent\textbf{net\_bind.bt}; traccia \texttt{bind} (id 49), la syscall con cui un processo richiede al kernel di associare un socket a un indirizzo locale, tipicamente per mettersi in ascolto su una porta. La probe decodifica la struttura \texttt{sockaddr} all'ingresso della syscall, distinguendo \texttt{AF\_INET} (indirizzi IPv4, con decodifica di porta e indirizzo tramite \texttt{ntop()}) e \texttt{AF\_UNIX} (socket locali, con lettura del percorso). Solo i bind andati a buon fine (valore di ritorno uguale a 0) vengono evidenziati nell'analisi come porte effettivamente aperte.
 
 
-\textbf{net\_accept.bt}\\ Traccia \texttt{accept} (id 43) e \texttt{accept4} (id 288), le syscall con cui un processo accetta una connessione in ingresso. Il peer address viene letto dalla struttura \texttt{sockaddr} popolata dal kernel all'uscita della syscall, quando il descrittore della nuova connessione è già disponibile. In fase di analisi, i processi con UID $\geq$ 10000 (UID delle applicazioni Android) che invocano \texttt{accept} vengono segnalati come anomali, poiché su Android i processi applicativi normalmente non agiscono da server.
+\noindent\textbf{net\_accept.bt}; traccia \texttt{accept} (id 43) e \texttt{accept4} (id 288), le syscall con cui un processo accetta una connessione in ingresso. Il peer address viene letto dalla struttura \texttt{sockaddr} popolata dal kernel all'uscita della syscall, quando il descrittore della nuova connessione è già disponibile. In fase di analisi, i processi con UID $\geq$ 10000 (UID delle applicazioni Android) che invocano \texttt{accept} vengono segnalati come anomali, poiché su Android i processi applicativi normalmente non agiscono da server.
 
 Una caratteristica comune a tutte e quattro le probe di rete è la pulizia delle mappe temporanee nel blocco \texttt{END}, necessaria per evitare che le strutture dati in memoria nel kernel rimangano allocate al termine del programma bpftrace.
 
 % -------------------------------------------------------
-\section{L'orchestratore: monitor.py}
+\section{L'orchestratore}
 
 \texttt{monitor.py} è il componente che coordina l'intero ciclo di vita di una sessione di monitoraggio. All'avvio legge la mappa delle probe dal file \texttt{config/probes\_map.json}, verifica che la probe richiesta sia presente nel registro, crea una directory di sessione sotto \texttt{sessions/} con nome composto dal codice della probe e dal timestamp corrente (ad esempio \texttt{syscalls\_2025-01-15\_10-30-00}), e salva immediatamente un file \texttt{session.json} con i metadati della sessione.
 
@@ -141,18 +141,18 @@ bpftrace viene avviato come sottoprocesso tramite \texttt{subprocess.Popen} con 
 
 Il thread principale itera riga per riga sullo stdout di bpftrace. Per ogni riga non vuota tenta il parsing JSON; le righe che non sono JSON valido vengono considerate output diagnostico e reindirizzate su \texttt{stderr.log}. Gli eventi JSON validi vengono processati attraverso una pipeline di tre fasi:
 
-\textbf{Normalizzazione} (\texttt{normalize\_event}): garantisce che ogni evento rispetti lo schema minimo atteso. Se il campo \texttt{schema\_version} manca, viene aggiunto con il valore definito nella configurazione della probe. Se i campi \texttt{type} o \texttt{event} mancano, vengono aggiunti come fallback dalla configurazione. Se il campo \texttt{data} non è presente o non è un oggetto, viene inizializzato come dizionario vuoto. Viene inoltre aggiunto il campo \texttt{probe\_code} per facilitare la correlazione fuori dalla cartella di sessione.
+\textbf{Normalizzazione}: garantisce che ogni evento rispetti lo schema minimo atteso. Se il campo \texttt{schema\_version} manca, viene aggiunto con il valore definito nella configurazione della probe. Se i campi \texttt{type} o \texttt{event} mancano, vengono aggiunti come fallback dalla configurazione. Se il campo \texttt{data} non è presente o non è un oggetto, viene inizializzato come dizionario vuoto. Viene inoltre aggiunto il campo \texttt{probe\_code} per facilitare la correlazione fuori dalla cartella di sessione.
 
-\textbf{Arricchimento} (\texttt{enrich\_exec\_event}): attivo solo per gli eventi di tipo \texttt{exec}. Legge \texttt{/proc/<pid>/cmdline} per ottenere la riga di comando completa del processo appena eseguito (i valori sono separati da caratteri null, che vengono sostituiti con spazi). Legge inoltre il link simbolico \texttt{/proc/<pid>/exe} per ottenere il percorso assoluto dell'eseguibile. Questo arricchimento compensa il limite di 15 caratteri del campo \texttt{comm} nel kernel e aggiunge informazioni non accessibili direttamente da bpftrace in un tracepoint.
+\textbf{Arricchimento}: attivo solo per gli eventi di tipo \texttt{exec}. Legge \texttt{/proc/<pid>/cmdline} per ottenere la riga di comando completa del processo appena eseguito (i valori sono separati da caratteri null, che vengono sostituiti con spazi). Legge inoltre il link simbolico \texttt{/proc/<pid>/exe} per ottenere il percorso assoluto dell'eseguibile. Questo arricchimento compensa il limite di 15 caratteri del campo \texttt{comm} nel kernel e aggiunge informazioni non accessibili direttamente da bpftrace in un tracepoint.
 
-\textbf{Validazione} (\texttt{validate\_event}): confronta i campi \texttt{type} ed \texttt{event} dell'evento ricevuto con i valori attesi dalla configurazione della probe. Le discrepanze generano avvisi su \texttt{stderr.log} ma non bloccano la scrittura dell'evento, evitando perdita di dati a fronte di probe multi-evento (indicate con \texttt{event: "*"} nella configurazione).
+\textbf{Validazione}: confronta i campi \texttt{type} ed \texttt{event} dell'evento ricevuto con i valori attesi dalla configurazione della probe. Le discrepanze generano avvisi su \texttt{stderr.log} ma non bloccano la scrittura dell'evento, evitando perdita di dati a fronte di probe multi-evento (indicate con \texttt{event: "*"} nella configurazione).
 
 Ogni evento normalizzato, arricchito e validato viene serializzato nuovamente in JSON e scritto su \texttt{events.jsonl} con flush immediato, garantendo che i dati vengano persistiti su disco in tempo reale anche in caso di interruzione improvvisa del processo.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{images/monitor-pipeline.png}
-    \caption{Pipeline di elaborazione degli eventi in monitor.py: normalizzazione, arricchimento e validazione.}
+    \caption{Pipeline di elaborazione degli eventi in monitor.py}
     \label{fig:monitor-pipeline}
 \end{figure}
 
@@ -161,7 +161,7 @@ Ogni evento normalizzato, arricchito e validato viene serializzato nuovamente in
 Alla ricezione del segnale di interruzione (Ctrl-C, gestito tramite un blocco \texttt{try/except} su \texttt{KeyboardInterrupt}), \texttt{monitor.py} esegue la pulizia ordinata: termina il processo bpftrace tramite SIGTERM seguito da SIGKILL, aggiorna il file \texttt{session.json} con il timestamp di fine sessione e stampa un riepilogo a terminale. La directory di sessione finale contiene quindi: \texttt{events.jsonl} (gli eventi raccolti), \texttt{stderr.log} (output diagnostico di bpftrace) e \texttt{session.json} (metadati con orari di inizio e fine).
 
 % -------------------------------------------------------
-\section{Il launcher interattivo: launcher.sh}
+\section{Il launcher interattivo:}
 
 \texttt{launcher.sh} è lo script bash che costituisce il punto di ingresso principale per l'utente. All'avvio esegue una serie di controlli preliminari verificando la presenza di \texttt{python3}, \texttt{bpftrace}, \texttt{jq} e \texttt{timeout} nel PATH, e la disponibilità dei file \texttt{monitor.py} e \texttt{config/probes\_map.json}. In caso di errore viene mostrato un messaggio diagnostico chiaro e lo script termina con codice di uscita 1.
 
@@ -182,7 +182,7 @@ La variabile d'ambiente \texttt{PYTHONUNBUFFERED=1} viene impostata prima di lan
 Lo script gestisce anche la modalità non interattiva: se viene passato il flag \texttt{-p} con il percorso di una probe, il menu viene saltato e la probe viene avviata direttamente. Se viene passato anche \texttt{-t}, il timer viene impostato al valore specificato invece di richiedere input dall'utente.
 
 % -------------------------------------------------------
-\section{Il modulo di analisi: summary.py}
+\section{Il modulo di analisi}
 
 \texttt{summary.py} è il componente responsabile dell'analisi post-sessione. Accetta come argomento il percorso di una directory di sessione, legge \texttt{events.jsonl} e \texttt{session.json}, calcola un insieme di metriche aggregate e produce sia un report testuale che un file \texttt{index.json} con tutti i dati analitici in forma strutturata.
 
@@ -213,9 +213,16 @@ L'analisi di rete aggrega i dati delle quattro probe in un quadro coerente. Veng
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{images/report-rete.png}
-    \caption{Esempio di output del report di analisi di rete con timeline del traffico e port landscape.}
-    \label{fig:report-rete}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{report-rete1.png}
+        \caption{Timeline del traffico in uscita}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{report-rete2.png}
+        \caption{Timeline del traffico in entrata}
+    \end{subfigure}
+    \caption{Esempio di output del report di analisi di rete}
 \end{figure}
 
 \subsection{Albero dei processi e resource map}
@@ -224,10 +231,18 @@ A partire dai campi \texttt{pid} e \texttt{ppid} presenti in tutti gli eventi, \
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.75\textwidth]{images/albero-processi.png}
-    \caption{Esempio di albero dei processi ricostruito da summary.py a partire dai campi pid e ppid degli eventi.}
-    \label{fig:albero-processi}
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{albero-processi.png}
+        \caption{Albero dei processi}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\linewidth]{resource-map.png}
+        \caption{Resource map}
+    \end{subfigure}
+    \caption{Esempio di output del report}
 \end{figure}
+
 
 \subsection{Output}
 
