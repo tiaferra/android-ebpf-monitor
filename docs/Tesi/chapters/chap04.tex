@@ -1,551 +1,130 @@
 \chapter{Test e Validazione}
 
-In questo capitolo viene presentata l'analisi delle sessioni di monitoraggio
-raccolte sull'emulatore Cuttlefish durante scenari d'uso controllati.
-L'obiettivo è verificare la capacità del sistema di ricostruire il comportamento
-interno di Android a partire dagli eventi catturati dalle diverse probe,
-correlandone i risultati su più livelli dello stack software.
+In questo capitolo vengono presentati i risultati delle sessioni di monitoraggio effettuate sull'emulatore Android Cuttlefish. Per ciascuno scenario, le sette probe del sistema sono state eseguite in parallelo: la probe delle syscall per il monitoraggio di \texttt{openat}, \texttt{connect} ed \texttt{execve}; la probe del Binder per le transazioni IPC; la probe del ciclo di vita dei processi per la nascita e terminazione; la probe di associazione socket e la probe di accettazione connessioni per il monitoraggio dei socket in ascolto e delle connessioni in ingresso; la probe di invio dati e la probe di ricezione dati per il volume di dati inviati e ricevuti.
 
-\section{Attivazione della modalità aereo}
+Gli scenari analizzati sono tre: l'attivazione della modalità aereo, una sessione di navigazione web con Chrome, e l'apertura dell'applicazione galleria con accesso alla fotocamera.
 
-Il primo scenario analizzato riguarda l'attivazione della modalità aereo
-dall'applicazione Impostazioni (\texttt{com.android.settings}).
-L'interazione è avvenuta alle ore 10:28:55 durante una sessione di circa tre
-minuti; sette probe erano attive simultaneamente, ciascuna avviata in una
-sessione distinta identificata dal proprio codice:
-\texttt{P00010} (syscalls), \texttt{P00011} (Binder IPC),
-\texttt{P00100} (process lifecycle), \texttt{P01000} (net\_bind),
-\texttt{P01001} (net\_accept), \texttt{P01010} (net\_send) e
-\texttt{P01011} (net\_recv).
-
-\subsubsection*{Catena IPC Binder}
-
-L'analisi della sessione Binder (\texttt{P00011}) ha permesso di identificare
-il processo Settings tramite \texttt{adb shell dumpsys activity top},
-che ha restituito il PID 12916 (uid 1000, comm \texttt{ndroid.settings}).
-Filtrando gli eventi nell'intervallo temporale del toggle, si osservano le
-prime transazioni significative esattamente alle 10:28:55: Settings invia
-tre chiamate sincrone (\texttt{oneway=0}) verso un thread di
-\texttt{system\_server} (pid 528, uid 1000) e una chiamata
-\textit{fire-and-forget} (\texttt{oneway=1}) verso un thread Binder di
-\texttt{networkstack} (pid 613, uid 1073).
-
-La catena Binder osservabile si esaurisce a questo punto: né
-\texttt{system\_server} né \texttt{networkstack} generano ulteriori
-transazioni Binder in risposta al toggle. Questo comportamento è atteso:
-la gestione effettiva dell'interfaccia di rete avviene tramite chiamate al
-kernel attraverso socket \texttt{AF\_NETLINK}, che sono invisibili alla probe
-Binder. La catena IPC ricostruita è la seguente:
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.6\textwidth]{images/binder_chain_aereo.png}
-    \caption{Catena IPC Binder durante l'attivazione della modalità aereo.}
-    \label{fig:binder_chain_aereo}
-\end{figure}
-
-\subsubsection*{Attività a livello di syscall}
-
-La sessione syscall (\texttt{P00010}), avviata sei secondi dopo la sessione
-Binder, copre ugualmente il momento del toggle. A partire dalle 10:28:57,
-il thread \texttt{IpClient.wlan0} (uid 1073) emette una serie di chiamate
-\texttt{connect()} su socket di famiglia \texttt{AF\_NETLINK} (famiglia 16)
-e \texttt{AF\_INET6} (famiglia 10), corrispondenti alle operazioni di
-smantellamento dell'interfaccia Wi-Fi a livello kernel. Alle 10:29:01 e
-10:29:02 il volume di queste chiamate aumenta sensibilmente, coinvolgendo
-anche i thread \texttt{Thread-16} e \texttt{Thread-17} del processo
-\texttt{networkstack}.
-
-\subsubsection*{Traffico di rete}
-
-L'analisi delle sessioni \texttt{P01010} (net\_send) e \texttt{P01011}
-(net\_recv) ha consentito di confrontare il traffico di rete prima e dopo
-il toggle. Nel periodo di baseline (10:28:00--10:28:50) si osserva
-che \texttt{IpClient.wlan0} effettua probe di connettività periodiche della
-dimensione di circa 58\,KB ogni 46 secondi circa (rilevate alle 10:28:00 e
-10:28:46), mentre \texttt{NsdService} mantiene un traffico costante di
-scoperta servizi sulla rete locale. Nessun traffico applicativo significativo
-è presente, coerentemente con il fatto che durante la sessione non era in corso
-alcuna navigazione.
-
-Alle 10:29:01, circa sei secondi dopo il toggle, \texttt{IpClient.wlan0}
-riceve un ultimo burst di 58\,392 byte: si tratta dell'ultima verifica di
-connettività prima che il client IP riconosca la perdita dell'interfaccia.
-Contestualmente \texttt{NsdService} trasmette 29\,364 byte, notificando la
-scomparsa dei servizi di rete precedentemente annunciati. Dopo le 10:29:02
-il traffico proveniente dall'uid 1073 cessa completamente.
-
-\subsubsection*{Ciclo di vita dei processi}
-
-La sessione \texttt{P00100} (process lifecycle) ha rivelato un'attività
-inaspettatamente ricca nel momento del toggle. Alle 10:28:55, in coincidenza
-esatta con le transazioni Binder, \texttt{system\_server} (pid 776) termina
-sei thread del pool (\texttt{Thread-57} fino a \texttt{Thread-62}) e ne crea
-altrettanti di nuovi (\texttt{child\_pid} 13802--13807): il pool di thread
-viene ricreato in risposta al cambiamento di stato. Nello stesso istante esce
-il thread \texttt{handleEnable}, il cui nome indica esplicitamente il
-completamento dell'operazione di abilitazione; anche \texttt{servicemanager}
-genera un fork.
-
-Alle 10:28:57 \texttt{networkstack} (pid 1046) crea un thread figlio tramite
-un proprio Binder thread. Tra le 10:29:02 e le 10:29:03 si osserva la fase
-conclusiva: \texttt{NetworkMonitor} spawna due processi figli per verificare
-lo stato della connettività, mentre i thread \texttt{Thread-15},
-\texttt{Thread-16} e \texttt{Thread-17} di \texttt{networkstack} escono e
-vengono immediatamente ricreati, segnalando un riavvio interno del sottosistema
-di gestione della rete.
-
-\subsubsection*{Sintesi della catena di eventi}
-
-I dati raccolti dalle diverse probe delineano una sequenza causale coerente
-che si estende su più livelli dello stack software:
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.85\textwidth]{images/timeline_aereo.png}
-    \caption{Sequenza temporale degli eventi osservati durante l'attivazione della modalità aereo.}
-    \label{fig:timeline_aereo}
-\end{figure}
-
-Un'osservazione rilevante emersa dall'analisi è che nessuna singola probe è
-sufficiente a ricostruire l'intera catena. La probe Binder cattura il comando
-iniziale e i suoi destinatari diretti, ma non vede le operazioni kernel
-successive. La probe syscall mostra il punto di contatto con il kernel, ma
-non il contesto IPC che ha originato le chiamate. Le probe di rete e di
-lifecycle completano il quadro aggiungendo rispettivamente la conferma
-dell'interruzione del traffico e la riorganizzazione interna dei processi
-coinvolti. La correlazione temporale tra sessioni distinte si è rivelata
-quindi lo strumento fondamentale per la ricostruzione del comportamento
-del sistema.
-
+% -------------------------------------------------------
 \section{Navigazione web con Chrome}
+\label{sec:chrome}
 
-Il secondo scenario analizzato riguarda una sessione di navigazione web
-tramite il browser Chrome (\texttt{org.chromium.webview\_shell}, uid 10064).
-La sessione, della durata di circa tre minuti, è stata registrata con le
-stesse sette probe del primo scenario. Le interazioni eseguite, con i
-rispettivi istanti approssimati, sono le seguenti: apertura della barra
-di ricerca a 10:07:08, ricerca di \texttt{google.com} a 10:07:15, clic
-sul risultato a 10:07:30, ricerca di \emph{google news} a 10:07:48 e
-apertura di \emph{YouTube} a 10:08:40.
+L'applicazione monitorata è \texttt{org.chromium.webview\_shell} (uid 10064), un'applicazione di test che espone direttamente il motore di rendering WebView di Chromium. Al momento dell'avvio delle probe l'emulatore si trovava sulla schermata home, con Chrome non ancora avviato. Il riferimento temporale t=0s corrisponde all'avvio della probe delle syscall.
 
-\subsubsection*{Attività a livello di syscall}
+Le azioni effettuate durante la sessione sono le seguenti:
 
-L'analisi della sessione syscall (\texttt{P00010}) ha messo in evidenza
-due tipologie distinte di eventi: le chiamate \texttt{connect()} emesse
-da \texttt{NetworkService} e le chiamate \texttt{openat()} distribuite
-su tutti i thread del processo.
+\begin{figure}[h]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        \textbf{Evento} & \textbf{t relativo} & \textbf{Orario assoluto} \\
+        \midrule
+        Avvio sessione            & t = 0s        & 10:06:28     \\
+        Interazione con widget ricerca       & t = 36s       & 10:07:04  \\
+        Ricerca di "google.com" tramite widget        & t = 43s       & 10:07:11 \\
+        Interazione con google.com        & t = 58s       & 10:07:26   \\
+        Ricerca di "google news" tramite google.com        & t = 76s       & 10:07:44             \\
+        \bottomrule
+    \end{tabular}
+    \caption{Timestamp delle attività della sessione}
+    \label{fig:tabella-chrome}
+\end{figure}
 
-Per quanto riguarda le \texttt{connect()}, la probe cattura il numero
-di connessioni aperte al secondo ma non gli indirizzi di destinazione:
-il campo \texttt{arg1}, che contiene il puntatore alla struttura
-\texttt{sockaddr} in memoria, non è decodificabile a posteriori dai log.
-Questa limitazione, intrinseca alla modalità di campionamento della probe,
-impedisce la ricostruzione degli IP contattati e rappresenta un margine
-di miglioramento per versioni future del sistema. Nonostante ciò, i
-conteggi volumetrici mostrano picchi chiaramente correlati alle interazioni:
-3 connessioni al secondo durante la navigazione di base, 39 al secondo
-al momento del caricamento di \texttt{google.com} (10:07:27) e un picco
-massimo di 84 connessioni al secondo a 10:07:50, corrispondente al
-caricamento della homepage di Google con tutte le sue risorse statiche.
-Per YouTube il picco è più contenuto (19 connessioni a 10:08:42), poiché
-il browser riutilizza le connessioni HTTP/2 già aperte verso i server
-Google anziché aprirne di nuove.
+\subsection{Fase preliminare (t=0s -- t+36s)}
 
-L'analisi delle \texttt{openat()} ha rivelato pattern di accesso ai file
-precisi e interpretabili. Nella fase di avvio (10:07:12--10:07:16) Chrome
-accede a \texttt{/dev/binder}, \texttt{/dev/ashmem} e
-\texttt{/dev/\_\_properties\_\_} per l'inizializzazione IPC, e al file
-\texttt{last-exit-info} per verificare l'assenza di crash alla sessione
-precedente. A 10:07:19 \texttt{NetworkService} legge
-\texttt{pubkey\_sha256\_blocklist.txt}, la lista dei certificati revocati,
-prima di stabilire qualsiasi connessione di rete: si tratta di un controllo
-di sicurezza che avviene sistematicamente all'avvio del sottosistema di rete.
-A partire da 10:07:21 compare in modo persistente la directory
-\texttt{cache/WebView/Default/H}, la cache HTTP del browser, acceduta
-continuamente da \texttt{NetworkService} e \texttt{ThreadPoolForeg} per
-verificare la presenza di risorse già scaricate. Il picco di 328 aperture
-di file in un secondo da parte di \texttt{ThreadPoolForeg} a 10:07:51
-corrisponde al caricamento massivo delle risorse della pagina Google.
-Infine, a 10:08:44 compare
-\texttt{/apex/com.android.conscrypt/cacerts/5acf816d.0}, la lettura
-del certificato TLS radice necessario per validare il certificato di
-YouTube, e a 10:08:49 si attiva \texttt{AudioThread} con accessi alla
-directory \texttt{Default/Vid}, segnalando l'inizializzazione del
-sottosistema video in preparazione alla riproduzione.
+Nei primi 36 secondi l'emulatore si trova nella schermata home e non viene effettuata alcuna interazione. Questa fase serve a documentare il comportamento di base del sistema e a distinguere il rumore di fondo dall'attività riconducibile alle azioni utente. Chrome non è ancora in esecuzione: il processo \texttt{org.chromium.webview\_shell} (PID 8373) comparirà nelle probe soltanto dopo l'invio della query.
 
-\subsubsection*{Architettura IPC interna di Chrome}
+La probe di ricezione dati registra traffico in ricezione già a t+2s: si tratta di \texttt{logcat} (PID 676) e di altri servizi di sistema che comunicano su socket locali in modo continuativo, indipendentemente da qualsiasi azione utente.
 
-La sessione Binder (\texttt{P00011}) ha evidenziato un'architettura
-interna a canali separati e specializzati che rimane costante per
-tutta la durata della sessione.
+Il dato più interessante di questa fase è un picco di invio nella probe di invio dati attorno a t+27s--t+28s: il sistema trasmette rispettivamente 6.4~KB e 28.9~KB in due secondi consecutivi. Il traffico non è generato dal browser, che non è ancora avviato, ma dai processi \texttt{app} (PID 615, SurfaceControl) e \texttt{android.ui} (PID 776). Si tratta quasi certamente di comunicazioni interne al compositor grafico di Android.
 
-Il primo canale è quello di rendering grafico: \texttt{RenderThread}
-comunica esclusivamente con \texttt{binder:615\_1} (il processo
-\texttt{surfaceflinger}) tramite chiamate \texttt{oneway}, ovvero
-fire-and-forget. La scelta del modo oneway è coerente con la natura
-del rendering: il browser non ha bisogno di attendere la conferma
-del compositor per procedere con il frame successivo.
-
-Il secondo canale è quello dei dati di rete: \texttt{NetworkService}
-comunica esclusivamente con \texttt{CrRendererMain} tramite chiamate
-sincrone. I picchi di transazioni su questo canale corrispondono con
-precisione alle interazioni registrate: 106 chiamate sincrone al secondo
-a 10:07:27 durante il caricamento di \texttt{google.com}, 145 a 10:07:53
-durante il caricamento della pagina, 127 a 10:08:43 durante il
-caricamento di YouTube.
-
-Il terzo canale, visibile solo nei momenti di digitazione, è quello
-della tastiera virtuale: \texttt{InputConnection} invia chiamate
-\texttt{oneway} verso \texttt{putmethod.latin} durante le ricerche
-(10:07:39--10:07:42 e 10:08:35--10:08:36), notificando l'input
-dell'utente alla tastiera senza attendere risposta.
-
-Un evento isolato di particolare interesse si osserva a 10:08:48--10:08:49:
-\texttt{AudioThread} contatta \texttt{servicemanager} per ottenere
-un riferimento al servizio audio, poi stabilisce una connessione con
-\texttt{binder:668\_4} e infine, a 10:08:59, comunica con
-\texttt{AudioOut\_15}. Questa sequenza — discovery del servizio tramite
-servicemanager, acquisizione del canale, connessione al dispositivo di
-output — rappresenta la procedura standard di inizializzazione audio
-su Android ed è osservabile con precisione nella traccia Binder.
-
-\subsubsection*{Traffico di rete}
-
-Le sessioni \texttt{P01010} (net\_send) e \texttt{P01011} (net\_recv)
-hanno confermato la separazione architetturale già osservata nella
-traccia Binder. \texttt{NetworkService} mostra un profilo di traffico
-asimmetrico: invia volumi significativi di dati (le richieste HTTP)
-e riceve pochissimo, nell'ordine di poche decine di byte per secondo.
-\texttt{m.webview\_shell}, al contrario, invia poco e riceve
-costantemente tra i 2 e i 17\,KB al secondo: questi byte non
-rappresentano traffico esterno ma dati trasferiti da \texttt{NetworkService}
-al processo principale tramite socket Unix locale.
-
-Il picco più rilevante è di 73.719 byte inviati da \texttt{NetworkService}
-a 10:08:03, circa otto secondi dopo il clic su \texttt{google.com}: è
-il momento in cui vengono scaricati i bundle JavaScript più pesanti della
-pagina. A confronto, il picco al momento del clic stesso (10:07:50)
-è di 12.054 byte, corrispondente alle richieste iniziali verso i server
-Google. Per YouTube i picchi a 10:08:42 (19.962 byte) e 10:08:43
-(14.333 byte) sono più contenuti e distribuiti, coerentemente con
-l'uso di connessioni HTTP/2 preesistenti.
-
-\texttt{InsetsAnimation} compare sporadicamente con byte in ricezione
-nei momenti di transizione UI (apertura della tastiera, animazione
-della barra di ricerca): si tratta del sottosistema Android che
-trasmette coordinate di layout aggiornate al processo Chrome tramite
-socket locale.
-
-\subsubsection*{Probe net\_accept: un risultato atteso}
-
-La sessione \texttt{P01001} (net\_accept) ha registrato una sola
-connessione in ingresso per Chrome nell'intera sessione: quella di
-\texttt{Chrome\_DevTools} a 10:07:14, il canale di debugging interno
-che il browser apre su socket locale all'avvio. L'assenza di ulteriori
-connessioni accettate è un risultato atteso e metodologicamente
-significativo: Chrome opera esclusivamente come client, aprendo
-connessioni verso l'esterno tramite \texttt{connect()} e non
-accettandone dall'esterno tramite \texttt{accept()}. Questo comportamento
-è coerente con il modello di sicurezza di Android, che non prevede
-che le applicazioni espongano porte in ascolto accessibili dalla rete.
-La quasi-assenza di eventi nella sessione net\_accept costituisce
-quindi una conferma del corretto funzionamento del browser, oltre che
-una dimostrazione della capacità del sistema di rilevare anomalie:
-qualsiasi applicazione che mostrasse un volume significativo di
-\texttt{accept()} inaspettati rappresenterebbe un segnale di allerta.
-
-\subsubsection*{Sintesi}
-
-L'analisi della sessione di navigazione web ha prodotto un quadro
-coerente e complementare rispetto al primo scenario. Rispetto alla
-modalità aereo, dove la catena causale era lineare e relativamente
-breve, la navigazione web ha rivelato un'architettura interna
-molto più articolata, con canali IPC specializzati per funzione,
-accessi al filesystem strutturati per fasi e un traffico di rete
-distribuito su processi distinti con ruoli ben definiti.
-
-La correlazione tra le quattro probe ha permesso di ricostruire
-il flusso completo di una ricerca web a diversi livelli:
-la probe syscall mostra le connessioni aperte e i file acceduti,
-la probe Binder mostra la comunicazione tra i componenti interni
-del browser e tra il browser e il sistema operativo, le probe
-di rete mostrano i volumi di dati scambiati e la direzione
-del flusso. Nessuna di queste probe, presa singolarmente,
-sarebbe sufficiente a descrivere il comportamento del sistema
-in modo completo.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/picco-invii.png}
+    \caption{Picco di invii nel report}
+    \label{fig:picco-invii}
+\end{figure}
 
 
-% ------------------------------------------------------------
-\section{Apertura della galleria e acquisizione fotografica}
-% ------------------------------------------------------------
+Il fatto che questo picco preceda di quasi dieci secondi qualsiasi interazione utente è utile a ricordare che il sistema operativo Android è tutt'altro che silenzioso anche in idle.
 
-Il terzo scenario analizzato riguarda una sessione che combina
-l'uso dell'applicazione galleria (\texttt{com.android.gallery3d},
-uid~10066) con l'acquisizione di una fotografia tramite la
-fotocamera integrata. La registrazione, della durata di circa
-tre minuti, ha coinvolto l'intera suite di sette probe. Le
-interazioni eseguite, con i rispettivi istanti riferiti
-all'avvio della probe syscall (\texttt{P00010\_2026-03-04\_10-32-37}),
-sono le seguenti: apertura della galleria a +15\,s (10:32:52),
-chiusura della galleria e apertura della fotocamera a +48\,s
-(10:33:25), scatto della fotografia a +64\,s (10:33:41),
-prima riapertura della galleria a +78\,s (10:33:55) e seconda
-riapertura a +170\,s (10:35:27). Vale la pena osservare che
-la probe Binder (\texttt{P00011}) è stata avviata cinque secondi
-più tardi rispetto alla probe syscall: la fase di inizializzazione
-della galleria è pertanto visibile in modo completo solo nella
-traccia syscall e lifecycle, mentre la traccia Binder è disponibile
-a partire da 10:32:52.
+\subsection{Invio della query (t+36s -- t+58s)}
 
-\subsubsection*{Ciclo di vita dei processi}
+Il click sul widget di ricerca a t+36s non produce eventi netti nelle probe di rete. L'attività misurabile inizia invece a partire da t+38s, circa cinque secondi prima dell'invio formale della query. La probe delle syscall registra a 10:07:06 una \texttt{connect} da parte di \texttt{.quicksearchbox} (PID 1650, uid 10073), l'applicazione Google Search che gestisce il widget nella schermata home. Contestualmente, la probe di accettazione connessioni mostra che \texttt{netd} accetta una connessione e istanzia un thread denominato \texttt{Dns\_100\_10073}: il suffisso \texttt{10073} corrisponde all'uid di GoogleSearch, confermando che il thread è stato creato proprio per gestire la richiesta DNS di quell'applicazione. È quindi l'app di ricerca Google, e non il browser, ad avviare la risoluzione del nome mentre l'utente digita la query, prima ancora che Chrome venga avviato.
 
-La probe \texttt{P00100} ha catturato in modo preciso i tre
-cicli di vita distinti del processo \texttt{droid.gallery3d}
-e l'intero ciclo di vita della fotocamera, rivelando una
-caratteristica rilevante dell'architettura Android: ogni
-apertura di un'applicazione che era stata chiusa dal sistema
-produce un nuovo processo con un nuovo PID.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/dns-correlation.png}
+    \caption{Correlazione tra la \texttt{connect} di GoogleSearch (P00010) e il thread \texttt{Dns\_100\_10073} istanziato da netd (P01001).}
+    \label{fig:dns-correlation}
+\end{figure}
 
-Alla prima apertura della galleria (10:32:46), il processo
-\texttt{main} (pid~516, lo Zygote di Android) effettua un
-fork che genera \texttt{droid.gallery3d} con pid~14805.
-Nei secondi immediatamente successivi il processo espande
-il proprio pool di thread con binder worker, RenderThread,
-GLThread~41 e thread-pool generici. A 10:33:11, nel momento
-in cui l'utente chiude la galleria per aprire la fotocamera,
-si osserva un exit di massa: tutti i thread di pid~14805
-terminano in rapida successione nello stesso secondo, un
-pattern che distingue una chiusura controllata da un crash.
+A t+45s le probe di rete mostrano la prima attività di rete del processo Chrome: alle 10:07:13 la probe di invio dati registra il primo \texttt{sendto} e la probe di ricezione dati registra il primo \texttt{recvfrom}, entrambi dal thread \texttt{RenderThread} (PID 8373, tid 8392). I thread \texttt{m.webview\_shell} e \texttt{NetworkService} compaiono rispettivamente a 10:07:15 e 10:07:17. Il fatto che thread con nomi diversi condividano lo stesso PID rispecchia l'architettura multi-thread di Chromium: \texttt{RenderThread}, \texttt{m.webview\_shell} e \texttt{NetworkService} sono tutti thread del medesimo processo applicativo.
 
-Tra 10:33:10 e 10:33:11 compare brevemente il processo
-\texttt{.intentresolver} (pid~15043), che Android avvia
-come intermediario per risolvere l'intent di apertura
-della fotocamera prima di chiudere la galleria.
+A t+46s la probe del Binder registra i primi eventi Binder associati a \url{CrRenderer\_Main} (PID 8406). Questo processo è il renderer di Chromium ed è figlio di \url{webview\_zygote} (PID 1123), come indicato dalla probe del ciclo di vita dei processi. Il legame tra i due è rilevante: \texttt{webview\_zygote} è il processo da cui Android istanzia i renderer WebView per isolarli dal processo principale dell'applicazione. La comunicazione tra \texttt{NetworkService} e il renderer avviene via Binder, non via socket: nell'arco dell'intera sessione la probe del Binder registra 1031 transazioni tra \texttt{NetworkService} e \texttt{binder:8406\_5} per un totale di circa 339~KB. In altri termini, ogni risposta HTTP ricevuta dalla rete viene consegnata al renderer attraverso questo canale IPC prima di essere visualizzata.
 
-L'apertura della fotocamera a 10:33:26 genera il pattern
-di lifecycle più complesso dell'intera sessione.
-\texttt{android.camera2} (pid~1913) espande il proprio
-pool con decine di thread specializzati in pochi secondi:
-\texttt{SoundDecoder}, \texttt{NDK MediaCodec}, \texttt{fifo-pool-thread}
-(thread a priorità real-time per il processing dei frame),
-\texttt{CameraHandler}, \texttt{pool-10-thread} e
-\texttt{CameraDeviceExecutor}. Parallelamente, a 10:33:27--10:33:29,
-il provider HAL della fotocamera (\texttt{camera.provider},
-pid~604) e il servizio di fotocamera (\texttt{cameraservice},
-pid~663) espandono i propri binder pool con nuovi worker
-(\texttt{binder:604\_x}, \texttt{binder:663\_x}).
-A 10:33:38--10:33:39, dopo lo scatto, compare
-\texttt{rs.media.module} (pid~1510), il processo
-responsabile della scrittura del file JPEG nel MediaStore.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/binder-networkservice.png}
+    \caption{Transazioni Binder tra \texttt{NetworkService} e \texttt{CrRendererMain}: 1031 transazioni per circa 339~KB.}
+    \label{fig:binder-networkservice}
+\end{figure}
 
-La chiusura della fotocamera avviene a 10:33:47--10:33:48
-con un nuovo exit di massa: terminano \texttt{Cam0\_ResultDisp},
-\texttt{C3Dev-0-ReqQueu}, \texttt{C3Dev-0-Status},
-\texttt{StreamBufMgr}, \texttt{EmulatedSensor} e
-\texttt{camera.provider}. Alla prima riapertura della galleria
-(10:33:51), lo Zygote genera un nuovo processo con pid~15495,
-distinto dal precedente pid~14805. L'identità dell'applicazione
-è la stessa ma l'istanza di processo è nuova, con stato
-interno reinizializzato. A 10:35:13 tutti i thread di
-pid~15495 terminano e a 10:35:17 la terza istanza della
-galleria (pid~16236) viene creata con lo stesso pattern.
+La probe di associazione socket registra il primo \texttt{bind} di \texttt{Chrome\_DevTools} su socket astratto a t+46s, in coincidenza con l'attivazione del renderer.
 
-\subsubsection*{Accessi al filesystem}
+\subsection{Caricamento di google.com (t+58s -- t+76s)}
 
-L'analisi delle \texttt{openat()} catturate dalla probe
-\texttt{P00010} per uid~10066 rivela tre fasi distinte
-che si ripetono, con variazioni, a ogni apertura della
-galleria.
+Il click sul link google.com a t+58s produce un burst di otto operazioni \texttt{bind} nel secondo successivo, tutte attribuibili a \texttt{NetworkService}. Il comportamento indica l'apertura di nuovi socket per il caricamento parallelo delle risorse della pagina, coerente con il multiplexing di stream HTTP/2 utilizzato da Chrome.
 
-Nella fase di inizializzazione (10:32:46--10:32:48 per la
-prima apertura; 10:33:51--10:33:52 e 10:35:17--10:35:19
-per le successive), i thread principali accedono a
-\texttt{/dev/\_\_properties\_\_} per leggere le proprietà
-di sistema, a \texttt{/data/dalvik-cache/x86\_64/\allowbreak
-product@app@Gallery2@Gallery2.apk@classes.dex} per caricare
-il bytecode compilato dell'applicazione e alle librerie
-native del sistema grafico in
-\texttt{/apex/com.google.cf.vulkan/lib64/} e
-\texttt{/vendor/lib64/}. Il \texttt{RenderThread} accede
-alla cache shader di Skia in
-\texttt{/data/user\_de/0/com.android.gallery3d/\allowbreak
-cache/com.android.skia.shaders\_cache}, riutilizzando shader
-precompilati per accelerare il rendering.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/bind-burst.png}
+    \caption{Burst di otto operazioni \texttt{bind} attribuibili a \texttt{NetworkService} nel secondo successivo al click su google.com.}
+    \label{fig:bind-burst}
+\end{figure}
 
-Nella fase di scansione del contenuto multimediale, osservabile
-a 10:32:51 e ripetuta a ogni riapertura, \texttt{SharedPreferences}
-legge la configurazione salvata dell'applicazione da
-\texttt{/data/user/0/com.android.gallery3d/shared\_prefs/} e
-\texttt{thread-pool-1} avvia la scansione della cache di
-miniature in \texttt{/storage/emulated/0/Android/data/\allowbreak
-com.android.gallery3d/cache/}. A 10:32:55, nel momento in
-cui la galleria diventa visiva, il thread principale accede
-a\texttt{/storage/emulated/0/Pictures/IMG\_20260303\_221740.jpg},
-la foto più recente presente nel dispositivo prima della sessione,
-e al file \texttt{share\_history.xml}, che registra la cronologia
-di condivisione per ordinare i suggerimenti di condivisione.
+La probe di accettazione connessioni mostra un picco di accept a t+70s (10:07:38), quando \texttt{binder:513\_2} gestisce un volume insolitamente alto di connessioni in ingresso in un breve intervallo. Il ritardo di dodici secondi rispetto al click è compatibile con il tempo di caricamento del contenuto dinamico della homepage di Google, che include numerose richieste secondarie per immagini, script e dati personalizzati.
 
-Dopo lo scatto (10:33:57--10:34:01), i thread del pool
-(\texttt{thread-pool-0}, \texttt{thread-pool-2},
-\texttt{thread-pool-3}) aprono in sequenza i tre file
-presenti nella cartella Pictures:
-\texttt{IMG\_20260304\_113335.jpg},
-\texttt{IMG\_20260304\_113339.jpg} e
-\texttt{IMG\_20260304\_113342.jpg}. Quest'ultimo è il file
-appena acquisito; la sua comparsa nella traccia a 10:34:01
-documenta il momento esatto in cui il MediaStore ha completato
-la scrittura e la galleria ne ha rilevato la presenza tramite
-la notifica del Content Provider. A 10:34:11 e 10:34:34
-compaiono \texttt{Thread-12} e \texttt{Thread-13} che
-accedono a \texttt{/storage/emulated/0/Android/data/\allowbreak
-com.android.gallery3d/cache/remote-thumbnails}, la cache
-delle miniature remote: si tratta del thread di generazione
-delle anteprime che processa le immagini in background.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/accept-spike.png}
+    \caption{Picco di connessioni in ingresso gestite da \texttt{binder:513\_2} a t+70s.}
+    \label{fig:accept-spike}
+\end{figure}
 
-\subsubsection*{Architettura IPC Binder}
+\subsection{Ricerca ``google news'' (t+76s e oltre)}
 
-La traccia Binder (\texttt{P00011}) mostra per la galleria
-un'architettura IPC sostanzialmente più semplice rispetto
-a Chrome, dominata da due destinatari fissi.
+La ricerca di ``google news'' a t+76s produce la risposta più netta dell'intera sessione. La probe delle syscall registra il picco assoluto di syscall a t+76s--t+77s: 608 eventi al secondo, contro una media di circa 187 per l'intera sessione. Si tratta quasi interamente di chiamate \texttt{openat} generate dal thread \texttt{ThreadPoolForeg} (PID 8373). L'analisi degli eventi mostra due categorie di accessi distinte: la prima riguarda la cache HTTP di Chromium, con aperture ripetute di file sotto il percorso \texttt{/data/user/0/org.chromium.webview\_shell/cache/WebView/Default/H}; la seconda riguarda la lettura delle statistiche di ogni thread del processo tramite \url{/proc/8373/task/tid/stat} per ciascuno degli oltre venti thread attivi. Quest'ultimo pattern è riconducibile al profiler interno di Chromium, che campiona periodicamente lo stato dei thread per il monitoraggio delle prestazioni.
 
-Il primo e principale destinatario è \texttt{binder:615\_4},
-un worker thread di \texttt{surfaceflinger} (pid~615).
-Verso di esso convergono quasi tutte le transazioni oneway
-della galleria: il thread principale, \texttt{GLThread~41}
-e \texttt{RenderThread} inviano frame grafici al compositor
-in modo fire-and-forget per tutta la durata della sessione,
-con frequenze di 10--40 transazioni al secondo durante la
-navigazione tra le foto e picchi fino a 42 transazioni al
-secondo a 10:34:32. La scelta del modo oneway per il canale
-verso surfaceflinger è identica a quella osservata in Chrome
-e riflette un comportamento di sistema: nessuna applicazione
-attende la conferma del compositor prima di procedere con
-il frame successivo.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/openat-peak.png}
+    \caption{Picco di 608 eventi syscall al secondo a t+76s--t+77s, generato da \texttt{ThreadPoolForeg} (PID 8373).}
+    \label{fig:openat-peak}
+\end{figure}
 
-Il secondo destinatario è \texttt{binder:776\_5},
-un worker di \texttt{system\_server} (pid~776).
-Verso di esso vengono indirizzate le transazioni sincrone
-della galleria, ovvero le richieste che richiedono una
-risposta: accessi al ContentProvider multimediale,
-notifiche di visibilità della finestra e query al servizio
-di gestione delle attività (ActivityManagerService).
-Le transazioni sincrone verso \texttt{binder:776\_5}
-si intensificano nei momenti di apertura e chiusura
-dell'applicazione e in corrispondenza delle interazioni
-dell'utente.
+Il picco di invio dati segue con un ritardo di circa dodici secondi: a t+88s la probe di invio dati registra 79.4~KB inviati in un secondo, il valore massimo dell'intera sessione. Il ritardo riflette il tempo che il browser impiega a ricevere i risultati, analizzarli tramite il renderer e inviare le richieste secondarie per i contenuti collegati.
 
-Tre momenti nella traccia Binder sono particolarmente
-significativi. Il primo è a 10:33:05--10:33:07, quando
-\texttt{GLThread~41} e \texttt{RenderThread} aprono
-transazioni sincrone verso \texttt{binder:528\_2} e
-\texttt{binder:613\_5}: si tratta rispettivamente
-di \texttt{servicemanager} e \texttt{audioserver},
-contattati in preparazione alla chiusura dell'applicazione.
-Il secondo è a 10:33:51, la riapertura della galleria
-dopo lo scatto: \texttt{droid.gallery3d} invia 43
-transazioni sincrone nello stesso secondo verso
-\texttt{servicemanager}, \texttt{binder:776\_5} e
-\texttt{binder:613\_5}, una densità che riflette
-la reinizializzazione completa di tutti i sottosistemi
-dell'applicazione nel nuovo processo pid~15495.
-Il terzo è a 10:33:51--10:33:54, quando \texttt{Thread-3}
-e \texttt{Thread-3} inviano transazioni verso
-\texttt{binder:1510\_6}: si tratta di
-\texttt{rs.media.module}, il processo MediaStore che ha
-già scritto la foto e sta notificando la galleria
-della sua disponibilità.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/send-peak.png}
+    \caption{Picco di 79.4~KB inviati in un secondo a t+88s, valore massimo dell'intera sessione.}
+    \label{fig:send-peak}
+\end{figure}
 
-Nella fase di consultazione delle foto (10:34:18--10:35:10),
-le transazioni si stabilizzano in un ritmo regolare di
-10--20 oneway al secondo verso surfaceflinger alternate
-a gruppi periodici di 5--16 transazioni sincrone verso
-system\_server, pattern coerente con lo scorrimento
-dell'utente tra le immagini.
+\subsection{Osservazioni sull'architettura osservata}
+\label{subsec:chrome-arch}
 
-\subsubsection*{Traffico di rete locale}
+Il monitoraggio parallelo delle sette probe ha permesso di osservare una catena di eventi che nessuna singola probe avrebbe potuto documentare per intero.
 
-Le probe \texttt{P01010} e \texttt{P01011} hanno registrato
-esclusivamente traffico su socket Unix locali, senza alcun
-byte verso indirizzi IP esterni. Questo risultato era atteso
-per un'applicazione di gestione delle fotografie locali e
-ne conferma il comportamento.
+Il PID 8373 compare sotto nomi di thread diversi nelle probe di rete: \url{Network\_Service}, \url{m.webview\_shell}, \texttt{InputDispatcher}, \url{Chrome\_DevTools} e \url{ThreadPool\_Foreg} sono tutti thread dello stesso processo applicativo. Questo è un effetto diretto del limite di 15 caratteri del campo \texttt{comm} nel kernel Linux, che in presenza di applicazioni multi-thread riporta il nome del singolo thread piuttosto che quello del processo. Senza incrociare i dati PID tra probe diverse, il processo Chrome apparirebbe frammentato in una serie di entità distinte e non correlate.
 
-Il mittente dominante nella traccia net\_send è
-\texttt{app} (pid~615, ovvero \texttt{surfaceflinger})
-con 537.600 byte inviati in 2.400 chiamate, seguito da
-\texttt{appSf} con 193.536 byte e \texttt{InputDispatcher}
-con 151.280 byte. \texttt{droid.gallery3d} compare come
-mittente con soli 4.072 byte in 143 chiamate: la galleria
-si limita a inviare comandi al compositor grafico tramite
-Binder, delegando l'effettivo trasporto dei buffer grafici
-a surfaceflinger stesso.
+Il renderer \texttt{CrRendererMain} (PID 8406) non ha accesso diretto alla rete. Tutta la comunicazione tra il codice di rendering e lo stack di rete passa attraverso Binder: la catena osservata è \texttt{m.webview\_shell} $\rightarrow$ Binder $\rightarrow$ \texttt{NetworkService} $\rightarrow$ socket. Questo isolamento, documentato dalla probe del Binder e dalla probe di invio dati in modo complementare, è una scelta progettuale di Chromium per separare il processo di rendering, potenzialmente esposto a contenuti non fidati, dal processo che gestisce le connessioni di rete.
 
-Il ricevitore dominante è il processo \texttt{logcat}
-(pid~676) con 906.160 byte ricevuti, un volume che riflette
-la generazione di log di sistema durante l'intera sessione.
-\texttt{droid.gallery3d} riceve 219.976 byte in 987 chiamate,
-corrispondenti alle notifiche IPC e ai dati di layout
-trasmessi da system\_server tramite socket Unix.
-I picchi di traffico a 10:33:55 (80.817 byte ricevuti,
-74.660 byte inviati) corrispondono alla riapertura della
-galleria dopo lo scatto, quando il sistema trasmette
-all'applicazione l'insieme aggiornato dei metadati
-multimediali tramite il ContentProvider.
+Complessivamente, la sessione ha prodotto 42\,343 transazioni Binder per un totale di circa 17~MB trasferiti via IPC, a fronte di 1.55~MB inviati e 2.37~MB ricevuti via socket. Il volume di traffico IPC interno supera quindi di circa cinque volte il traffico di rete esterno: un dato che testimonia quanto l'architettura di Android dipenda dalla comunicazione inter-processo anche per operazioni che l'utente percepisce come semplice navigazione web.
 
-\subsubsection*{Probe net\_accept e net\_bind: due risultati attesi}
-
-La sessione \texttt{P01000} (net\_bind) ha registrato zero
-eventi per l'intera durata della sessione: la galleria non
-apre alcuna porta in ascolto. La sessione \texttt{P01001}
-(net\_accept) ha registrato 280 eventi totali, nessuno dei
-quali attribuibile a \texttt{droid.gallery3d}: gli accept
-osservati appartengono a \texttt{init} (248 accept, sistema
-di multiplexing dei socket di sistema), \texttt{binder:513\_2}
-(\texttt{netd}, con 12 accept periodici ogni 60 secondi,
-a 10:33:02, 10:34:02 e 10:35:02, riconducibili a keepalive
-di rete), \texttt{prng\_seeder} (10 accept) e \texttt{traced}
-(10 accept).
-
-Come nel caso di Chrome, l'assenza di accept e bind da parte
-dell'applicazione è un risultato metodologicamente rilevante.
-Per la galleria il significato è ancor più netto: a differenza
-di un browser, che potrebbe in linea teorica avere ragioni
-per aprire porte locali (come il canale DevTools), un'applicazione
-di gestione di file fotografici non ha alcuna ragione per
-farlo. Il valore dimostrativo delle probe net\_bind e
-net\_accept in questo scenario consiste nell'attestare
-che il comportamento osservato corrisponde al comportamento
-atteso, e che il sistema di monitoraggio è in grado di
-rilevare immediatamente qualsiasi deviazione da questo profilo.
-
-\subsubsection*{Sintesi}
-
-Lo scenario galleria e fotocamera ha evidenziato aspetti
-dell'architettura Android non osservabili nei due scenari
-precedenti. Il più rilevante è la gestione del ciclo di vita
-dei processi: ogni apertura della galleria dopo una chiusura
-genera un nuovo PID, e la fotocamera coordina un ecosistema
-di processi distinti (\texttt{android.camera2},
-\texttt{camera.provider}, \texttt{cameraservice},
-\texttt{rs.media.module}) che si espandono e contraggono
-dinamicamente nel corso della sessione. La probe
-\texttt{P00100} ha permesso di datare con precisione
-al secondo ogni transizione: apertura, chiusura e handoff
-tra processi sono leggibili come sequenze di fork ed exit
-nella traccia lifecycle.
-
-La correlazione tra probe syscall e probe lifecycle ha
-consentito di collegare la comparsa del file
-\texttt{IMG\_20260304\_113342.jpg} nella traccia
-\texttt{openat()} alla notifica ricevuta dalla galleria
-tramite \texttt{rs.media.module}, ricostruendo la catena
-causale dallo scatto alla visualizzazione in galleria.
-Anche in questo scenario, nessuna singola probe avrebbe
-fornito una visione completa: la traccia Binder mostra
-la comunicazione tra i componenti, la traccia syscall
-mostra gli accessi ai file, la traccia lifecycle
-documenta la sequenza di nascita e morte dei processi
-e le tracce di rete confermano l'assenza di comunicazione
-esterna, tutti elementi che insieme compongono un quadro
-coerente e verificabile del comportamento del sistema.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/session-totals.png}
+    \caption{Riepilogo del traffico complessivo della sessione: 42\,343 transazioni Binder (17~MB) e traffico di rete (1.55~MB inviati, 2.37~MB ricevuti).}
+    \label{fig:session-totals}
+\end{figure}
