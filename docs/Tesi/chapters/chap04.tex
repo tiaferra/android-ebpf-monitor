@@ -8,59 +8,44 @@ Gli scenari analizzati sono tre: l'attivazione della modalità aereo, una sessio
 \section{Navigazione web con Chrome}
 \label{sec:chrome}
 
-L'applicazione monitorata è \texttt{org.chromium.webview\_shell} (uid 10064), un'applicazione di test che espone direttamente il motore di rendering WebView di Chromium. Al momento dell'avvio delle probe l'emulatore si trovava sulla schermata home, con Chrome non ancora avviato. Il riferimento temporale t=0s corrisponde all'avvio della probe delle syscall.
+L'applicazione monitorata è \texttt{org.chromium.webview\_shell} (uid 10064), un'applicazione di test che espone direttamente il motore di rendering WebView di Chromium. Lo scenario consiste nella navigazione web a partire dalla schermata home dell'emulatore: viene prima effettuata una ricerca tramite il widget di ricerca presente nella home, poi si naviga sul sito google.com e si esegue una ricerca di notizie. Le probe vengono avviate prima di qualsiasi interazione con il browser, per poter documentare il comportamento di base del sistema e distinguerlo dall'attività generata dall'utente.
 
-Le azioni effettuate durante la sessione sono le seguenti:
+La sessione si articola in quattro fasi, identificate in base alle azioni effettuate:
 
 \begin{figure}[h]
     \centering
-    \begin{tabular}{lcc}
-        \toprule
-        \textbf{Evento} & \textbf{t relativo} & \textbf{Orario assoluto} \\
-        \midrule
-        Avvio sessione            & t = 0s        & 10:06:28     \\
-        Interazione con widget ricerca       & t = 36s       & 10:07:04  \\
-        Ricerca di "google.com" tramite widget        & t = 43s       & 10:07:11 \\
-        Interazione con google.com        & t = 58s       & 10:07:26   \\
-        Ricerca di "google news" tramite google.com        & t = 76s       & 10:07:44             \\
-        \bottomrule
-    \end{tabular}
-    \caption{Timestamp delle attività della sessione}
-    \label{fig:tabella-chrome}
+    \includegraphics[width=\textwidth]{images/timeline-rete.png}
+    \caption{Sequenza delle azioni nella sessione di navigazione web.}
+    \label{fig:timeline-chrome}
 \end{figure}
 
-\subsection{Fase preliminare (t=0s -- t+36s)}
+\subsection{Fase preliminare}
 
-Nei primi 36 secondi l'emulatore si trova nella schermata home e non viene effettuata alcuna interazione. Questa fase serve a documentare il comportamento di base del sistema e a distinguere il rumore di fondo dall'attività riconducibile alle azioni utente. Chrome non è ancora in esecuzione: il processo \texttt{org.chromium.webview\_shell} (PID 8373) comparirà nelle probe soltanto dopo l'invio della query.
+Nei primi 36 secondi l'emulatore si trova nella schermata home e non viene effettuata alcuna interazione. Questa fase serve a documentare il comportamento di base del sistema: Android non è silenzioso nemmeno in idle, e senza questa baseline sarebbe impossibile distinguere il traffico di fondo dall'attività riconducibile alle azioni utente.
 
-La probe di ricezione dati registra traffico in ricezione già a t+2s: si tratta di \texttt{logcat} (PID 676) e di altri servizi di sistema che comunicano su socket locali in modo continuativo, indipendentemente da qualsiasi azione utente.
-
-Il dato più interessante di questa fase è un picco di invio nella probe di invio dati attorno a t+27s--t+28s: il sistema trasmette rispettivamente 6.4~KB e 28.9~KB in due secondi consecutivi. Il traffico non è generato dal browser, che non è ancora avviato, ma dai processi \texttt{app} (PID 615, SurfaceControl) e \texttt{android.ui} (PID 776). Si tratta quasi certamente di comunicazioni interne al compositor grafico di Android.
+La probe di ricezione dati mostra traffico già dai primi secondi, generato da \texttt{logcat} e da altri servizi di sistema che comunicano su socket locali in modo continuativo. Più interessante è un picco di invio che compare intorno a t+27s--t+28s, con il sistema che trasmette prima 6.4~KB poi 28.9~KB in due secondi consecutivi. Il traffico è generato dai processi \texttt{app} (SurfaceControl) e \texttt{android.ui}, e non ha nulla a che fare con il browser, che non è ancora avviato. Si tratta di comunicazioni interne al compositor grafico, un esempio di quanto il sistema operativo produca traffico di rete per ragioni completamente indipendenti dall'utente.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/picco-invii.png}
-    \caption{Picco di invii nel report}
+    \includegraphics[width=\textwidth]{images/picco-invii.png}
+    \caption{Picco di invio nella fase preliminare, generato dal compositor grafico prima di qualsiasi interazione utente.}
     \label{fig:picco-invii}
 \end{figure}
 
+\subsection{Invio della query}
 
-Il fatto che questo picco preceda di quasi dieci secondi qualsiasi interazione utente è utile a ricordare che il sistema operativo Android è tutt'altro che silenzioso anche in idle.
-
-\subsection{Invio della query (t+36s -- t+58s)}
-
-Il click sul widget di ricerca a t+36s non produce eventi netti nelle probe di rete. L'attività misurabile inizia invece a partire da t+38s, circa cinque secondi prima dell'invio formale della query. La probe delle syscall registra a 10:07:06 una \texttt{connect} da parte di \texttt{.quicksearchbox} (PID 1650, uid 10073), l'applicazione Google Search che gestisce il widget nella schermata home. Contestualmente, la probe di accettazione connessioni mostra che \texttt{netd} accetta una connessione e istanzia un thread denominato \texttt{Dns\_100\_10073}: il suffisso \texttt{10073} corrisponde all'uid di GoogleSearch, confermando che il thread è stato creato proprio per gestire la richiesta DNS di quell'applicazione. È quindi l'app di ricerca Google, e non il browser, ad avviare la risoluzione del nome mentre l'utente digita la query, prima ancora che Chrome venga avviato.
+Il click sul widget di ricerca non produce eventi netti nelle probe di rete. L'attività misurabile parte qualche secondo dopo, quando la probe delle syscall intercetta una \texttt{connect} da parte di \texttt{.quicksearchbox} (PID 1650, uid 10073), l'applicazione Google Search che gestisce il widget nella schermata home. Contestualmente, la probe di accettazione connessioni mostra che \texttt{netd} crea un thread denominato \texttt{Dns\_100\_10073}: il suffisso \texttt{10073} corrisponde all'uid di GoogleSearch, confermando che il thread nasce per gestire la sua richiesta DNS. È quindi l'app di ricerca Google, e non il browser, ad avviare la risoluzione del nome mentre l'utente digita la query.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/dns-correlation.png}
-    \caption{Correlazione tra la \texttt{connect} di GoogleSearch (P00010) e il thread \texttt{Dns\_100\_10073} istanziato da netd (P01001).}
+    \caption{Correlazione tra la \texttt{connect} di \texttt{.quicksearchbox} e il thread \texttt{Dns\_100\_10073} istanziato da netd.}
     \label{fig:dns-correlation}
 \end{figure}
 
-A t+45s le probe di rete mostrano la prima attività di rete del processo Chrome: alle 10:07:13 la probe di invio dati registra il primo \texttt{sendto} e la probe di ricezione dati registra il primo \texttt{recvfrom}, entrambi dal thread \texttt{RenderThread} (PID 8373, tid 8392). I thread \texttt{m.webview\_shell} e \texttt{NetworkService} compaiono rispettivamente a 10:07:15 e 10:07:17. Il fatto che thread con nomi diversi condividano lo stesso PID rispecchia l'architettura multi-thread di Chromium: \texttt{RenderThread}, \texttt{m.webview\_shell} e \texttt{NetworkService} sono tutti thread del medesimo processo applicativo.
+La prima attività di rete del processo Chrome compare circa nove secondi dopo il click, quando le probe di invio e ricezione dati registrano i primi eventi dal thread \texttt{RenderThread} (PID 8373). I thread \texttt{m.webview\_shell} e \texttt{NetworkService} compaiono nei secondi successivi. Il fatto che thread con nomi diversi condividano lo stesso PID è un effetto del limite di 15 caratteri del campo \texttt{comm} nel kernel Linux, che riporta il nome del singolo thread piuttosto che quello del processo. Senza incrociare i dati PID tra probe diverse, il processo Chrome apparirebbe frammentato in entità distinte e non correlate.
 
-A t+46s la probe del Binder registra i primi eventi Binder associati a \url{CrRenderer\_Main} (PID 8406). Questo processo è il renderer di Chromium ed è figlio di \url{webview\_zygote} (PID 1123), come indicato dalla probe del ciclo di vita dei processi. Il legame tra i due è rilevante: \texttt{webview\_zygote} è il processo da cui Android istanzia i renderer WebView per isolarli dal processo principale dell'applicazione. La comunicazione tra \texttt{NetworkService} e il renderer avviene via Binder, non via socket: nell'arco dell'intera sessione la probe del Binder registra 1031 transazioni tra \texttt{NetworkService} e \texttt{binder:8406\_5} per un totale di circa 339~KB. In altri termini, ogni risposta HTTP ricevuta dalla rete viene consegnata al renderer attraverso questo canale IPC prima di essere visualizzata.
+Pochi secondi dopo, la probe del Binder registra i primi eventi associati a \texttt{CrRendererMain} (PID 8406), il renderer di Chromium. Questo processo è figlio di \texttt{webview\_zygote} (PID 1123), il processo da cui Android istanzia i renderer WebView per isolarli dall'applicazione principale. La comunicazione tra \texttt{NetworkService} e il renderer avviene via Binder, non via socket: nell'arco dell'intera sessione vengono registrate 1031 transazioni tra i due per un totale di circa 339~KB. Ogni risposta HTTP ricevuta dalla rete viene consegnata al renderer attraverso questo canale IPC prima di essere visualizzata.
 
 \begin{figure}[H]
     \centering
@@ -69,11 +54,9 @@ A t+46s la probe del Binder registra i primi eventi Binder associati a \url{CrRe
     \label{fig:binder-networkservice}
 \end{figure}
 
-La probe di associazione socket registra il primo \texttt{bind} di \texttt{Chrome\_DevTools} su socket astratto a t+46s, in coincidenza con l'attivazione del renderer.
+\subsection{Caricamento di google.com}
 
-\subsection{Caricamento di google.com (t+58s -- t+76s)}
-
-Il click sul link google.com a t+58s produce un burst di otto operazioni \texttt{bind} nel secondo successivo, tutte attribuibili a \texttt{NetworkService}. Il comportamento indica l'apertura di nuovi socket per il caricamento parallelo delle risorse della pagina, coerente con il multiplexing di stream HTTP/2 utilizzato da Chrome.
+Il click su google.com produce in un secondo un burst di otto operazioni \texttt{bind} da parte di \texttt{NetworkService}, che indicano l'apertura di nuovi socket per il caricamento parallelo delle risorse della pagina, coerente con il multiplexing HTTP/2 utilizzato da Chrome.
 
 \begin{figure}[H]
     \centering
@@ -82,32 +65,32 @@ Il click sul link google.com a t+58s produce un burst di otto operazioni \texttt
     \label{fig:bind-burst}
 \end{figure}
 
-La probe di accettazione connessioni mostra un picco di accept a t+70s (10:07:38), quando \texttt{binder:513\_2} gestisce un volume insolitamente alto di connessioni in ingresso in un breve intervallo. Il ritardo di dodici secondi rispetto al click è compatibile con il tempo di caricamento del contenuto dinamico della homepage di Google, che include numerose richieste secondarie per immagini, script e dati personalizzati.
+Il picco di connessioni in ingresso arriva con un ritardo di circa dodici secondi rispetto al click: in quel momento \texttt{binder:513\_2} gestisce un volume insolitamente alto di \texttt{accept} in un breve intervallo. Il ritardo è compatibile con il tempo di caricamento del contenuto dinamico della homepage di Google, che include numerose richieste secondarie per immagini, script e dati personalizzati.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/accept-spike.png}
-    \caption{Picco di connessioni in ingresso gestite da \texttt{binder:513\_2} a t+70s.}
+    \caption{Picco di connessioni in ingresso gestite da \texttt{binder:513\_2} circa dodici secondi dopo il click su google.com.}
     \label{fig:accept-spike}
 \end{figure}
 
-\subsection{Ricerca ``google news'' (t+76s e oltre)}
+\subsection{Ricerca ``google news''}
 
-La ricerca di ``google news'' a t+76s produce la risposta più netta dell'intera sessione. La probe delle syscall registra il picco assoluto di syscall a t+76s--t+77s: 608 eventi al secondo, contro una media di circa 187 per l'intera sessione. Si tratta quasi interamente di chiamate \texttt{openat} generate dal thread \texttt{ThreadPoolForeg} (PID 8373). L'analisi degli eventi mostra due categorie di accessi distinte: la prima riguarda la cache HTTP di Chromium, con aperture ripetute di file sotto il percorso \texttt{/data/user/0/org.chromium.webview\_shell/cache/WebView/Default/H}; la seconda riguarda la lettura delle statistiche di ogni thread del processo tramite \url{/proc/8373/task/tid/stat} per ciascuno degli oltre venti thread attivi. Quest'ultimo pattern è riconducibile al profiler interno di Chromium, che campiona periodicamente lo stato dei thread per il monitoraggio delle prestazioni.
+La ricerca di ``google news'' produce la risposta più netta dell'intera sessione. La probe delle syscall registra il picco assoluto di 608 eventi al secondo, contro una media di circa 187 per l'intera sessione. Si tratta quasi interamente di chiamate \texttt{openat} generate dal thread \texttt{ThreadPoolForeg} (PID 8373), riconducibili a due categorie distinte: aperture ripetute di file della cache HTTP di Chromium sotto \texttt{/cache/WebView/Default/}, e lettura delle statistiche di ogni thread tramite \texttt{/proc/8373/task/\textit{tid}/stat}. Quest'ultimo pattern è riconducibile al profiler interno di Chromium, che campiona periodicamente lo stato dei thread.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/openat-peak.png}
-    \caption{Picco di 608 eventi syscall al secondo a t+76s--t+77s, generato da \texttt{ThreadPoolForeg} (PID 8373).}
+    \caption{Picco di 608 eventi syscall al secondo generato da \texttt{ThreadPoolForeg} (PID 8373) in corrispondenza della ricerca.}
     \label{fig:openat-peak}
 \end{figure}
 
-Il picco di invio dati segue con un ritardo di circa dodici secondi: a t+88s la probe di invio dati registra 79.4~KB inviati in un secondo, il valore massimo dell'intera sessione. Il ritardo riflette il tempo che il browser impiega a ricevere i risultati, analizzarli tramite il renderer e inviare le richieste secondarie per i contenuti collegati.
+Il picco di invio dati segue con un ritardo di circa dodici secondi: la probe di invio dati registra 79.4~KB inviati in un secondo, il valore massimo dell'intera sessione. Il ritardo riflette il tempo che il browser impiega a ricevere i risultati, elaborarli tramite il renderer e inviare le richieste secondarie per i contenuti collegati.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/send-peak.png}
-    \caption{Picco di 79.4~KB inviati in un secondo a t+88s, valore massimo dell'intera sessione.}
+    \includegraphics[width=\textwidth]{images/send-peak.png}
+    \caption{Picco di 79.4~KB inviati in un secondo, valore massimo dell'intera sessione.}
     \label{fig:send-peak}
 \end{figure}
 
@@ -116,11 +99,9 @@ Il picco di invio dati segue con un ritardo di circa dodici secondi: a t+88s la 
 
 Il monitoraggio parallelo delle sette probe ha permesso di osservare una catena di eventi che nessuna singola probe avrebbe potuto documentare per intero.
 
-Il PID 8373 compare sotto nomi di thread diversi nelle probe di rete: \url{Network\_Service}, \url{m.webview\_shell}, \texttt{InputDispatcher}, \url{Chrome\_DevTools} e \url{ThreadPool\_Foreg} sono tutti thread dello stesso processo applicativo. Questo è un effetto diretto del limite di 15 caratteri del campo \texttt{comm} nel kernel Linux, che in presenza di applicazioni multi-thread riporta il nome del singolo thread piuttosto che quello del processo. Senza incrociare i dati PID tra probe diverse, il processo Chrome apparirebbe frammentato in una serie di entità distinte e non correlate.
+Il renderer \texttt{CrRendererMain} (PID 8406) non ha accesso diretto alla rete. Tutta la comunicazione tra il codice di rendering e lo stack di rete passa attraverso Binder: la catena osservata è \texttt{m.webview\_shell} $\rightarrow$ Binder $\rightarrow$ \texttt{NetworkService} $\rightarrow$ socket. Questo isolamento è una scelta progettuale di Chromium per separare il processo di rendering, potenzialmente esposto a contenuti non fidati, dal processo che gestisce le connessioni di rete.
 
-Il renderer \texttt{CrRendererMain} (PID 8406) non ha accesso diretto alla rete. Tutta la comunicazione tra il codice di rendering e lo stack di rete passa attraverso Binder: la catena osservata è \texttt{m.webview\_shell} $\rightarrow$ Binder $\rightarrow$ \texttt{NetworkService} $\rightarrow$ socket. Questo isolamento, documentato dalla probe del Binder e dalla probe di invio dati in modo complementare, è una scelta progettuale di Chromium per separare il processo di rendering, potenzialmente esposto a contenuti non fidati, dal processo che gestisce le connessioni di rete.
-
-Complessivamente, la sessione ha prodotto 42\,343 transazioni Binder per un totale di circa 17~MB trasferiti via IPC, a fronte di 1.55~MB inviati e 2.37~MB ricevuti via socket. Il volume di traffico IPC interno supera quindi di circa cinque volte il traffico di rete esterno: un dato che testimonia quanto l'architettura di Android dipenda dalla comunicazione inter-processo anche per operazioni che l'utente percepisce come semplice navigazione web.
+Complessivamente, la sessione ha prodotto 42\,343 transazioni Binder per un totale di circa 17~MB trasferiti via IPC, a fronte di 1.55~MB inviati e 2.37~MB ricevuti via socket. Il volume di traffico IPC interno supera quindi di circa cinque volte il traffico di rete esterno: anche una semplice sessione di navigazione web genera internamente un volume di comunicazione inter-processo di gran lunga superiore a quello scambiato con la rete.
 
 \begin{figure}[H]
     \centering
