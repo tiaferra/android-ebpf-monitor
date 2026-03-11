@@ -34,22 +34,19 @@ La probe di ricezione dati mostra traffico già dai primi secondi, generato da \
 
 \subsection{Invio della query}
 
-Il click sul widget di ricerca non produce eventi netti nelle probe di rete. L'attività misurabile parte qualche secondo dopo, quando la probe delle syscall intercetta una \texttt{connect} da parte di \texttt{.quicksearchbox} (PID 1650, uid 10073), l'applicazione Google Search che gestisce il widget nella schermata home. Contestualmente, la probe di accettazione connessioni mostra che \texttt{netd} crea un thread denominato \texttt{Dns\_100\_10073}: il suffisso \texttt{10073} corrisponde all'uid di GoogleSearch, confermando che il thread nasce per gestire la sua richiesta DNS. È quindi l'app di ricerca Google, e non il browser, ad avviare la risoluzione del nome mentre l'utente digita la query.
+Il click sul widget di ricerca non produce eventi netti nelle probe di rete. L'attività misurabile parte qualche secondo dopo, quando la probe delle syscall intercetta una \texttt{connect} da parte dell'applicazione Google Search che gestisce il widget nella schermata home. Contestualmente, la probe di accettazione connessioni mostra che \texttt{netd} crea un thread che  nasce per gestire la sua richiesta DNS. È quindi l'app di ricerca Google, e non il browser, ad avviare la risoluzione del nome mentre l'utente digita la query.
+
+La prima attività di rete del processo Chrome compare circa nove secondi dopo il click, quando le probe di invio e ricezione dati registrano i primi eventi dal thread \texttt{RenderThread} (PID 8373). I thread \texttt{m.webview\_shell} e \texttt{NetworkService} compaiono nei secondi successivi. Il fatto che thread con nomi diversi condividano lo stesso PID è un effetto del limite di 15 caratteri del campo \texttt{comm} nel kernel Linux, che riporta il nome del singolo thread piuttosto che quello del processo.
+
+Successivamente, la probe del Binder registra i primi eventi associati a \url{CrRenderer\_Main} (PID 8406),
+il renderer di Chromium. La comunicazione tra \texttt{NetworkService}
+e il renderer avviene via Binder, non via socket: nell'arco dell'intera sessione vengono registrate 1031 transazioni tra i 
+due per un totale di circa 339~KB. Ogni risposta HTTP ricevuta dalla rete viene consegnata al renderer attraverso questo 
+canale IPC prima di essere visualizzata.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/dns-correlation.png}
-    \caption{Correlazione tra la \texttt{connect} di \texttt{.quicksearchbox} e il thread \texttt{Dns\_100\_10073} istanziato da netd.}
-    \label{fig:dns-correlation}
-\end{figure}
-
-La prima attività di rete del processo Chrome compare circa nove secondi dopo il click, quando le probe di invio e ricezione dati registrano i primi eventi dal thread \texttt{RenderThread} (PID 8373). I thread \texttt{m.webview\_shell} e \texttt{NetworkService} compaiono nei secondi successivi. Il fatto che thread con nomi diversi condividano lo stesso PID è un effetto del limite di 15 caratteri del campo \texttt{comm} nel kernel Linux, che riporta il nome del singolo thread piuttosto che quello del processo. Senza incrociare i dati PID tra probe diverse, il processo Chrome apparirebbe frammentato in entità distinte e non correlate.
-
-Pochi secondi dopo, la probe del Binder registra i primi eventi associati a \texttt{CrRendererMain} (PID 8406), il renderer di Chromium. Questo processo è figlio di \texttt{webview\_zygote} (PID 1123), il processo da cui Android istanzia i renderer WebView per isolarli dall'applicazione principale. La comunicazione tra \texttt{NetworkService} e il renderer avviene via Binder, non via socket: nell'arco dell'intera sessione vengono registrate 1031 transazioni tra i due per un totale di circa 339~KB. Ogni risposta HTTP ricevuta dalla rete viene consegnata al renderer attraverso questo canale IPC prima di essere visualizzata.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/binder-networkservice.png}
+    \includegraphics[width=\textwidth]{images/binder-networkservice.png}
     \caption{Transazioni Binder tra \texttt{NetworkService} e \texttt{CrRendererMain}: 1031 transazioni per circa 339~KB.}
     \label{fig:binder-networkservice}
 \end{figure}
@@ -60,30 +57,16 @@ Il click su google.com produce in un secondo un burst di otto operazioni \texttt
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/bind-burst.png}
+    \includegraphics[width=\textwidth]{images/bind-burst.png}
     \caption{Burst di otto operazioni \texttt{bind} attribuibili a \texttt{NetworkService} nel secondo successivo al click su google.com.}
     \label{fig:bind-burst}
 \end{figure}
 
-Il picco di connessioni in ingresso arriva con un ritardo di circa dodici secondi rispetto al click: in quel momento \texttt{binder:513\_2} gestisce un volume insolitamente alto di \texttt{accept} in un breve intervallo. Il ritardo è compatibile con il tempo di caricamento del contenuto dinamico della homepage di Google, che include numerose richieste secondarie per immagini, script e dati personalizzati.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/accept-spike.png}
-    \caption{Picco di connessioni in ingresso gestite da \texttt{binder:513\_2} circa dodici secondi dopo il click su google.com.}
-    \label{fig:accept-spike}
-\end{figure}
+Il picco di connessioni in ingresso arriva con un ritardo di circa dodici secondi rispetto al click. Il ritardo è compatibile con il tempo di caricamento del contenuto dinamico della homepage di Google, che include numerose richieste secondarie per immagini, script e dati personalizzati.
 
 \subsection{Ricerca ``google news''}
 
-La ricerca di ``google news'' produce la risposta più netta dell'intera sessione. La probe delle syscall registra il picco assoluto di 608 eventi al secondo, contro una media di circa 187 per l'intera sessione. Si tratta quasi interamente di chiamate \texttt{openat} generate dal thread \texttt{ThreadPoolForeg} (PID 8373), riconducibili a due categorie distinte: aperture ripetute di file della cache HTTP di Chromium sotto \texttt{/cache/WebView/Default/}, e lettura delle statistiche di ogni thread tramite \texttt{/proc/8373/task/\textit{tid}/stat}. Quest'ultimo pattern è riconducibile al profiler interno di Chromium, che campiona periodicamente lo stato dei thread.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/openat-peak.png}
-    \caption{Picco di 608 eventi syscall al secondo generato da \texttt{ThreadPoolForeg} (PID 8373) in corrispondenza della ricerca.}
-    \label{fig:openat-peak}
-\end{figure}
+La ricerca di ``google news'' produce la risposta più netta dell'intera sessione. La probe delle syscall registra il picco assoluto di 608 eventi al secondo, contro una media di circa 187 per l'intera sessione.
 
 Il picco di invio dati segue con un ritardo di circa dodici secondi: la probe di invio dati registra 79.4~KB inviati in un secondo, il valore massimo dell'intera sessione. Il ritardo riflette il tempo che il browser impiega a ricevere i risultati, elaborarli tramite il renderer e inviare le richieste secondarie per i contenuti collegati.
 
@@ -103,9 +86,17 @@ Il renderer \texttt{CrRendererMain} (PID 8406) non ha accesso diretto alla rete.
 
 Complessivamente, la sessione ha prodotto 42\,343 transazioni Binder per un totale di circa 17~MB trasferiti via IPC, a fronte di 1.55~MB inviati e 2.37~MB ricevuti via socket. Il volume di traffico IPC interno supera quindi di circa cinque volte il traffico di rete esterno: anche una semplice sessione di navigazione web genera internamente un volume di comunicazione inter-processo di gran lunga superiore a quello scambiato con la rete.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{images/session-totals.png}
-    \caption{Riepilogo del traffico complessivo della sessione: 42\,343 transazioni Binder (17~MB) e traffico di rete (1.55~MB inviati, 2.37~MB ricevuti).}
-    \label{fig:session-totals}
-\end{figure}
+\begin{table}[h]
+\centering
+\begin{tabular}{lr}
+\toprule
+\textbf{Dato} & \textbf{Valore} \\
+\midrule
+Transazioni Binder totali & 42.343 \\
+Byte via IPC & 17.364.032 B (\textasciitilde17 MB) \\
+Byte inviati & 1.554.695 B (\textasciitilde1.55 MB) \\
+Byte ricevuti & 2.365.280 B (\textasciitilde2.37 MB) \\
+\bottomrule
+\end{tabular}
+\caption{Riepilogo del traffico complessivo della sessione: 42\,343 transazioni Binder (17~MB) e traffico di rete (1.55~MB inviati, 2.37~MB ricevuti).}
+\end{table}
