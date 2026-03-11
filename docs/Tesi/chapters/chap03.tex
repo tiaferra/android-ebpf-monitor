@@ -1,11 +1,11 @@
 \chapter{Implementazione}
 \section{Architettura generale}
 
-Il sistema è composto da quattro componenti principali che collaborano secondo un'architettura a pipeline: il livello di raccolta basato su probe bpftrace raccoglie eventi direttamente dal kernel, il modulo di orchestrazione li normalizza e persiste, il modulo di analisi li elabora in fase post-sessione, e l'interfaccia utente orchestra l'intera interazione. L'architettura complessiva è illustrata in Figura~\ref{fig:architettura-sistema}.
+Il sistema è composto da quattro componenti principali che collaborano secondo un'architettura a pipeline: il livello di raccolta basato su probe \texttt{bpftrace} raccoglie eventi direttamente dal kernel, il modulo di orchestrazione li normalizza e persiste, il modulo di analisi li elabora in fase post-sessione, e l'interfaccia utente orchestra l'intera interazione. L'architettura complessiva è illustrata in Figura~\ref{fig:architettura-sistema}.
 
 Il flusso di dati segue un percorso ben definito: le probe producono eventi strutturati in formato JSON su stdout, il modulo di orchestrazione li consuma riga per riga e li persiste in un file \texttt{.jsonl}, e il modulo di analisi legge questo file al termine della sessione per produrre report e statistiche aggregate. L'interfaccia utente funge da punto di ingresso unico che coordina l'avvio delle probe, la durata della sessione e la generazione del report finale.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.6\textwidth]{images/architettura-sistema.png}
     \caption{Architettura del sistema: flusso di dati tra il livello di raccolta (probe bpftrace), il modulo di orchestrazione, il modulo di analisi il tutto all'interno dell'interfaccia utente}
@@ -57,9 +57,9 @@ Un aspetto rilevante è la raccolta del \texttt{ppid} (Process ID del processo p
 
 Gli eventi generati da questa probe sono utilizzati dal modulo di analisi per costruire l'albero dei processi e correlare l'attività dei diversi componenti del sistema Android.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
-    \includegraphics[width=0.6\textwidth]{images/process-lifecycle.png}
+    \includegraphics[width=0.3\textwidth]{images/process-lifecycle.png}
     \caption{Diagramma del ciclo di vita di un processo Linux~\cite{process_lifecycle_img}}
     \label{fig:process-lifecycle}
 \end{figure}
@@ -102,7 +102,7 @@ Il campo \texttt{flags} viene decodificato per determinare se la transazione è 
 
 La correlazione tra i tre eventi tramite \texttt{debug\_id} è fondamentale: solo incrociando \texttt{binder\_transaction} (che ha i dati del mittente), \url{binder\_transaction\_alloc\_buf} (che ha la dimensione del payload) e \texttt{binder\_transaction\_received} (che ha i dati del destinatario) è possibile ricostruire un'immagine completa di ogni transazione IPC. Questa correlazione viene eseguita dal modulo di analisi nella fase post-sessione.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{images/inder-correlazione.png}
     \caption{Schema della correlazione tra i tre tracepoint Binder tramite il campo \texttt{debug\_id}.}
@@ -149,7 +149,7 @@ Il thread principale itera riga per riga sullo stdout di bpftrace. Per ogni riga
 
 Ogni evento normalizzato, arricchito e validato viene serializzato nuovamente in JSON e scritto su \texttt{events.jsonl} con flush immediato, garantendo che i dati vengano persistiti su disco in tempo reale anche in caso di interruzione improvvisa del processo.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{images/monitor-pipeline.png}
     \caption{Pipeline di elaborazione degli eventi nel modulo di orchestrazione}
@@ -198,7 +198,7 @@ L'analisi Binder richiede la correlazione di tre tipi di eventi distinti. il mod
 
 Dal grafo delle transazioni viene costruito un IPC graph che mappa gli archi di comunicazione tra processi, con il numero di chiamate e i byte trasferiti per ogni coppia mittente-destinatario. Questo grafo è il punto di partenza per analisi comportamentali: pattern insoliti di comunicazione, processi che si scambiano volumi anomali di dati, o servizi di sistema contattati da applicazioni non attese.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{images/report-binder.png}
     \caption{Esempio di output del report Binder IPC con grafo delle transazioni tra processi.}
@@ -209,7 +209,7 @@ Dal grafo delle transazioni viene costruito un IPC graph che mappa gli archi di 
 
 L'analisi di rete aggrega i dati delle quattro probe in un quadro coerente. Vengono costruiti: il port landscape (elenco delle porte effettivamente aperte, filtrato sui bind con \texttt{ret == 0}), la lista dei processi che hanno accettato connessioni in ingresso, il volume di dati inviati e ricevuti per processo, e una timeline al secondo dei byte trasmessi. La timeline viene utilizzata per identificare il picco di invio e il picco di ricezione. I processi con UID $\geq$ 10000 che agiscono da server tramite \texttt{accept} vengono segnalati separatamente come potenzialmente anomali, poiché su Android le applicazioni normalmente non aprono porte in ascolto.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \begin{subfigure}{0.48\textwidth}
         \includegraphics[width=\linewidth]{report-rete1.png}
@@ -227,7 +227,7 @@ L'analisi di rete aggrega i dati delle quattro probe in un quadro coerente. Veng
 
 A partire dai campi \texttt{pid} e \texttt{ppid} presenti in tutti gli eventi, il modulo di analisi ricostruisce l'albero genealogico dei processi osservati durante la sessione. La struttura ad albero viene serializzata sia in forma gerarchica (per la visualizzazione) che in forma flat (per la ricerca rapida). La resource map aggrega invece, per ogni processo, l'insieme dei file aperti (da eventi \texttt{openat}), degli indirizzi di rete contattati (da eventi \texttt{connect}) e dei binari eseguiti (da eventi \texttt{execve}), fornendo una sorta di fingerprint comportamentale per ciascun processo osservato.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \begin{subfigure}{0.48\textwidth}
         \includegraphics[width=\linewidth]{albero-processi.png}

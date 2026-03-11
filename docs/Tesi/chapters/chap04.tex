@@ -25,7 +25,7 @@ Nei primi 36 secondi l'emulatore si trova nella schermata home e non viene effet
 
 La probe di ricezione dati mostra traffico già dai primi secondi, generato da \texttt{logcat} e da altri servizi di sistema che comunicano su socket locali in modo continuativo. Più interessante è un picco di invio che compare intorno a t+27s--t+28s, con il sistema che trasmette prima 6.4~KB poi 28.9~KB in due secondi consecutivi. Il traffico è generato dai processi \texttt{app} (SurfaceControl) e \texttt{android.ui}, e non ha nulla a che fare con il browser, che non è ancora avviato. Si tratta di comunicazioni interne al compositor grafico, un esempio di quanto il sistema operativo produca traffico di rete per ragioni completamente indipendenti dall'utente.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{images/picco-invii.png}
     \caption{Picco di invio nella fase preliminare, generato dal compositor grafico prima di qualsiasi interazione utente.}
@@ -44,7 +44,7 @@ e il renderer avviene via Binder, non via socket: nell'arco dell'intera sessione
 due per un totale di circa 339~KB. Ogni risposta HTTP ricevuta dalla rete viene consegnata al renderer attraverso questo 
 canale IPC prima di essere visualizzata.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{images/binder-networkservice.png}
     \caption{Transazioni Binder tra \texttt{NetworkService} e \texttt{CrRendererMain}: 1031 transazioni per circa 339~KB.}
@@ -55,7 +55,7 @@ canale IPC prima di essere visualizzata.
 
 Il click su google.com produce in un secondo un burst di otto operazioni \texttt{bind} da parte di \texttt{NetworkService}, che indicano l'apertura di nuovi socket per il caricamento parallelo delle risorse della pagina, coerente con il multiplexing HTTP/2 utilizzato da Chrome.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{images/bind-burst.png}
     \caption{Burst di otto operazioni \texttt{bind} attribuibili a \texttt{NetworkService} nel secondo successivo al click su google.com.}
@@ -70,7 +70,7 @@ La ricerca di ``google news'' produce la risposta più netta dell'intera session
 
 Il picco di invio dati segue con un ritardo di circa dodici secondi: la probe di invio dati registra 79.4~KB inviati in un secondo, il valore massimo dell'intera sessione. Il ritardo riflette il tempo che il browser impiega a ricevere i risultati, elaborarli tramite il renderer e inviare le richieste secondarie per i contenuti collegati.
 
-\begin{figure}[H]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{images/send-peak.png}
     \caption{Picco di 79.4~KB inviati in un secondo, valore massimo dell'intera sessione.}
