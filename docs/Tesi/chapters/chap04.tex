@@ -19,19 +19,19 @@ L'applicazione monitorata è \texttt{com.android.settings} (uid 1000), il pannel
 
 \subsection{Fase preliminare}
 
-Nei 100 secondi precedenti all'attivazione, il sistema opera nella schermata home con il WiFi attivo. La probe del Binder registra un'attività di fondo dominata dal canale chiamato da \texttt{surfaceflinger}, con 3.330 chiamate per circa 1.4~MB: è il compositor grafico che aggiorna continuamente la schermata.
+Nei 100 secondi precedenti all'attivazione, il sistema opera nella schermata home con il WiFi attivo. La probe del Binder registra un'attività di fondo dominata dal canale chiamato da \texttt{surfaceflinger}, con 3.330 chiamate per circa 1.4~MB: è il compositor grafico~\cite{surfaceflinger_docs} che aggiorna continuamente la schermata.
 
 \subsection{Attivazione della modalità aereo}
 
 All'attivazione della modalità aereo si produce un effetto immediato e netto sullo stack di rete. La probe di associazione socket non registra alcun evento tra durante l'intera finestra che copre il periodo in modalità aereo e la successiva riattivazione non genera alcun \texttt{bind} da processi di rete. È la conferma diretta che lo stack WiFi è stato completamente fermato.
 
-Il percorso del comando attraverso il sistema è ricostruibile dalle probe. L'utente interagisce con \texttt{com.android.settings}, che invia via Binder il \textit{broadcast} di sistema \texttt{ACTION\_AIRPLANE\_MODE\_CHANGED} al \texttt{ConnectivityService} all'interno del \textit{system server}. È quest'ultimo, non l'applicazione impostazioni, a coordinare la sequenza di disattivazione: WiFi e Bluetooth vengono fermati attraverso chiamate ai rispettivi HAL via Binder. Il processo \texttt{ndroid.settings} accumula 4.169 transazioni Binder nell'intera sessione, ma nessuna di esse produce direttamente traffico di rete: tutto passa attraverso il \textit{system server}.
+Il percorso del comando attraverso il sistema è ricostruibile dalle probe. L'utente interagisce con \texttt{com.android.settings}, che invia via Binder~\cite{binder_ipc} il \textit{broadcast} di sistema \texttt{ACTION\_AIRPLANE\_MODE\_CHANGED} al \texttt{ConnectivityService} all'interno del \textit{system server}. È quest'ultimo, non l'applicazione impostazioni, a coordinare la sequenza di disattivazione: WiFi e Bluetooth vengono fermati attraverso chiamate ai rispettivi HAL via Binder. Il processo \texttt{ndroid.settings} accumula 4.169 transazioni Binder nell'intera sessione, ma nessuna di esse produce direttamente traffico di rete: tutto passa attraverso il \textit{system server}.
 
 \subsection{Disattivazione e riconnessione}
 
 Alla disattivazione della modalità aereo viene avviata una sequenza di riconnessione osservabile passo per passo attraverso le probe. Il primo segnale misurabile arriva con un po' di ritardo rispetto al toggle: vengono registrate le prime operazioni \texttt{bind} dopo la pausa. Successivamente \texttt{IpClient.wlan0} apre sei nuovi socket per avviare la negoziazione DHCP, e \texttt{netd} crea un thread per la risoluzione dei nomi. Il ritardo riflette il tempo necessario al \textit{firmware} dell'interfaccia WiFi virtuale di Cuttlefish per completare la riassociazione alla rete prima che lo stack di rete superiore possa riattivarsi.
 
-La probe di ricezione dati mostra che \texttt{IpClient.wlan0} riceve complessivamente circa 229~KB nell'intera sessione: è il traffico DHCP corrispondente all'acquisizione dell'indirizzo IP dopo la riconnessione.
+La probe di ricezione dati mostra che \texttt{IpClient.wlan0} riceve complessivamente circa 229~KB nell'intera sessione: è il traffico DHCP~\cite{dhcp_rfc} corrispondente all'acquisizione dell'indirizzo IP dopo la riconnessione.
 
 Il picco di Binder dell'intera sessione (4.099 eventi/s) si registra due secondi prima del primo bind di rete. Esso è prodotto dai \textit{broadcast} di \texttt{ConnectivityService} che notificano tutti i processi del sistema del cambiamento di stato della rete, prima ancora che il collegamento fisico sia ristabilito. Anche questa sequenza, il Binder che esplode prima che i socket di rete si riaprino, è osservabile solo grazie al monitoraggio parallelo delle sette probe.
 
@@ -79,7 +79,7 @@ La sessione si articola in quattro fasi, identificate in base alle azioni effett
 
 Nei primi 36 secondi l'emulatore si trova nella schermata home e non viene effettuata alcuna interazione. Questa fase serve a documentare il comportamento di base del sistema: Android non è silenzioso nemmeno in \textit{idle}, e senza questa \textit{baseline} sarebbe impossibile distinguere il traffico di fondo dall'attività riconducibile alle azioni utente.
 
-La probe di ricezione dati mostra traffico già dai primi secondi, generato da \texttt{logcat} e da altri servizi di sistema che comunicano su socket locali in modo continuativo. Più interessante è un picco di invio che compare intorno a t$\,\approx\,$27s, con il sistema che trasmette prima 6.4~KB poi 28.9~KB in due secondi consecutivi. Il traffico è generato dai processi \texttt{app} (SurfaceControl) e \texttt{android.ui}, e non ha nulla a che fare con il browser, che non è ancora avviato. Si tratta di comunicazioni interne al compositor grafico, un esempio di quanto il sistema operativo produca traffico di rete per ragioni completamente indipendenti dall'utente.
+La probe di ricezione dati mostra traffico già dai primi secondi, generato da \texttt{logcat} e da altri servizi di sistema che comunicano su socket locali in modo continuativo. Più interessante è un picco di invio che compare intorno a t$\,\approx\,$27s, con il sistema che trasmette prima 6.4~KB poi 28.9~KB in due secondi consecutivi. Il traffico è dominato da \texttt{InputDispatcher} (18.4~KB a t$\,\approx\,$28s) e dal processo \texttt{app} (SurfaceControl), con un contributo minore di \texttt{android.ui}; non ha nulla a che fare con il browser, che non è ancora avviato. Si tratta di comunicazioni interne al sottosistema grafico e di input, un esempio di quanto il sistema operativo produca traffico di rete per ragioni completamente indipendenti dall'utente.
 
 \begin{figure}[h]
     \centering
@@ -92,7 +92,7 @@ La probe di ricezione dati mostra traffico già dai primi secondi, generato da \
 
 Il click sul widget di ricerca non produce eventi netti nelle probe di rete. L'attività misurabile parte qualche secondo dopo, quando la probe delle syscall intercetta una \texttt{connect} da parte dell'applicazione Google Search che gestisce il widget nella schermata home. Contestualmente, la probe di accettazione connessioni mostra che \texttt{netd} crea un thread che  nasce per gestire la sua richiesta DNS. È quindi l'app di ricerca Google, e non il browser, ad avviare la risoluzione del nome mentre l'utente digita la query.
 
-La prima attività di rete del processo Chrome compare circa nove secondi dopo il click, quando le probe di invio e ricezione dati registrano i primi eventi dal thread \texttt{RenderThread} (PID 8373). I thread \texttt{m.webview\_shell} e \texttt{NetworkService} compaiono nei secondi successivi. Il fatto che thread con nomi diversi condividano lo stesso PID è un effetto del limite di 15 caratteri del campo \texttt{comm} nel kernel Linux, che riporta il nome del singolo thread piuttosto che quello del processo.
+La prima attività di rete del processo Chrome compare circa nove secondi dopo il click, quando le probe di invio e ricezione dati registrano i primi eventi dal thread \texttt{RenderThread} (PID 8373). I thread \texttt{m.webview\_shell} e \texttt{NetworkService} compaiono nei secondi successivi. Il fatto che thread con nomi diversi condividano lo stesso PID è un effetto del limite di 15 caratteri del campo \texttt{comm} nel kernel Linux~\cite{linux_task_struct}, che riporta il nome del singolo thread piuttosto che quello del processo.
 
 Successivamente, la probe del Binder registra i primi eventi associati a \url{CrRenderer\_Main} (PID 8406),
 il renderer di Chromium. La comunicazione tra \texttt{NetworkService}
@@ -102,7 +102,7 @@ canale IPC prima di essere visualizzata.
 
 \subsection{Caricamento di google.com}
 
-Il click su google.com produce in un secondo un \textit{burst} di otto operazioni \texttt{bind} da parte di \texttt{NetworkService}, che indicano l'apertura di nuovi socket per il caricamento parallelo delle risorse della pagina, coerente con il \textit{multiplexing} HTTP/2 utilizzato da Chrome.
+Il click su google.com produce in un secondo un \textit{burst} di otto operazioni \texttt{bind} da parte di \texttt{NetworkService}, che indicano l'apertura di nuovi socket per il caricamento parallelo delle risorse della pagina, coerente con il \textit{multiplexing} HTTP/2~\cite{http2_rfc} utilizzato da Chrome.
 
 Il picco di connessioni in ingresso arriva con un ritardo di circa dodici secondi rispetto al click. Il ritardo è compatibile con il tempo di caricamento del contenuto dinamico della homepage di Google, che include numerose richieste secondarie per immagini, script e dati personalizzati.
 
@@ -124,7 +124,7 @@ Il picco di invio dati segue con un ritardo di circa dodici secondi: la probe di
 
 Il monitoraggio parallelo delle sette probe ha permesso di osservare una catena di eventi che nessuna singola probe avrebbe potuto documentare per intero.
 
-Il renderer \texttt{CrRendererMain} (PID 8406) non ha accesso diretto alla rete. Tutta la comunicazione tra il codice di rendering e lo stack di rete passa attraverso Binder: la catena osservata è \texttt{m.webview\_shell} $\rightarrow$ Binder $\rightarrow$ \texttt{NetworkService} $\rightarrow$ socket. Questo isolamento è una scelta progettuale di Chromium per separare il processo di rendering, potenzialmente esposto a contenuti non fidati, dal processo che gestisce le connessioni di rete.
+Il renderer \texttt{CrRendererMain} (PID 8406) non ha accesso diretto alla rete. Tutta la comunicazione tra il codice di rendering e lo stack di rete passa attraverso Binder: la catena osservata è \texttt{m.webview\_shell} $\rightarrow$ Binder $\rightarrow$ \texttt{NetworkService} $\rightarrow$ socket. Questo isolamento è una scelta progettuale di Chromium~\cite{chromium_multiprocess} per separare il processo di rendering, potenzialmente esposto a contenuti non fidati, dal processo che gestisce le connessioni di rete.
 
 Complessivamente, la sessione ha prodotto 42\,343 transazioni Binder per un totale di circa 17~MB trasferiti via IPC, a fronte di 1.55~MB inviati e 2.37~MB ricevuti via socket. Il volume di traffico IPC interno supera quindi di circa cinque volte il traffico di rete esterno: anche una semplice sessione di navigazione web genera internamente un volume di comunicazione inter-processo di gran lunga superiore a quello scambiato con la rete.
 
@@ -162,12 +162,12 @@ All'apertura dell'applicazione galleria, la probe del ciclo di vita dei processi
 
 La probe delle syscall rileva le prime operazioni di accesso allo storage: un thread dell'applicazione apre la radice dello spazio di archiviazione condiviso. Questo accesso corrisponde alla scansione iniziale del catalogo di immagini che la galleria esegue all'avvio per costruire la lista dei contenuti disponibili.
 
-Sul fronte del Binder, l'avvio della galleria produce un'attività crescente che culmina nel picco assoluto della sessione: la probe registra 4\,630 transazioni in un singolo secondo, circa cinque volte la media della sessione (946 eventi/s). Questo picco corrisponde al momento in cui la galleria carica le anteprime delle immagini, operazione che richiede un'intensa sequenza di comunicazioni con \texttt{SurfaceFlinger} per il rendering di ciascun thumbnail.
+Sul fronte del Binder, l'avvio della galleria produce un'attività crescente che culmina nel picco assoluto della sessione: la probe registra 4\,723 transazioni in un singolo secondo, circa cinque volte la media della sessione (941 eventi/s). Questo picco corrisponde al momento in cui la galleria carica le anteprime delle immagini, operazione che richiede un'intensa sequenza di comunicazioni con \texttt{SurfaceFlinger}~\cite{surfaceflinger_docs} per il rendering di ciascun thumbnail.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.3\textwidth]{images/placeholder.jpg}
-    \caption{Picco di 4\,630 transazioni Binder, durante il caricamento delle anteprime da parte della galleria.}
+    \includegraphics[width=\textwidth]{images/binder-galleria-peak.png}
+    \caption{Picco di 4\,723 transazioni Binder, durante il caricamento delle anteprime da parte della galleria.}
     \label{fig:binder-galleria-peak}
 \end{figure}
 
@@ -175,13 +175,13 @@ Sul fronte del Binder, l'avvio della galleria produce un'attività crescente che
 
 Il passaggio alla fotocamera produce il cambiamento più caratteristico dell'intera sessione nel profilo delle comunicazioni Binder. Il processo \texttt{android.camera2} (PID 1913) diventa attivo e due thread legati all'hardware della fotocamera emergono tra i processi più trafficati: \texttt{Cam0\_ResultDisp} con 6\,285 eventi e \texttt{C3Dev-0-ReqQueu} con 4\,280 eventi, il secondo e il quarto posto nell'intera sessione.
 
-Il grafo IPC mostra che \texttt{Cam0\_ResultDisp} comunica principalmente con il canale che corrisponde alla pipeline di elaborazione dei frame della fotocamera: il thread che riceve i risultati dal sensore li trasmette al \texttt{Camera Hardware Abstraction Layer} attraverso Binder, che li consegna al processo di visualizzazione per l'anteprima in tempo reale. L'attivazione di questo canale è assente in tutti gli altri scenari analizzati e rappresenta quindi un segnale affidabile dell'accesso all'hardware della fotocamera.
+Il grafo IPC mostra che \texttt{Cam0\_ResultDisp} comunica principalmente con il canale che corrisponde alla pipeline di elaborazione dei frame della fotocamera: il thread che riceve i risultati dal sensore li trasmette al \texttt{Camera Hardware Abstraction Layer}~\cite{camera_hal} attraverso Binder, che li consegna al processo di visualizzazione per l'anteprima in tempo reale. L'attivazione di questo canale è assente in tutti gli altri scenari analizzati e rappresenta quindi un segnale affidabile dell'accesso all'hardware della fotocamera.
 
 In parallelo, \texttt{SurfaceFlinger} mantiene il canale più trafficato dell'intera sessione: 4\,481 chiamate verso il \texttt{binder} per un totale di circa 2.1~MB. Questo traffico riflette la composizione continua dei frame dell'anteprima, che richiede una frequenza di comunicazione elevata tra il compositor grafico e il driver del display.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.3\textwidth]{images/placeholder.jpg}
+    \includegraphics[width=\textwidth]{images/binder-camera-ipc.png}
     \caption{Grafo delle comunicazioni Binder durante l'anteprima della fotocamera: il canale \texttt{Cam0\_ResultDisp} verso il Camera HAL è il segnale caratteristico dell'accesso all'hardware fotografico.}
     \label{fig:binder-camera-ipc}
 \end{figure}
