@@ -163,7 +163,7 @@ Ogni evento normalizzato, arricchito e validato viene serializzato nuovamente in
 Alla ricezione del segnale di interruzione (Ctrl-C, gestito tramite un blocco \url{try/except} su \texttt{KeyboardInterrupt}), il modulo di orchestrazione esegue la pulizia ordinata: invia SIGTERM al processo bpftrace e, se questo non termina entro un breve intervallo, forza la terminazione tramite SIGKILL, aggiorna il file \texttt{session.json} con il timestamp di fine sessione e stampa un riepilogo a terminale. La directory di sessione finale contiene quindi: \texttt{events.jsonl} (gli eventi raccolti), \texttt{stderr.log} (output diagnostico di bpftrace) e \texttt{session.json} (metadati con orari di inizio e fine).
 
 % -------------------------------------------------------
-\section{Il launcher interattivo:}
+\section{Il launcher interattivo}
 
 L'interfaccia utente costituisce il punto di ingresso principale per l'utente ed è implementata come script bash. All'avvio esegue una serie di controlli preliminari verificando la presenza di \texttt{python3}, \texttt{bpftrace}, \texttt{jq} e \texttt{timeout} nel PATH, e la disponibilità del modulo di orchestrazione e del registro delle probe. In caso di errore viene mostrato un messaggio diagnostico chiaro e lo script termina con codice di uscita 1.
 
