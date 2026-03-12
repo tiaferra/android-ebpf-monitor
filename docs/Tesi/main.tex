@@ -28,12 +28,13 @@
 \emptypage
 
 \begin{abstract}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-culpa qui officia deserunt mollit anim id est laborum.
+Questa tesi affronta il problema dell'utilizzo di eBPF e bpftrace per il monitoraggio di applicazioni Android a livello kernel. Android, pur basandosi sul kernel Linux, non rende disponibili nativamente gli strumenti di tracing tipici dei sistemi Linux, rendendo necessari adattamenti specifici per poterli utilizzare.
+
+La soluzione proposta si basa sull'esecuzione di bpftrace all'interno di una distribuzione Debian installata nell'emulatore Android Cuttlefish, in esecuzione su Ubuntu. Questo ambiente consente di osservare gli eventi del kernel Android tramite eBPF senza modificare il sistema operativo e senza richiedere hardware fisico.
+
+Il sistema sviluppato comprende sette probe bpftrace parallele per il monitoraggio di syscall, transazioni IPC Binder, ciclo di vita dei processi e traffico di rete, coordinate da un modulo di orchestrazione in Python e analizzate da un modulo post-sessione.
+
+Le sperimentazioni su tre scenari, la navigazione web con Chrome, l'uso della galleria e della fotocamera, e l'attivazione della modalità aereo, mostrano che il monitoraggio parallelo delle probe permette di ricostruire il comportamento interno del sistema operativo in modo non ottenibile da una singola fonte di dati. I risultati evidenziano l'architettura di isolamento del renderer Chromium, la firma Binder specifica dell'accesso all'hardware fotografico e la sequenza di disattivazione e riconnessione dello stack WiFi.
 \end{abstract}
 
 \emptypage

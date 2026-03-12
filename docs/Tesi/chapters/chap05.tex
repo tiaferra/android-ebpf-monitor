@@ -1,1 +1,57 @@
 \chapter{Limiti e possibili miglioramenti}
+
+Il sistema sviluppato raggiunge gli obiettivi dichiarati nel capitolo introduttivo: permette di eseguire bpftrace su Android, raccogliere eventi da sette probe parallele e analizzare il comportamento delle applicazioni a livello di kernel. Le sperimentazioni descritte nel capitolo precedente dimostrano che i dati prodotti sono sufficientemente precisi e ricchi da permettere ricostruzioni dettagliate di scenari reali. Rimangono tuttavia limiti concreti che ne condizionano l'applicabilità, e margini di miglioramento che potrebbero ampliarne l'utilità in contesti diversi da quello in cui è stato sviluppato.
+
+% -------------------------------------------------------
+\section{Limiti del sistema attuale}
+
+\subsection{Dipendenza dall'ambiente emulato}
+
+Il vincolo più significativo è che l'intero sistema è progettato per funzionare su Android Cuttlefish in esecuzione su Ubuntu, con una distribuzione Debian installata all'interno dell'emulatore. Questo ambiente è riproducibile e controllato, ma non corrisponde a un dispositivo reale. Su un dispositivo Android di produzione, l'esecuzione di bpftrace richiederebbe accesso root, che a sua volta implica il rooting del dispositivo o la sostituzione della ROM con una versione personalizzata. Entrambe le opzioni sono impraticabili nella maggior parte dei contesti operativi reali, come documentato nella Tabella~\ref{fig:confronto-ambienti} del capitolo introduttivo.
+
+Anche laddove l'accesso root fosse disponibile, l'ambiente Debian necessario all'esecuzione di bpftrace non sarebbe presente, e installarlo su un dispositivo fisico richiederebbe una procedura significativamente più complessa di quella seguita per Cuttlefish. Il sistema è pertanto utile per analisi in ambienti di sviluppo e test, ma non è distribuibile su flotte di dispositivi reali nella forma attuale.
+
+\subsection{Analisi esclusivamente post-sessione}
+
+Il sistema attuale è progettato per raccogliere dati durante una sessione e analizzarli al termine. Non è possibile ricevere notifiche in tempo reale su eventi rilevanti, né interrompere automaticamente la sessione in risposta a comportamenti anomali osservati. Questo limita l'utilità del sistema in scenari di monitoraggio continuo o di risposta agli incidenti, dove la tempestività dell'informazione è importante.
+
+\subsection{Identificazione dei processi}
+
+Il limite di 15 caratteri del campo \texttt{comm} nel kernel Linux rende difficile l'identificazione univoca dei processi nelle probe. Come documentato nelle analisi del capitolo precedente, nomi come \texttt{ndroid.settings}, \texttt{ndroid.systemui} o \texttt{droid.gallery3d} sono troncamenti che richiedono conoscenza del sistema per essere ricondotti all'applicazione corretta. Il modulo di orchestrazione mitiga parzialmente questo problema leggendo \texttt{/proc/<pid>/cmdline} all'evento \texttt{exec}, ma questa arricchimento non è sempre disponibile per i processi già in esecuzione al momento dell'avvio delle probe.
+
+% -------------------------------------------------------
+\section{Direzioni di sviluppo}
+
+\subsection{Estensione a dispositivi reali}
+
+La direzione più impattante per ampliare l'applicabilità del sistema è rendere le probe eseguibili su dispositivi Android reali. Una via percorribile senza rooting del dispositivo è l'utilizzo di Android Debug Bridge (\texttt{adb}) in modalità \textit{shell} con i privilegi elevati disponibili nelle versioni di debug del sistema operativo, distribuite per scopi di sviluppo. In questo scenario le probe potrebbero essere caricate dall'esterno tramite \texttt{adb shell} senza richiedere modifiche permanenti al dispositivo.
+
+Un'altra direzione è l'integrazione con ambienti di test aziendali che già operano con ROM personalizzate o dispositivi con accesso root abilitato a scopo di analisi. In questi contesti il sistema potrebbe essere distribuito come strumento di analisi della sicurezza senza le limitazioni tipiche dei dispositivi di produzione.
+
+\subsection{Analisi in tempo reale e sistema di allerta}
+
+L'architettura a \textit{pipeline} descritta nel capitolo di implementazione si presta a un'estensione verso l'analisi in tempo reale. Invece di scrivere gli eventi su file \texttt{.jsonl} e analizzarli al termine della sessione, il modulo di orchestrazione potrebbe esporre un flusso di eventi a un componente di analisi continua. Quest'ultimo potrebbe applicare regole di rilevamento e generare notifiche al verificarsi di condizioni predefinite, come l'apertura di connessioni verso indirizzi IP non visti in precedenza, l'esecuzione di binari fuori dalle directory di sistema, o l'attivazione di canali Binder verso il Camera HAL da parte di un'applicazione non autorizzata.
+
+La soglia di frequenza di campionamento delle probe attuali è sufficiente per questo tipo di analisi: come mostrato nel capitolo precedente, i picchi di attività rilevanti sono ben distinguibili dal traffico di fondo già nell'arco di pochi secondi.
+
+\subsection{Firme comportamentali e rilevamento di anomalie}
+
+I dati raccolti nelle sessioni di test evidenziano che le applicazioni Android producono profili di attività caratteristici e riproducibili: la galleria genera un picco Binder specifico al caricamento delle anteprime, la fotocamera attiva thread HAL identificabili, il browser produce sequenze di \texttt{bind} correlate alle richieste HTTP/2. Questi profili potrebbero essere formalizzati come firme comportamentali da confrontare con l'attività osservata in sessioni successive.
+
+Un sistema di rilevamento basato su firme potrebbe segnalare, ad esempio, un'applicazione che attiva il canale Binder verso il Camera HAL pur non essendo un'applicazione fotografica, o un processo che apre socket verso l'esterno in assenza di interazione utente. Questo tipo di rilevamento non richiederebbe tecniche di apprendimento automatico nella fase iniziale: le firme osservate nelle sperimentazioni sono già sufficientemente precise da definire regole basate su soglie e pattern.
+
+\subsection{Estensione delle probe}
+
+Le sette probe attuali coprono syscall di rete, Binder IPC e ciclo di vita dei processi. Aree di sistema attualmente non monitorate che potrebbero offrire informazioni complementari includono:
+
+\begin{itemize}
+    \item la gestione della memoria, tramite il tracciamento di \texttt{mmap} e \texttt{brk}, che permetterebbe di correlare picchi di allocazione con l'attività delle applicazioni;
+    \item la schedulazione dei processi, tramite i tracepoint \texttt{sched:sched\_switch} e \texttt{sched:sched\_wakeup}, utile per misurare la contesa di CPU tra componenti di sistema;
+    \item le operazioni di lettura e scrittura su file, tramite \texttt{read} e \texttt{write}, per quantificare il volume di I/O su storage e non solo gli accessi rilevati da \texttt{openat}.
+\end{itemize}
+
+L'architettura modulare del sistema facilita l'aggiunta di nuove probe senza modificare i componenti esistenti: è sufficiente implementare il nuovo script bpftrace, registrarlo nel file di configurazione condiviso, e il modulo di orchestrazione e l'interfaccia utente lo renderanno automaticamente disponibile.
+
+\subsection{Interfaccia di visualizzazione}
+
+Il formato attuale dell'output è un report testuale generato dal modulo di analisi. Per sessioni lunghe o con molte probe attive simultaneamente, la lettura dei report diventa onerosa. Un'interfaccia di visualizzazione basata su linea temporale, anche semplice come un file HTML generato staticamente, permetterebbe di sovrapporre gli eventi delle diverse probe su un asse temporale comune e identificare visivamente le correlazioni tra probe. La disponibilità dei dati in formato JSON strutturato, già prodotto dal modulo di analisi, renderebbe questo sviluppo relativamente agevole senza modifiche al nucleo del sistema.

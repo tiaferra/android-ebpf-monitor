@@ -1,6 +1,6 @@
 \chapter{Tecnologie di base}
 \section{Linux}
-Linux è una famiglia di sistemi operativi open-source Unix-like, basati sull'omonimo kernel, ampiamente utilizzato sia in ambito accademico sia industriale~\cite{linux_kernel} grazie alla sua stabilità, 
+Linux è una famiglia di sistemi operativi \textit{open-source} \textit{Unix-like}, basati sull'omonimo kernel, ampiamente utilizzato sia in ambito accademico sia industriale~\cite{linux_kernel} grazie alla sua stabilità, 
 flessibilità e natura open source. Il kernel gestisce le risorse hardware e fornisce ai programmi 
 un’interfaccia standardizzata attraverso le system call, mentre l’insieme dei programmi in spazio utente costituisce l’ambiente operativo vero e proprio. 
 Ciò che rende Linux particolarmente adatto allo sviluppo software e alle attività di sperimentazione è la sua natura open source e free: il codice sorgente è liberamente accessibile, modificabile e distribuibile, il che consente un controllo dettagliato del sistema e facilita l'accesso a un ecosistema ampio di strumenti di analisi e debugging.
@@ -18,7 +18,7 @@ tra cui l’ambiente di virtualizzazione Android Cuttlefish e i componenti utili
 standard ha permesso di disporre di un ambiente stabile e riproducibile, facilitando l’installazione delle dipendenze e la gestione degli strumenti software impiegati nelle sperimentazioni.
 
 \section{Android Cuttlefish}
-Android~\cite{android_aosp} è un sistema operativo per dispositivi mobili basato sul kernel Linux e progettato per supportare l’esecuzione di applicazioni in un ambiente isolato e controllato. Il sistema è organizzato in una struttura a livelli che comprende il kernel Linux, le librerie di sistema, il runtime Android, il framework delle applicazioni e il livello delle applicazioni utente. Il kernel Linux costituisce il livello più basso dell’architettura e si occupa della gestione delle risorse hardware, della memoria, dei processi, dei dispositivi di input/output e delle comunicazioni di rete. I livelli superiori forniscono invece i servizi necessari all’esecuzione delle applicazioni e definiscono l’ambiente software tipico della piattaforma Android.
+Android~\cite{android_aosp} è un sistema operativo per dispositivi mobili basato sul kernel Linux e progettato per supportare l’esecuzione di applicazioni in un ambiente isolato e controllato. Il sistema è organizzato in una struttura a livelli che comprende il kernel Linux, le librerie di sistema, il \textit{runtime} Android, il \textit{framework} delle applicazioni e il livello delle applicazioni utente. Il kernel Linux costituisce il livello più basso dell’architettura e si occupa della gestione delle risorse hardware, della memoria, dei processi, dei dispositivi di input/output e delle comunicazioni di rete. I livelli superiori forniscono invece i servizi necessari all’esecuzione delle applicazioni e definiscono l’ambiente software tipico della piattaforma Android.
 
 Ogni applicazione Android viene eseguita in uno spazio isolato rispetto alle altre applicazioni, generalmente associato a un utente distinto. Questo meccanismo di isolamento contribuisce alla sicurezza del sistema ma limita l’accesso diretto alle risorse e alle funzionalità di basso livello. Inoltre, molte componenti tipiche delle distribuzioni Linux tradizionali non sono presenti oppure risultano fortemente ridotte, rendendo più complesso l’utilizzo di strumenti di analisi progettati per ambienti Linux standard.
 
@@ -59,7 +59,7 @@ Una delle tecnologie più recenti per il tracing nei sistemi Linux è rappresent
 all’interno del sistema operativo in modo controllato e sicuro, consentendo di intercettare eventi durante l’esecuzione senza modificare il codice del kernel o delle applicazioni.
 
 Il funzionamento di eBPF si basa sull’inserimento dinamico di programmi che vengono eseguiti quando si verificano determinati eventi, come l’ingresso in una funzione del kernel o 
-l’attivazione di un tracepoint. Prima di essere caricati, i programmi eBPF vengono verificati da un componente del sistema operativo chiamato verifier, che ne controlla la sicurezza 
+l’attivazione di un \textit{tracepoint}. Prima di essere caricati, i programmi eBPF vengono verificati da un componente del sistema operativo chiamato \textit{verifier}, che ne controlla la sicurezza 
 e garantisce che non possano compromettere la stabilità del sistema. Questo meccanismo permette di eseguire codice in modo sicuro anche all’interno di parti critiche del sistema operativo.
 
 \begin{figure}[h]
@@ -81,7 +81,7 @@ Per utilizzare eBPF in modo pratico sono stati sviluppati diversi strumenti soft
 
 \texttt{bpftrace} è un linguaggio di scripting e un interprete che permette di definire programmi di tracing in forma compatta e leggibile. Gli script vengono tradotti automaticamente in programmi eBPF ed eseguiti dal sistema operativo, semplificando notevolmente lo sviluppo rispetto alla scrittura diretta di codice eBPF.
 
-Un programma \texttt{bpftrace} è costituito da una o più probe, cioè punti di osservazione associati a eventi specifici. Ogni probe è composta da due parti principali:
+Un programma \texttt{bpftrace} è costituito da una o più \textit{probe}, cioè punti di osservazione associati a eventi specifici. Ogni probe è composta da due parti principali:
 
 \begin{itemize}
 \item la definizione dell’evento da osservare

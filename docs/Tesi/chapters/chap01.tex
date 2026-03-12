@@ -6,14 +6,14 @@ viene utilizzato in una grande varietà di dispositivi, dagli smartphone ai sist
 applicazioni e del sistema operativo rende sempre più importante disporre di strumenti in grado di analizzare e comprendere il 
 comportamento delle applicazioni durante l’esecuzione.
 
-Il monitoraggio delle attività delle applicazioni è fondamentale in diversi ambiti, tra cui il debugging del software, 
+Il monitoraggio delle attività delle applicazioni è fondamentale in diversi ambiti, tra cui il \textit{debugging} del software,
 l’analisi delle prestazioni e la sicurezza informatica. In particolare, la possibilità di osservare le interazioni tra le 
 applicazioni e il sistema operativo consente di individuare anomalie di funzionamento, colli di bottiglia prestazionali e 
 potenziali comportamenti malevoli.  
 
-Tradizionalmente il tracing del sistema operativo viene realizzato mediante strumenti specifici che permettono di raccogliere 
-informazioni sull’esecuzione dei processi e sulle attività del kernel. Tali strumenti possono tuttavia introdurre un significativo 
-overhead computazionale oppure richiedere modifiche al sistema operativo, rendendone difficile l’utilizzo in ambienti reali. 
+Tradizionalmente il \textit{tracing} del sistema operativo viene realizzato mediante strumenti specifici che permettono di raccogliere 
+informazioni sull’esecuzione dei processi e sulle attività del kernel. Tali strumenti possono tuttavia introdurre un significativo
+\textit{overhead} computazionale oppure richiedere modifiche al sistema operativo, rendendone difficile l’utilizzo in ambienti reali. 
 Inoltre, molti strumenti di analisi disponibili nei sistemi operativi tradizionali, e in particolare in ambiente Linux, non 
 sono direttamente utilizzabili su Android senza adattamenti specifici.
 
@@ -30,7 +30,7 @@ Per queste ragioni eBPF è diventato uno strumento sempre più utilizzato per at
 
 \section{Criticità}
 Tra gli strumenti che permettono di utilizzare eBPF in modo pratico, bpftrace costituisce una soluzione particolarmente efficace per 
-il tracing delle applicazioni e del sistema operativo.\texttt{ bpftrace}~\cite{bpftrace_docs} mette a disposizione un linguaggio di scripting ad alto livello che 
+il tracing delle applicazioni e del sistema operativo.\texttt{ bpftrace}~\cite{bpftrace_docs} mette a disposizione un linguaggio di \textit{scripting} ad alto livello che 
 consente di definire sonde e azioni associate agli eventi osservati, permettendo di raccogliere informazioni durante l’esecuzione senza 
 sviluppare programmi eBPF completi. Questo approccio semplifica notevolmente la realizzazione di strumenti di analisi dinamica.
 
@@ -38,7 +38,7 @@ Tuttavia, l’utilizzo di \texttt{ bpftrace} in ambiente Android presenta divers
 funzionalità di basso livello del sistema è limitato e spesso non sono disponibili gli strumenti e le librerie necessari per l’esecuzione di programmi basati su eBPF. Inoltre, l’installazione diretta di tali strumenti sul sistema Android può risultare complessa 
 o non praticabile, soprattutto al di fuori di ambienti di sviluppo, quando non si ha accesso a certi privilegi che consentono 
 di effettuare l'installazione e l'uso di tali strumenti. Ottenere tali 
-permessi richiederebbe di effettuare il rooting del dispositivo o di sostituire la release 
+permessi richiederebbe di effettuare il \textit{rooting} del dispositivo o di sostituire la \textit{release}
 Android installata, operazioni spesso non praticabili in contesti reali.
 
 \begin{table}[h]
@@ -59,7 +59,7 @@ Android installata, operazioni spesso non praticabili in contesti reali.
 \end{table}
 
 Queste limitazioni rendono difficile l’impiego delle tecnologie basate su eBPF per l’analisi del comportamento delle applicazioni Android, 
-nonostante il loro potenziale per il monitoring del sistema. Risulta quindi necessario definire un ambiente di lavoro che consenta l’utilizzo 
+nonostante il loro potenziale per il \textit{monitoring} del sistema. Risulta quindi necessario definire un ambiente di lavoro che consenta l’utilizzo 
 di bpftrace in modo stabile e riproducibile, permettendo allo stesso tempo l’osservazione delle attività delle applicazioni durante l’esecuzione.
 
 Il problema affrontato in questa tesi consiste quindi nel rendere possibile l’utilizzo di bpftrace per il tracing delle applicazioni 
